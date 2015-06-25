@@ -1,11 +1,12 @@
 class StaticPagesController < ApplicationController
   before_filter :set_static_page
-  before_filter :authenticate_admin_user!, only: [:edit]
+  before_filter :authenticate_admin_user!, only: [:mercury_update]
 
   def show
   end
 
-  def edit
+  def update
+    # TODO
   end
 
   def set_static_page
