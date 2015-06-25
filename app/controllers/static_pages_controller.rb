@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   before_filter :set_static_page
+  before_filter :authenticate_admin_user!, only: [:edit]
 
   def show
   end
