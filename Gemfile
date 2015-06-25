@@ -20,6 +20,9 @@ gem 'jbuilder', '~> 2.0'
 # Database
 gem 'pg'
 
+#WYSIWYG editor
+gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'
