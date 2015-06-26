@@ -22,14 +22,15 @@ gem 'pg'
 
 gem 'haml'
 
+
 #Login/Registration
 gem 'devise'
-gem 'letter_opener', :group => :development
-#gem 'omniauth'
-#gem 'omniauth-facebook'
-#gem 'omniauth-twitter'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 group :development, :test do
   gem 'pry-rails'
-  gem 'spring'
+  gem 'spring'  
+  gem 'letter_opener'
 end
 

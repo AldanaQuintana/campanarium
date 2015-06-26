@@ -40,4 +40,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  ENV["FACEBOOK_KEY"] = "444910929014850";
+  ENV["FACEBOOK_SECRET"] = "eee61e7945740ffa3f4462cb8967880f"
+  
 end
