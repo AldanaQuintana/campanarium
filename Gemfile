@@ -30,6 +30,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'resque', require: 'resque/server'
+gem 'foreman'
 
 group :development, :test do
   gem 'pry-rails'
