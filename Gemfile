@@ -28,6 +28,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+
+gem 'resque', require: 'resque/server'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'  
