@@ -21,4 +21,17 @@ class User < ActiveRecord::Base
   def has_oauth? provider 
     user_oauths.where(provider: provider).first
   end
+
+  def has_password?
+    has_password
+  end
+
+  def password_required?
+    false #has_password? && super
+  end
+
+  def has_many_oauths?
+    user_oauths.count > 1
+  end
+
 end

@@ -12,9 +12,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def extract_data provider, data  
     if provider == :facebook
-      {name: data.info.name, email: data.info.email, password: Devise.friendly_token[0,20]}
+      {name: data.info.name, email: data.info.email, password: Devise.friendly_token[0,20], has_password: false}
     else provider == :twitter 
-      {name: data.info.name, email: "twitter.no.me.da.el@email.com", password: Devise.friendly_token[0,20]}
+      {name: data.info.name, email: "twitter.no.me.da.el@email.com", password: Devise.friendly_token[0,20], has_password: false}
     end
   end
 

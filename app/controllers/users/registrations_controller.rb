@@ -1,6 +1,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+  before_filter :configure_sign_up_params, only: [:create]
+  before_filter :configure_account_update_params, only: [:update]
+
+
+  def unlink_provider
+    current_user.unlink_provider(params[:provider])
+    redirect_to edit_user_registration_path
+  end
+
 
   # GET /resource/sign_up
   # def new
@@ -8,16 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    params.require(:user).permit!
-    @user = User.new(params[:user])
-    @user.save!
-    sign_in @user
-    redirect_to user_path(@user)
-  end
-
-
-
+  # def create
+  #  super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -43,17 +43,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+ protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << :name
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.for(:account_update) << :name
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -64,4 +64,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def update_resource(resource, params)
+    if !resource.has_password?
+      params.delete("current_password")
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
+  end
+
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
+
+
 end
