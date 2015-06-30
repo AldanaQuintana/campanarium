@@ -31,6 +31,18 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+  
+<h3> Redes sociales </h3>
+
+<%- resource_class.omniauth_providers.each do |provider| %>
+  <% if resource.has_oauth? provider %>
+    <%= link_to "Desvincular #{provider.to_s.titleize}", user_unlink_provider_path(resource, provider: provider), method: :delete %><br />
+  <% else %>
+    <%= link_to "Vincular #{provider.to_s.titleize}", user_omniauth_authorize_path(provider: provider) %><br />
+
+  <%end %>
+<% end -%>
+
 
 <h3>Cancel my account</h3>
 

@@ -13,8 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(params[:user])
     @user.save!
     sign_in @user
-    redirect_to after_sign_up_path_for(@user)
+    redirect_to user_path(@user)
   end
+
+
+
 
   # GET /resource/edit
   # def edit

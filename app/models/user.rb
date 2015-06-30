@@ -10,4 +10,15 @@ class User < ActiveRecord::Base
     User.joins(:user_oauths).where(user_oauths: omniauth.slice(:provider, :uid)).readonly(false).first
   end
 
+  def link_oauth oauth_data 
+    UserOauth.create!(uid: oauth_data["uid"], provider: oauth_data["provider"], user: self)
+  end
+
+  def unlink_provider provider
+    has_oauth?(provider).try(:destroy)
+  end
+
+  def has_oauth? provider 
+    user_oauths.where(provider: provider).first
+  end
 end

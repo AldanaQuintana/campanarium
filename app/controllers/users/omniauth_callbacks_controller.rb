@@ -1,5 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
 
 
   def facebook
@@ -21,18 +20,25 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def handle_omniauth provider
     oauth_data = request.env["omniauth.auth"]
-    @user = User.from_omniauth(oauth_data)
+    @user = current_user || User.from_omniauth(oauth_data)
 
-    if @user && @user.persisted?
+    if user_signed_in? #Linking account
+      @user.unlink_provider oauth_data["provider"]
+      @user.link_oauth oauth_data
+      redirect_to edit_user_registration_path
+    elsif @user && @user.persisted? #Login 
       sign_in_and_redirect @user, :event => :authentication 
       set_flash_message(:notice, :success, :kind => provider) if is_navigational_format?
-    else
+    else #Registration
       @user = User.new(extract_data(provider, oauth_data))
       @user.save!
-      UserOauth.create!(uid: oauth_data["uid"], provider: oauth_data["provider"], user: @user)
-      sign_in_and_redirect @user, :event => :authentication 
+      @user.link_oauth oauth_data
+      sign_in @user
+      redirect_to user_path(@user)
     end
   end
+
+
 
   # You should also create an action method in this controller like this:
   # def twitter
@@ -51,7 +57,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
-  # protected
+  protected
+
+
 
   # The path used when OmniAuth fails
   # def after_omniauth_failure_path_for(scope)
