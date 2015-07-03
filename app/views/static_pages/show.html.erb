@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-2 hidden-xs hidden-sm"></div>
   <div class="col-md-8 col-sm-12 col-xs-12">
-    <h1 class="text-center" id="page_title" contenteditable="true" data-mercury="full"><%= raw @static_page.title %></h1>
+    <%= content_tag :h1, @static_page.title.html_safe, id: "page_title", contenteditable: editing?, :"data-mercury" => "full", class: "text-center"%>
     <br/>
-    <div class="static-page-main-content" id="page_main_content" contenteditable="true" data-mercury="full"><%= raw @static_page.main_content %></div>
+    <%= content_tag :div, @static_page.main_content.html_safe, id: "page_main_content", contenteditable: editing?, :"data-mercury" => "full", class: "static-page-main-content"%>
   </div>
   <div class="col-md-2 hidden-xs hidden-sm"></div>
 </div>
