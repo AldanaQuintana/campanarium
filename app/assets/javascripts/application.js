@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-migrate-min
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require static_pages/redirect_on_mercury_save

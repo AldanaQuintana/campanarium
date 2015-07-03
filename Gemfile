@@ -17,11 +17,14 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+gem 'responders', '~> 2.0'
+
 # Database
 gem 'pg'
 
 #WYSIWYG editor
 gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
+gem 'jquery-migrate-rails' #For mercury compatibility
 
 group :development, :test do
   gem 'pry-rails'
