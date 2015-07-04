@@ -1,6 +1,8 @@
-:css 
-  body{background-image: url(/assets/landing.png); background-size: 100% auto; }
+= stylesheet_link_tag "landing"
+.landing-background
 
-.login-form{style: "background-color: white"}
-
-  = render partial: 'login_form' 
+  .container-fluid
+    .row-fluid
+      .panel.panel-default.col-xs-3.centering.text-center
+        .panel-body
+          = render partial: 'login_form' 

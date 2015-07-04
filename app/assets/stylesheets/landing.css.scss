@@ -1,0 +1,32 @@
+html, body{
+  height: 100%;
+  width: 100%;
+}
+
+.landing-background{
+  background-image: url(/assets/campanile.jpg);
+  background-size: 100% auto;
+  height: 100%;
+  width: 100%;
+}
+
+.container-fluid{
+  height:100%;
+  display:table;
+  width: 100%;
+  padding: 0;
+}
+ 
+.row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
+ 
+ 
+
+.centering {
+  float:none;
+  margin:0 auto;
+}
+
+.panel{
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+}
