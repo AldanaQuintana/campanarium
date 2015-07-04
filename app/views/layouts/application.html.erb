@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render '/share/alert_messages' %>
   <div class=".borrar">
   <%=link_to 'Inicio', noticias_path if current_user%>
   <%=link_to 'Perfil', user_path(current_user) if current_user%>
