@@ -1,9 +1,6 @@
 class StaticPagesController < ApplicationController
   before_filter :set_static_page
   before_filter :authenticate_admin_user!, only: [:update]
-  before_filter :check_can_edit, only: [:show]
-
-  helper_method :editing?
 
   def show
     redirect_to root_path unless @static_page
@@ -19,13 +16,5 @@ class StaticPagesController < ApplicationController
 
   def set_static_page
     @static_page = StaticPage.find_by_param_name(params[:id])
-  end
-
-  def editing?
-    request.path.index("/editor/") == 0 || params[:editing]
-  end
-
-  def check_can_edit
-    authenticate_admin_user! if editing?
   end
 end
