@@ -27,13 +27,9 @@ html, body{
   bottom:0px;
   background-color: #000000;
   width: 100%;
-  li a{
-    color: white;
-  }
 }
 
 #wrapper{
   height: 100%;
   position: relative;
 }
-

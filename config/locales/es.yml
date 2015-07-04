@@ -10,3 +10,12 @@ es:
       login_facebook: "Ingresa con Facebook"
       register: "Registrate"
       login: "Iniciar Sesión"
+  devise:
+    registrations:
+      new:
+        email: Email
+        name: Nombre
+        password: Contraseña
+        password_confirmation: Confirme contraseña
+        sign_up: Registrate
+        back: Volver
