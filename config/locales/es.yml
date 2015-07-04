@@ -1,0 +1,12 @@
+es:
+  layouts:
+    footer:
+      about: "Sobre el proyecto"
+      faqs: "FAQs"
+      contact: "Contacto"
+  landing:
+    login_form:
+      login_twitter: "Ingresa con Twitter"
+      login_facebook: "Ingresa con Facebook"
+      register: "Registrate"
+      login: "Iniciar Sesión"

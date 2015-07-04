@@ -1,8 +1,8 @@
 .row
-  = link_to "Ingresa con twitter", signin_path(:twitter), class: "btn btn-info col-xs-12"
+  = link_to t(".login_twitter"), signin_path(:twitter), class: "btn btn-info col-xs-12"
 %br
 .row
-  = link_to "Ingresa con facebook", signin_path(:facebook), class: "btn btn-primary col-xs-12"
+  = link_to  t(".login_facebook"), signin_path(:facebook), class: "btn btn-primary col-xs-12"
 %hr
 .row
   = form_for :user, url: session_path(:user), method: :post do |f|
@@ -12,8 +12,8 @@
       = f.password_field :password, placeholder: "Password", class: "form-control"
     %br
     .pull-left
-      = link_to "Registrate", new_user_registration_path, class: "btn btn-default"
+      = link_to  t(".register"), new_user_registration_path, class: "btn btn-default"
     .pull-right
-      = f.submit "Iniciar Sesión", class: "btn btn-warning"
+      = f.submit  t(".login"), class: "btn btn-warning"
     .clearfix
     %br
