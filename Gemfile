@@ -39,7 +39,8 @@ gem 'jquery-migrate-rails' #For mercury compatibility
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'spring'  
+  gem 'spring'
   gem 'letter_opener'
+  gem 'better_errors'
 end
 

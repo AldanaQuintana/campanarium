@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     # TODO: fill when we have users :P
+    current_user.present? &&
+    current_user.admin? or raise "Not authorized"
   end
 
   def after_sign_in_path_for(resource)
