@@ -34,4 +34,9 @@ class User < ActiveRecord::Base
     user_oauths.count > 1
   end
 
+  def admin?
+    # TODO
+    true
+  end
+
 end
