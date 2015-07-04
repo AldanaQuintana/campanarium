@@ -11,5 +11,17 @@ class StaticPage < ActiveRecord::Base
     def find_by_param_name(param_name)
       self.where("lower(title_identifier) = ?", param_name.titleize.downcase)[0]
     end
+
+    def about_us
+      StaticPage.find_by(title_identifier: "Sobre el proyecto")
+    end
+
+    def faqs
+      StaticPage.find_by(title_identifier: "Preguntas frecuentes")
+    end
+
+    def contact
+      StaticPage.find_by(title_identifier: "Contacto")
+    end
   end
 end
