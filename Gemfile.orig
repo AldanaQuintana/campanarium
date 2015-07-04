@@ -22,6 +22,11 @@ gem 'responders', '~> 2.0'
 # Database
 gem 'pg'
 
+<<<<<<< HEAD
+#WYSIWYG editor
+gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
+gem 'jquery-migrate-rails' #For mercury compatibility
+=======
 gem 'haml'
 
 
@@ -33,14 +38,11 @@ gem 'omniauth-twitter'
 
 gem 'resque', require: 'resque/server'
 gem 'foreman'
-#WYSIWYG editor
-gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
-gem 'jquery-migrate-rails' #For mercury compatibility
+>>>>>>> master
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'spring'
+  gem 'spring'  
   gem 'letter_opener'
-  gem 'better_errors'
 end
 

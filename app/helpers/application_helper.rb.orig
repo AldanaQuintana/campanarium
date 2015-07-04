@@ -1,11 +1,12 @@
 module ApplicationHelper
+<<<<<<< HEAD
   def current_admin_user?
     # TODO
     true
-  end
-
+=======
 
   def signin_path(provider)
     "users/auth/#{provider.to_s}"
+>>>>>>> master
   end
 end

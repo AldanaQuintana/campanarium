@@ -11,17 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150703015530) do
+=======
+ActiveRecord::Schema.define(version: 20150630172333) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "static_pages", force: :cascade do |t|
     t.string "title"
     t.text   "main_content"
     t.string "title_identifier"
   end
 
+=======
   create_table "user_oauths", force: :cascade do |t|
     t.string   "uid"
     t.string   "provider"
@@ -45,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150703015530) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "providers"
     t.string   "name"
     t.boolean  "has_password",           default: true
   end
@@ -52,4 +59,5 @@ ActiveRecord::Schema.define(version: 20150703015530) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+>>>>>>> master
 end
