@@ -13,6 +13,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -38,4 +40,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  ENV["FACEBOOK_KEY"] = "444910929014850";
+  ENV["FACEBOOK_SECRET"] = "eee61e7945740ffa3f4462cb8967880f"
+  ENV["TWITTER_KEY"] = "I0a4KrxdxnhHSPie5ES9mGJpJ";
+  ENV["TWITTER_SECRET"] = "0c230mg9agtOAiFw5HBGaB6S0FZj4OaH3t7u5jMlam3mviAmlD"
 end

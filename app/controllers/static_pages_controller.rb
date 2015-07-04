@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   before_filter :authenticate_admin_user!, only: [:mercury_update]
 
   def show
+    redirect_to root_path unless @static_page
   end
 
   def update

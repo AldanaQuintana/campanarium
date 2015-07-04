@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
+  mount Mercury::Engine => '/'
+  root :to => "landing#start"
+
+  resources :static_pages, only: [:show, :update]
+=======
   mount Resque::Server, at: '/resque'
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
-  mount Mercury::Engine => '/'
   root :to => "landing#start"
 
   devise_scope :user do 
@@ -12,5 +17,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :noticias
-  resources :static_pages, only: [:show, :update]
+>>>>>>> master
 end

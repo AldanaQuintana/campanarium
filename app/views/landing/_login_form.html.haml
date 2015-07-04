@@ -1,0 +1,13 @@
+= form_for :user, url: session_path(:user), method: :post do |f|
+  .field
+    = f.email_field :email, placeholder: "Email", autofocus: true
+  .field
+    = f.password_field :password, placeholder: "Password"
+  .actions
+  = f.submit "Iniciar Sesión"
+
+= link_to "Registrate", new_user_registration_path
+
+= link_to "Facebook", signin_path(:facebook)
+
+= link_to "Twitter", signin_path(:twitter)
