@@ -1,0 +1,2 @@
+class SourceFetcher < ResqueJob
+end

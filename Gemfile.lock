@@ -225,6 +225,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mercury-rails!
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-twitter

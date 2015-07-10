@@ -24,6 +24,8 @@ gem 'pg'
 
 gem 'haml'
 
+# noticias fetcher
+gem 'nokogiri'
 
 #Login/Registration
 gem 'devise'
