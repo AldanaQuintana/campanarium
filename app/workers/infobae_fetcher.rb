@@ -35,7 +35,7 @@ class InfobaeFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = html.css('.entry-title').first.text
-    body = html.css('.entry-content .cuerposmart p').text
+    body = format_body html.css('.entry-content .cuerposmart p')
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     media_items = Array image
