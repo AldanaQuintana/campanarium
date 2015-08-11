@@ -42,7 +42,7 @@ class LaNacionFetcher < SourceFetcher
     image = html.css('#cuerpo .archivos-relacionados .foto img').first
     image = image && image.attr('src')
     media_items = Array image
-    { title: title, body: body, source: :lanacion, source_url: url, media_items: media_items }
+    { title: title, body: body, source: :la_nacion, source_url: url, media_items: media_items }
   end
 
 end
