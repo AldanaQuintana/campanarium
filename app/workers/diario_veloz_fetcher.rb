@@ -1,9 +1,8 @@
-# minutouno noticias fetcher
+# diario veloz noticias fetcher
 # Cosas a revisar:
-# Las imagenes parecen cargarse via js
-# El body de http://www.minutouno.com/notas/1281464-titi-fernandez-todas-las-noches-revivo-el-dia-que-me-entere-la-muerte-sole
+# Newlines en el body (no usan nodos <div> o <p> como los otros...)
 
-class MinutoUnoFetcher < SourceFetcher
+class DiarioVelozFetcher < SourceFetcher
 
   def perform
     from = Time.parse options.from
@@ -13,7 +12,7 @@ class MinutoUnoFetcher < SourceFetcher
 
   def fetch_noticias from, to
     noticias_urls = fetch_noticias_urls
-    puts "#{noticias_urls.count} minuto uno urls found"
+    puts "#{noticias_urls.count} diario veloz urls found"
     belongs_to_interval = true
     noticias_urls.map do |url|
       next nil unless belongs_to_interval
@@ -26,8 +25,8 @@ class MinutoUnoFetcher < SourceFetcher
   end
 
   def fetch_noticias_urls
-    puts 'Fetching minutouno sitemap ...'
-    sitemap_url = 'http://www.minutouno.com/sitemap.xml'
+    puts 'Fetching diario veloz sitemap ...'
+    sitemap_url = 'http://www.diarioveloz.com/sitemap.xml'
     sitemap = Nokogiri::HTML open sitemap_url
     sitemap.css('url loc').map &:text
   end
@@ -35,12 +34,12 @@ class MinutoUnoFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = html.css('.article-detail-heading .title').text
-    body = format_body html.css '.article-content > div'
-    image = html.css('.gallery-area img').first
+    title = html.css('.title-obj h1').text
+    body = html.css('.detail-obj .cuerpo-nota').text
+    image = html.css('.detail-obj .slide img').first
     image = image && image.attr('src')
     media_items = Array image
-    updated_time_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
+    updated_time_str = html.css('.title-obj .time').text.gsub 'de', '' # Formato: '10/08/2015 21:21hs'
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
     { title: title, body: body, source: :minuto_uno, source_url: url, media_items: media_items, updated_time: updated_time }
