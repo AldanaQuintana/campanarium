@@ -46,6 +46,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'better_errors'
   gem 'factory_girl'
+  gem 'faker'
 end
 
 group :test do
