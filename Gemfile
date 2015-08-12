@@ -46,3 +46,8 @@ group :development, :test do
   gem 'better_errors'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+end
+
