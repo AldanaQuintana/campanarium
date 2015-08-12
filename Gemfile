@@ -45,7 +45,7 @@ group :development, :test do
   gem 'spring'
   gem 'letter_opener'
   gem 'better_errors'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'faker'
 end
 
