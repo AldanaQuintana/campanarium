@@ -39,10 +39,18 @@ gem 'foreman'
 gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
 gem 'jquery-migrate-rails' #For mercury compatibility
 
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem 'letter_opener'
   gem 'better_errors'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+end
