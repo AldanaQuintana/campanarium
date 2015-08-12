@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   helper_method :editing?
 
   def authenticate_admin_user!
-    # TODO: fill when we have users :P
     current_user.present? &&
     current_user.admin? or raise BusinessRuleError.new :error_not_authorized
   end
