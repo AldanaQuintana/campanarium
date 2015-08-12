@@ -1,7 +1,6 @@
 module ApplicationHelper
   def current_admin_user?
-    # TODO
-    true
+    current_user.present? && current_user.admin?
   end
 
 
