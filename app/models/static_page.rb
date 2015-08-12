@@ -1,10 +1,15 @@
 class StaticPage < ActiveRecord::Base
   validates :title_identifier, uniqueness: { case_sensitive: false }
   validates_presence_of :title_identifier
-  validates_presence_of :title
+
+  before_create :set_default_values
 
   def to_param
     "#{title_identifier.parameterize}"
+  end
+
+  def set_default_values
+    self.title = title_identifier.try(:titleize) if title.nil?
   end
 
   class << self
@@ -13,15 +18,15 @@ class StaticPage < ActiveRecord::Base
     end
 
     def about_us
-      StaticPage.find_by(title_identifier: "Sobre el proyecto")
+      StaticPage.find_or_create_by(title_identifier: "Sobre el proyecto")
     end
 
     def faqs
-      StaticPage.find_by(title_identifier: "Preguntas frecuentes")
+      StaticPage.find_or_create_by(title_identifier: "Preguntas frecuentes")
     end
 
     def contact
-      StaticPage.find_by(title_identifier: "Contacto")
+      StaticPage.find_or_create_by(title_identifier: "Contacto")
     end
   end
 end
