@@ -35,8 +35,6 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    # TODO
-    true
+    false
   end
-
 end
