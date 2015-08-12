@@ -27,6 +27,7 @@ ActiveRecord::Migration.maintain_test_schema!
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
+  config.include Rails.application.routes.url_helpers
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :helper
   config.include Capybara::DSL
