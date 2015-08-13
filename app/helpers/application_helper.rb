@@ -8,6 +8,10 @@ module ApplicationHelper
     "users/auth/#{provider.to_s}"
   end
 
+  def error_class_for(resource, attribute)
+    resource.present? && resource.errors[attribute].present? ? "has-error" : ""
+  end
+
   def bootstrap_alert_class(alert_type)
 
     case alert_type

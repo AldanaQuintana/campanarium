@@ -7,13 +7,13 @@
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = devise_error_messages!
           .form-group
-            = f.text_field :name, autofocus: true, placeholder: t(".name"), class: "form-control"
+            = f.text_field :name, autofocus: true, placeholder: t(".name"), class: "form-control #{error_class_for(resource, :name)}"
           .form-group
-            = f.email_field :email, placeholder: t(".email"), class: "form-control"
+            = f.email_field :email, placeholder: t(".email"), class: "form-control #{error_class_for(resource, :email)}"
           .form-group
-            = f.password_field :password, autocomplete: "off", placeholder: t(".password"), class: "form-control"
+            = f.password_field :password, autocomplete: "off", placeholder: t(".password"), class: "form-control #{error_class_for(resource, :password)}"
           .form-group
-            = f.password_field :password_confirmation, autocomplete: "off", placeholder: t(".password_confirmation"), class: "form-control"
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: t(".password_confirmation"), class: "form-control #{error_class_for(resource, :password_confirmation)}"
           .pull-left
             = link_to  t(".back"), root_path, class: "btn btn-default"
           .pull-right
