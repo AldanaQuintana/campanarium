@@ -1,6 +1,6 @@
 .container-fluid#footer
   .collapse.navbar-collapse
     %ul.nav.navbar-nav
-      %li= link_to t(".about"), "#"
-      %li= link_to t(".faqs"), "#"
-      %li= link_to t(".contact"), "#"
+      %li= link_to t(".about"), static_page_path(StaticPage.about_us)
+      %li= link_to t(".faqs"), static_page_path(StaticPage.faqs)
+      %li= link_to t(".contact"), static_page_path(StaticPage.contact)
