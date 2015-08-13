@@ -21,7 +21,7 @@
       color: #FFF;
       text-align: center;
       font-size: 60px;
-      padding-top: 40px;
+      padding-top: 5px;
       display: none;
     }
     .panel-body{
@@ -63,7 +63,7 @@
       background-color: #000;
       margin: 0;
       .panel-body{
-        padding: 40px 50px;
+        padding: 23px 50px 40px 50px;
         .register-button{
           float: none;
           margin-top: 10px;
@@ -82,6 +82,9 @@
         display: block;
       }
     }
+  }
+  .navbar-header{
+    border-top: 1px solid;
   }
 }
 
