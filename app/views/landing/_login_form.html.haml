@@ -1,8 +1,12 @@
 .row
-  = link_to t(".login_twitter"), signin_path(:twitter), class: "btn btn-info col-xs-12"
+  = link_to signin_path(:twitter), class: "btn btn-info col-xs-12" do
+    %i.fa.fa-twitter.pull-left.social-media-icon
+    = t(".login_twitter")
 %br
 .row
-  = link_to  t(".login_facebook"), signin_path(:facebook), class: "btn btn-primary col-xs-12"
+  = link_to signin_path(:facebook), class: "btn btn-primary col-xs-12" do
+    %i.fa.fa-facebook.pull-left.social-media-icon
+    = t(".login_facebook")
 %hr
 .row
   = form_for :user, url: session_path(:user), method: :post do |f|

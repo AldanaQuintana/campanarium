@@ -39,6 +39,9 @@ gem 'foreman'
 gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'
 gem 'jquery-migrate-rails' #For mercury compatibility
 
+# icons
+gem 'font-awesome-sass'
+
 
 group :development, :test do
   gem 'pry-rails'
