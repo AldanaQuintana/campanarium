@@ -31,9 +31,12 @@ describe 'view and edit of static pages' do
 
   context 'when a signed in user' do
     let!(:user){ create(:user) }
+    before do
+      login!(user)
+    end
+
     describe 'visits a static page' do
       before do
-        login!(user)
         visit static_page_path(static_page)
       end
 
@@ -48,8 +51,8 @@ describe 'view and edit of static pages' do
         visit "/editor" + static_page_path(static_page)
       end
 
-      it 'should be redirected to root path' do
-        expect(current_path).to eq("/")
+      it 'should be redirected to notices path' do
+        expect(current_path).to eq("/noticias")
         expect(page).to have_content("No tiene autorización para realizar esa acción.")
       end
     end
@@ -57,15 +60,28 @@ describe 'view and edit of static pages' do
 
   context 'when an admin' do
     let!(:admin){ create(:admin) }
+    before do
+      login!(admin)
+    end
+
     describe 'visits a static page' do
       before do
-        login!(admin)
         visit static_page_path(static_page)
       end
 
       it 'should be able to see the static page contents and the edit button' do
         expect_to_be_on_static_page
         expect(page).to have_css("a.edit-static-page", :text => 'Editar')
+      end
+    end
+
+    describe 'tries to access to the editor mode' do
+      before do
+        visit "/editor" + static_page_path(static_page)
+      end
+
+      it 'should not be redirected' do
+        expect(current_path).to eq("/editor/static_pages/static-page")
       end
     end
   end
