@@ -15,9 +15,9 @@
     .form-group
       = f.password_field :password, placeholder: "Password", class: "form-control"
     %br
-    .pull-left
+    .login-button
+      = f.submit  t(".login"), class: "btn btn-primary"
+    .register-button
       = link_to  t(".register"), new_user_registration_path, class: "btn btn-default"
-    .pull-right
-      = f.submit  t(".login"), class: "btn btn-warning"
     .clearfix
     %br

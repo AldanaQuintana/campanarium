@@ -16,6 +16,21 @@
     /* Centering */
     float: none;
     margin:0 auto;
+    .logo{
+      color: #FFF;
+      text-align: center;
+      font-size: 50px;
+      padding-top: 40px;
+      display: none;
+    }
+    .panel-body{
+      .register-button{
+        float: left;
+      }
+      .login-button{
+        float: right;
+      }
+    }
   }
 
   h2{
@@ -25,5 +40,36 @@
   i.social-media-icon{
     font-size: 19px;
     padding-top: 1px;
+  }
+}
+
+@media (max-width: 768px) {
+  // Small devices
+  .landing-background{
+    padding: 0;
+    .panel{
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      .panel-body{
+        padding: 40px 50px;
+        .register-button{
+          float: none;
+          margin-top: 10px;
+          a{
+            width: 100%;
+          }
+        }
+        .login-button{
+          float: none;
+          input{
+            width: 100%;
+          }
+        }
+      }
+      .logo{
+        display: block;
+      }
+    }
   }
 }
