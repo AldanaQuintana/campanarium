@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "no puede estar en blanco"
+              taken: "ya está en uso"
+            password:
+              too_short: "es demasiado corta"
+    models:
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      user:
+        email: "El email"
+        password: "La contraseña"

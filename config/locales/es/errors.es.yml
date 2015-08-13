@@ -1,2 +1,5 @@
 es:
   error_not_authorized: No tiene autorización para realizar esa acción.
+  errors:
+    messages:
+      not_saved: No se ha podido procesar tu pedido
