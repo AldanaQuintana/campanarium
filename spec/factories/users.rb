@@ -4,5 +4,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     name { Faker::Name.name }
+
+    factory :admin do
+      type "Admin"
+    end
   end
 end
