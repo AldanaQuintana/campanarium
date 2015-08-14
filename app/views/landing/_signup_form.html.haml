@@ -1,5 +1,6 @@
 .row
-  = form_for(:user, url: registration_path(:user)) do |f|
+  = form_for(:user, url: registration_path(:user)+".json", remote: true, html: { class: "ajax-form" } ) do |f|
+    .errors-container
     .form-group
       = f.text_field :name, autofocus: true, placeholder: "Nombre", class: "form-control"
     .form-group
@@ -9,4 +10,6 @@
     .form-group
       = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirme la contraseña", class: "form-control"
     .button-block
-      = f.submit "Registrarse", class: "btn btn-primary"
+      = f.button :type => :submit, class: "btn btn-primary button-block" do
+        Registrarse
+        %i.fa.fa-spinner.fa-spin.hide

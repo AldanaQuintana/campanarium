@@ -2,10 +2,10 @@ module PageHelper
   def login!(user)
     visit('/')
 
-    find('#user_email').set(user.email)
-    find('#user_password').set(user.password)
+    find('#user_email_login').set(user.email)
+    find('#user_password_login').set(user.password)
 
-    click_button 'Iniciar Sesión'
+    click_button 'Ingresar'
   end
 
   def response

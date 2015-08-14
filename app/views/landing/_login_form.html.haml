@@ -11,8 +11,7 @@
 .row
   = form_for :user, url: session_path(:user), method: :post do |f|
     .form-group
-      = f.email_field :email, placeholder: "Email", autofocus: true, class: "form-control"
+      = f.email_field :email, placeholder: "Email", autofocus: true, class: "form-control", id: "user_email_login"
     .form-group
-      = f.password_field :password, placeholder: "Password", class: "form-control"
-    .button-block
-      = f.submit  "Ingresar", class: "btn btn-primary"
+      = f.password_field :password, placeholder: "Password", class: "form-control", id: "user_password_login"
+    = f.submit  "Ingresar", class: "btn btn-primary button-block"

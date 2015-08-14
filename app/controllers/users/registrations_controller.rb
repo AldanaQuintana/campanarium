@@ -8,6 +8,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to edit_user_registration_path
   end
 
+  def respond_with(resource)
+    respond_to do |format|
+      format.html{ super(resource)}
+      format.json do
+        if resource.persisted?
+          render json: {errors: "yes, success!"}
+        else
+          render json: {errors: resource.errors.full_messages }, status: 422
+        end
+      end
+    end
+  end
+
 
   # GET /resource/sign_up
   # def new
