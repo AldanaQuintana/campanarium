@@ -12,7 +12,7 @@
     border: none;
     border-radius: 0;
     width: 392px;
-    padding: 20px 15px;
+    padding: 0;
     /* Centering */
     float: none;
     margin:100px auto;
@@ -24,13 +24,40 @@
       padding-top: 5px;
       display: none;
     }
+    .panel-header{
+      .nav.nav-tabs{
+        li{
+          &.left{
+            a{
+              -webkit-box-shadow: inset -3px -3px 7px 0px rgba(0,0,0,0.25);
+              -moz-box-shadow: inset -3px -3px 7px 0px rgba(0,0,0,0.25);
+              box-shadow: inset -3px -3px 7px 0px rgba(0,0,0,0.25);
+            }
+          }
+          &.right{
+            a{
+              -webkit-box-shadow: inset 3px -3px 7px 0px rgba(0,0,0,0.25);
+              -moz-box-shadow: inset 3px -3px 7px 0px rgba(0,0,0,0.25);
+              box-shadow: inset 3px -3px 7px 0px rgba(0,0,0,0.25);
+            }
+          }
+          a{
+            color: white;
+            border: none;
+            border-radius: 0;
+          }
+          &.active{
+            a{
+              background-color: inherit;
+              border: 0;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
     .panel-body{
-      .register-button{
-        float: left;
-      }
-      .login-button{
-        float: right;
-      }
+      padding: 43px;
     }
   }
 
@@ -64,22 +91,38 @@
       margin: 0;
       .panel-body{
         padding: 23px 50px 40px 50px;
-        .register-button{
-          float: none;
-          margin-top: 10px;
-          a{
-            width: 100%;
-          }
-        }
-        .login-button{
-          float: none;
-          input{
-            width: 100%;
-          }
-        }
       }
       .logo{
         display: block;
+      }
+      .panel-header{
+        .nav.nav-tabs{
+          li{
+            float: left;
+            width: 50%;
+            &.left{
+              a{
+                -webkit-box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
+                -moz-box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
+                box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
+              }
+            }
+            &.right{
+              a{
+                -webkit-box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
+                -moz-box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
+                box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
+              }
+            }
+            &.active{
+              a{
+                background-color: inherit;
+                border: 0;
+                box-shadow: none;
+              }
+            }
+          }
+        }
       }
     }
   }
