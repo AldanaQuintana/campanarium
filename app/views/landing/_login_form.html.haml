@@ -14,8 +14,5 @@
       = f.email_field :email, placeholder: "Email", autofocus: true, class: "form-control"
     .form-group
       = f.password_field :password, placeholder: "Password", class: "form-control"
-    .login-button
-      = f.submit  t(".login"), class: "btn btn-primary"
-    .register-button
-      = link_to  t(".register"), new_user_registration_path, class: "btn btn-default"
-    .clearfix
+    .button-block
+      = f.submit  "Ingresar", class: "btn btn-primary"

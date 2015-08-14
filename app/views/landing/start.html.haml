@@ -2,9 +2,22 @@
 
 .landing-background
   .panel.panel-default
-    .logo
-      Campanarium
-    .panel-body
-      = render partial: 'login_form'
+    .panel-header
+      %ul.nav.nav-tabs.nav-justified
+        %li.active.left{role: "presentation"}
+          %a{href: "#signin", :"data-toggle" => "pill"}
+            Ingresar
+        %li.right{role: "presentation"}
+          %a{href: "#signup", :"data-toggle" => "pill"}
+            Registrarse
+    .tab-content
+      .logo
+        Campanarium
+      #signin.tab-pane.in.active
+        .panel-body
+          = render partial: 'login_form'
+      #signup.tab-pane
+        .panel-body
+          = render partial: 'signup_form'
 
 
