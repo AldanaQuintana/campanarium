@@ -40,10 +40,10 @@ html, body{
 
 .button-block{
   width: 100%;
-  input{
-    width: 100%;
-  }
-  a{
-    width: 100%;
-  }
+}
+
+.errors-container{
+  color: #c00;
+  text-align: center;
+  margin-bottom: 21px;
 }

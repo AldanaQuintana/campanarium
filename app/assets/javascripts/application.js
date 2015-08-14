@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require static_pages/redirect_on_mercury_save
+//= require forms_handling
