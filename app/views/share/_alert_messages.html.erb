@@ -1,9 +1,11 @@
-<% flash.each do |name, msg| %>
-  <div class="alert <%= bootstrap_alert_class(name) %> alert-dismissable" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <%= msg %>
-  </div>
-<% end %>
+<div class="alerts-container">
+  <% flash.each do |name, msg| %>
+    <div class="alert <%= bootstrap_alert_class(name) %> alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
 
 
 <%= yield(:alert_messages) %>

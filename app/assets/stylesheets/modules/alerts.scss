@@ -1,0 +1,11 @@
+.alerts-container{
+  position: absolute;
+  top: 10px;
+  text-align: center;
+  width: 100%;
+  .alert{
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+  }
+}
