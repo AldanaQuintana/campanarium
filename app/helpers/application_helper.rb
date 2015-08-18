@@ -3,6 +3,9 @@ module ApplicationHelper
     current_user.present? && current_user.admin?
   end
 
+  def render_alert_messages?
+    current_user.present?
+  end
 
   def signin_path(provider)
     "users/auth/#{provider.to_s}"
