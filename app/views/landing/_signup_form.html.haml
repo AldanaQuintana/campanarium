@@ -1,5 +1,5 @@
 .row
-  = form_for(:user, url: registration_path(:user)+".json", remote: true, html: { class: "ajax-form" } ) do |f|
+  = form_for(:user, url: registration_path(:user)+".json", remote: true, html: { class: "ajax-form", novalidate: true } ) do |f|
     .errors-container
     .form-group
       = f.text_field :name, autofocus: true, placeholder: "Nombre", class: "form-control name_field"
