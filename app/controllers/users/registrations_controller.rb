@@ -8,12 +8,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to edit_user_registration_path
   end
 
-  def respond_with(resource, after_sign_up_path, *args)
+  def respond_with(resource, *args)
     respond_to do |format|
       format.html{ super(resource)}
       format.json do
         if resource.persisted?
-          render json: {url: after_sign_up_path[:location]}, status: 200
+          render json: {url: args[0][:location]}, status: 200
         else
           render json: {errors: resource.errors.full_messages }, status: 422
         end
