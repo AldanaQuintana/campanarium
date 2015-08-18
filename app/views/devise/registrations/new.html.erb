@@ -1,0 +1,32 @@
+<div class="landing-background">
+  <div class="panel panel-default">
+    <div class="panel-header">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active left" role="presentation">
+          <a href="#signin" data-toggle="pill">Ingresar</a>
+        </li>
+        <li class="right" role="presentation">
+          <a href="#signup" data-toggle="pill">Registrarse</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="logo">Campanarium</div>
+      <div id="signin" class="tab-pane in active">
+        <div class="panel-body">
+          <%- if flash[:alert].present? %>
+            <div class="errors-container">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <%= render partial: 'landing/login_form' %>
+        </div>
+      </div>
+      <div id="signup" class="tab-pane">
+        <div class="panel-body">
+          <%= render partial: 'landing/signup_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
