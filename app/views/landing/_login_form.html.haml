@@ -15,3 +15,4 @@
     .form-group
       = f.password_field :password, placeholder: "Password", class: "form-control", id: "user_password_login"
     = f.submit  "Ingresar", class: "btn btn-primary button-block"
+    = render "devise/shared/links"

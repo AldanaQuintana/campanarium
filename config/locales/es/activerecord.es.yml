@@ -7,6 +7,7 @@ es:
             email:
               blank: "no puede estar en blanco"
               taken: "ya está en uso"
+              invalid: "es inválido"
             password:
               too_short: "es demasiado corta"
     models:

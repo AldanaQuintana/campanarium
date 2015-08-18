@@ -12,7 +12,9 @@
     <%=render "layouts/header"%>
     <%= yield %>
     <%= render "layouts/footer" %>
-    <%= render '/share/alert_messages' %>
+    <%- if render_alert_messages? %>
+      <%= render '/share/alert_messages' %>
+    <% end %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>

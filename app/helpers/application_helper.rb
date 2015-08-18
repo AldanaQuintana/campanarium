@@ -3,6 +3,9 @@ module ApplicationHelper
     current_user.present? && current_user.admin?
   end
 
+  def render_alert_messages?
+    request.path != "/users/sign_in"
+  end
 
   def signin_path(provider)
     "users/auth/#{provider.to_s}"
