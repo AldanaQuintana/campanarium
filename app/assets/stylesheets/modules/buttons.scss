@@ -1,0 +1,8 @@
+.btn{
+  &.button-block{
+    width: 100%!important;
+  }
+  &.btn-primary{
+    background-color: $primary;
+  }
+}

@@ -4,8 +4,12 @@
   text-align: center;
   width: 100%;
   .alert{
+    color: #FFF;
     width: 50%;
     margin: 0 auto;
     position: relative;
+    &.alert-notice{
+
+    }
   }
 }
