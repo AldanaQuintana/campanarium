@@ -50,6 +50,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'binding_of_caller'
 end
 
 group :test do

@@ -11,10 +11,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def extract_data provider, data  
+    fake_email = Faker::Internet.email(Faker::Internet.user_name + DateTime.now.strftime("%Y%m%d%H%M%S"))
+    fake_pwd = Devise.friendly_token[0,20]
     if provider == :facebook
-      {name: data.info.name, email: data.info.email, password: Devise.friendly_token[0,20], has_password: false}
+      {name: data.info.name, email: data.info.email, password: fake_pwd, has_password: false}
     else provider == :twitter 
-      {name: data.info.name, email: "twitter.no.me.da.el@email.com", password: Devise.friendly_token[0,20], has_password: false}
+      {name: data.info.name, email: fake_email , password: fake_pwd, has_password: false, has_email: false}
     end
   end
 
