@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if resource.persisted?
           render json: {url: args[0][:location]}, status: 200
         else
-          render json: {errors: resource.errors.full_messages }, status: 422
+          render json: {errors: resource.errors.full_messages, fields_with_errors: resource.errors.keys }, status: 422
         end
       end
     end

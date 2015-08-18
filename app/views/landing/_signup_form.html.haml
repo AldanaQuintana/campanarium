@@ -2,13 +2,13 @@
   = form_for(:user, url: registration_path(:user)+".json", remote: true, html: { class: "ajax-form" } ) do |f|
     .errors-container
     .form-group
-      = f.text_field :name, autofocus: true, placeholder: "Nombre", class: "form-control"
+      = f.text_field :name, autofocus: true, placeholder: "Nombre", class: "form-control name_field"
     .form-group
-      = f.email_field :email, placeholder: "Email", class: "form-control :email)}"
+      = f.email_field :email, placeholder: "Email", class: "form-control email_field"
     .form-group
-      = f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: "form-control"
+      = f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: "form-control password_field"
     .form-group
-      = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirme la contraseña", class: "form-control"
+      = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirme la contraseña", class: "form-control password_confirmation_field"
     .button-block
       = f.button :type => :submit, class: "btn btn-primary button-block" do
         Registrarse
