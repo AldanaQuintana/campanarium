@@ -42,6 +42,8 @@ gem 'jquery-migrate-rails' #For mercury compatibility
 # icons
 gem 'font-awesome-sass'
 
+#permissions
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'pry-rails'
