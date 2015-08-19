@@ -30,10 +30,6 @@ class User < ActiveRecord::Base
     has_email
   end
 
-  def password_required?
-    false #has_password? && super
-  end
-
   def has_many_oauths?
     user_oauths.count > 1
   end
