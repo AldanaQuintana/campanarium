@@ -43,6 +43,7 @@ class MinutoUnoFetcher < SourceFetcher
     updated_time_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
+    # Notice.create title: title, body: body, source: :minuto_uno, url: url #, media_items: media_items
     { title: title, body: body, source: :minuto_uno, source_url: url, media_items: media_items, updated_time: updated_time }
   end
 
