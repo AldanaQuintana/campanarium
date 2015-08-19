@@ -24,4 +24,13 @@ module ApplicationHelper
 
     return "alert-#{alert_type}"
   end
+
+  def alert_icon_class(alert_type)
+    alert_type = alert_type.try(:to_sym)
+    case alert_type
+      when :notice; return 'fa-info'
+      when :alert; return 'fa-exclamation'
+      when :danger; return 'fa-exclamation-triangle'
+    end
+  end
 end
