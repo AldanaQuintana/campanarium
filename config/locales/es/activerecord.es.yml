@@ -10,6 +10,9 @@ es:
               invalid: "es inválido"
             password:
               too_short: "es demasiado corta"
+              blank: "no puede estar vacía"
+            password_confirmation:
+              confirmation: "no coinciden"
     models:
       user:
         one: Usuario
@@ -18,3 +21,4 @@ es:
       user:
         email: "El email"
         password: "La contraseña"
+        password_confirmation: "Las contraseñas "
