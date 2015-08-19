@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>¡Hola <%= @resource.name.present? ? @resource.name : @resource.email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Podés confirmar tu email haciendo click en el siguiente link.</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirmar la cuenta', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>Saludos,</p>
+
+<p>El equipo de Campanarium.</p>
