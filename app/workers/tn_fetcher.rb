@@ -14,6 +14,7 @@ class TNFetcher < SourceFetcher
     noticias_urls.map do |url|
       notice = fetch_notice url
       # notice.save!
+      notice
     end
   end
 
@@ -63,7 +64,7 @@ class TNFetcher < SourceFetcher
     image = html.css('.main-content .hmedia img').first
     image = image && image.attr('src')
     media_items = Array image
-    # Noticia.new title: title, body: body, source: :infobae, source_url: url, media_items: media_items
+    # Notice.create title: title, body: body, source: :infobae, url: url #, media_items: media_items
     { title: title, body: body, source: :tn, source_url: url, media_items: media_items }
   end
 
