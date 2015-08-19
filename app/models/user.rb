@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
     has_password
   end
 
-  def password_required?
-    false #has_password? && super
+  def has_email?
+    has_email
   end
 
   def has_many_oauths?

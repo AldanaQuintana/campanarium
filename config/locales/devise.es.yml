@@ -28,11 +28,11 @@ es:
       no_token: "No puedes acceder a esta página sino es por medio de un enlace para reestablecer de contraseña envíado a tu correo. Si accediste desde el enlace para reestablecer la contraseña, asegúrate de que la URL esté completa."
       send_instructions: "Recibirás un correo electrónico con instrucciones sobre cómo reestablecer tu contraseña en unos minutos."
       send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos, recibirás un enlace para reestablecer la contraseña en unos minutos."
-      updated: "Tu contraseña se cambió correctamente. Has sido identificado."
+      updated: "Tu contraseña se cambió correctamente."
       updated_not_active: "Tu contraseña se cambió correctamente."
     registrations:
       destroyed: "¡Adiós! Tu cuenta ha sido cancelada. Esperamos volver a verte pronto."
-      signed_up: "¡Bienvenido! Has sido identificado."
+      signed_up: "¡Bienvenido!"
       signed_up_but_inactive: "Te has registrado correctamente. Pero no has podido iniciar sesión porque no has activado tu cuenta."
       signed_up_but_locked: "Te has registrado correctamente. Pero no has podido iniciar sesión porque tu cuenta está bloqueada."
       signed_up_but_unconfirmed: "Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
