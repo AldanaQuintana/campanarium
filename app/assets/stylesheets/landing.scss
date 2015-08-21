@@ -16,8 +16,9 @@
     /* Centering */
     float: none;
     margin:100px auto;
+    margin-top: 40px;
     .logo{
-      font-family: 'Playball', cursive;
+      font-family: $logo;
       color: #FFF;
       text-align: center;
       font-size: 60px;
@@ -81,7 +82,7 @@
   }
 }
 
-@media(max-width: 991px){
+@media(max-width: $medium-device){
   // Medium devices
   .landing-background{
     .panel{
@@ -90,7 +91,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $small-device) {
   // Small devices
   .landing-background{
     padding: 0;

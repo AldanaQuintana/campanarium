@@ -1,11 +1,25 @@
 // Colors
 $primary: #286090;
+$secondary: #22A7A2;
 
 $success: #6DCF83;
 $notice: #6794BA;
 $error: #DF3232;
 
+$dark-gray: #28373E;
+$light-gray: #506168;
+
 // Font weights
 $light: 300;
 $normal: 400;
 $bold: 700;
+
+// Font families
+$logo: 'Playball', cursive;
+
+//Others
+$nav-bar-height: 60px;
+
+// Devices widths
+$small-device: 768px;
+$medium-device: 991px;
