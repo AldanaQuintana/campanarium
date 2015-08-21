@@ -11,8 +11,9 @@
 <body>
   <div id="wrapper">
     <%=render "layouts/header"%>
-    <%= yield %>
-    <%= render "layouts/footer" %>
+    <div class="main-container <%= (current_user.present? || (!current_user.present? && controller_name == 'static_pages')) ? '' : 'landing-container' %>">
+      <%= yield %>
+    </div>
     <%- if render_alert_messages? %>
       <%= render '/share/alert_messages' %>
     <% end %>
