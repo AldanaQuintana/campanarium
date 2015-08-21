@@ -12,7 +12,7 @@
     width: 77%;
     height: 100%;
     margin: 0 auto;
-    .nav{ height: 100%; }
+    .nav{ height: 100%; float: right; }
     .brand{
       height: 100%;
       float: left;
@@ -24,7 +24,6 @@
     }
     ul.nav{
       display: inline-block;
-      margin-left: 60px;
       li{
         height: 100%;
         float: left;
@@ -51,5 +50,12 @@
 }
 
 @media(max-width: $small-device){
-
+  .navbar{
+    background-color: $dark-gray-2;
+    border-bottom: 1px solid $dark-gray;
+    .navbar-inner{
+      .brand{ display: none; }
+      ul.nav{ margin-left: 0; }
+    }
+  }
 }

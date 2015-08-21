@@ -16,7 +16,7 @@
     /* Centering */
     float: none;
     margin:100px auto;
-    margin-top: 40px;
+    margin-top: 75px;
     .logo{
       font-family: $logo;
       color: #FFF;
@@ -46,6 +46,7 @@
             color: white;
             border: none;
             border-radius: 0;
+            letter-spacing: 2px;
           }
           &.active{
             a{
@@ -98,8 +99,9 @@
     .panel{
       width: 100%;
       height: 100%;
-      background-color: #000;
+      background-color: $dark-gray-2;
       margin: 0;
+      margin-top: $nav-bar-height;
       .panel-body{
         padding: 23px 50px 40px 50px;
       }
@@ -109,22 +111,13 @@
       .panel-header{
         .nav.nav-tabs{
           li{
+            a{
+              height: 55px;
+              padding-top: 16px;
+              &:hover{ background-color: inherit; }
+            }
             float: left;
             width: 50%;
-            &.left{
-              a{
-                -webkit-box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
-                -moz-box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
-                box-shadow: inset -3px -3px 7px 0px rgba(255,255,255,0.15);
-              }
-            }
-            &.right{
-              a{
-                -webkit-box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
-                -moz-box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
-                box-shadow: inset 3px -3px 7px 0px rgba(255,255,255,0.15);
-              }
-            }
             &.active{
               a{
                 background-color: inherit;
