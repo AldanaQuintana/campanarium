@@ -34,13 +34,14 @@ class InfobaeFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = html.css('.entry-title').first.text
+    title = format_title html.css('.entry-title').first.text
     body = format_body html.css('.entry-content .cuerposmart p')
+    # body = format_body html.css '.wrapper article .entry-content p'
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
-    media_items = Array image
-    # Noticia.new title: title, body: body, source: :infobae, source_url: url, media_items: media_items
-    { title: title, body: body, source: :infobae, source_url: url, media_items: media_items }
+    writed_at = time_from url
+    media_items = create_media_from image
+    Notice.create title: title, body: body, source: :infobae, url: url, writed_at: writed_at, media: media_items
   end
 
   def time_from url

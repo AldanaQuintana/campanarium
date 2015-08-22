@@ -45,6 +45,9 @@ gem 'font-awesome-sass'
 #permissions
 gem 'cancancan', '~> 1.10'
 
+gem 'rmagick'
+gem 'carrierwave'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'
