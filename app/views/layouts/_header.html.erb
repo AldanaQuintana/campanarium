@@ -2,24 +2,38 @@
   <div class="navbar-inner">
      <%=  link_to 'Campanarium', root_path, class: "brand" %>
     <ul class="nav">
-        <li>
-          <%= link_to current_user.present? ? "NOTICIAS" : "INICIO", root_path, class: current_page?('/noticias') || current_page?('/') ? 'active' : '' %>
-        </li>
-        <li>
-          <%= link_to "EL PROYECTO", static_page_path(StaticPage.about_us), class: current_page?(static_page_path(StaticPage.about_us)) ? 'active' : '' %>
-        </li>
-        <li>
-          <%= link_to "FAQS", static_page_path(StaticPage.faqs), class: current_page?(static_page_path(StaticPage.faqs)) ? 'active' : '' %>
-        </li>
-        <li>
-          <%= link_to "CONTACTO", static_page_path(StaticPage.contact), class: current_page?(static_page_path(StaticPage.contact)) ? 'active' : ''  %>
-        </li>
+      <li class="main-menu-item">
+        <%= link_to current_user.present? ? "NOTICIAS" : "INICIO", root_path, class: current_page?('/noticias') || current_page?('/') ? 'active' : '' %>
+      </li>
+      <li class="main-menu-item">
+        <%= link_to "EL PROYECTO", static_page_path(StaticPage.about_us), class: current_page?(static_page_path(StaticPage.about_us)) ? 'active' : '' %>
+      </li>
+      <li class="main-menu-item">
+        <%= link_to "FAQS", static_page_path(StaticPage.faqs), class: current_page?(static_page_path(StaticPage.faqs)) ? 'active' : '' %>
+      </li>
+      <li class="main-menu-item">
+        <%= link_to "CONTACTO", static_page_path(StaticPage.contact), class: current_page?(static_page_path(StaticPage.contact)) ? 'active' : ''  %>
+      </li>
       <%- if current_user.present? %>
-        <li>
-          <%=  link_to 'PERFIL', user_path(current_user), class: current_page?(user_path(current_user)) ? 'active' : '' %>
-        </li>
-        <li>
-          <%=  link_to 'SALIR', destroy_user_session_path, :method => :delete %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= (current_user.name || current_user.email).upcase %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="with-spacer">
+              <%=  link_to  user_path(current_user), class: current_page?(user_path(current_user)) ? 'active' : '' do %>
+                <i class="fa fa-icon fa-user"></i>
+                PERFIL
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to destroy_user_session_path, :method => :delete  do %>
+                <i class="fa fa-icon fa-sign-out"></i>
+                SALIR
+              <% end %>
+            </li>
+          </ul>
         </li>
       <% end %>
     </ul>

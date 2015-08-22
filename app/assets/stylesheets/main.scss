@@ -2,11 +2,18 @@
   font-family: 'Roboto', sans-serif;
 }
 
+// Icons
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-
+// Variables
 @import "variables";
+
+//Mixins
+@import "mixins/transform";
+@import "mixins/rotate";
+
+// Other
 @import "modules/buttons";
 @import "landing";
 @import "modules/alerts";
