@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @static_pages = StaticPage.ordered_by_name
+    @static_pages = StaticPage.ordered
   end
 
   def update
