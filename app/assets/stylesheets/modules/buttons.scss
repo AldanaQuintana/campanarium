@@ -1,8 +1,19 @@
 .btn{
+  color: #FFF;
   &.button-block{
     width: 100%!important;
   }
   &.btn-primary{
     background-color: $primary;
+  }
+}
+
+.navbar{
+  a.btn{
+    float: left;
+    height: 100%;
+    width: 50px;
+    color: #FFF;
+    i{ font-size: 20px; padding-top: 12px; }
   }
 }

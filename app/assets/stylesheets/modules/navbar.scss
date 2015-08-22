@@ -27,6 +27,7 @@
       li{
         height: 100%;
         float: left;
+        min-width: 72px;
         a{
           padding-top: 17px;
           height: 100%;
@@ -37,6 +38,7 @@
         }
       }
       li.main-menu-item{
+        text-align: center;
         a{
           color: $light-gray;
           &.active{
@@ -91,7 +93,11 @@
     border-bottom: 1px solid $dark-gray;
     .navbar-inner{
       .brand{ display: none; }
-      ul.nav{ margin-left: 0; }
+      ul.nav{
+        margin-left: 0;
+        width: 100%;
+
+      }
     }
   }
 }
