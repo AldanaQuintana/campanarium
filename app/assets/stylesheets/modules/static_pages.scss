@@ -2,10 +2,10 @@
   .static-page-main-content{
     padding: 20px 5px;
   }
-  &.contacto, &.sobre-el-proyecto{
+  &.even{
     color: $primary;
   }
-  &.preguntas-frecuentes{
+  &.odd{
     background-color: $dark-gray;
     color: #FFF;
   }
