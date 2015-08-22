@@ -18,19 +18,19 @@ class StaticPage < ActiveRecord::Base
     end
 
     def about_us
-      StaticPage.find_or_create_by(title_identifier: "Sobre el proyecto")
+      StaticPage.find_or_create_by(title_identifier: "Sobre el proyecto", order: 1)
     end
 
     def faqs
-      StaticPage.find_or_create_by(title_identifier: "Preguntas frecuentes")
+      StaticPage.find_or_create_by(title_identifier: "Preguntas frecuentes", order: 2)
     end
 
     def contact
-      StaticPage.find_or_create_by(title_identifier: "Contacto")
+      StaticPage.find_or_create_by(title_identifier: "Contacto", order: 3)
     end
 
-    def ordered_by_name
-      self.order(:title_identifier)
+    def ordered
+      self.order(:order)
     end
   end
 end

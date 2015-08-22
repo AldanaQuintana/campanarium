@@ -1,6 +1,4 @@
 <% @static_pages.each_with_index do |page, index| %>
-  <%= render "static_page", static_page: page %>
-  <%- if index + 1 < @static_pages.length  %>
-    <div class="h-separator"></div>
-  <% end %>
+  <%- static_page_class = (index%2 == 0) ? 'even' : 'odd' %>
+  <%= render "static_page", static_page: page, static_page_class: static_page_class %>
 <% end %>
