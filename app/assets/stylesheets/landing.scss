@@ -47,6 +47,9 @@
             border: none;
             border-radius: 0;
             letter-spacing: 2px;
+            &:hover{
+              background-color: inherit;
+            }
           }
           &.active{
             a{
