@@ -1,4 +1,15 @@
 .row.static-page{
+  .title{
+    text-align: center;
+    h1{
+      display: inline-block;
+    }
+    .btn.edit-static-page{
+      display: inline-block;
+      margin-bottom: 15px;
+      margin-left: 23px;
+    }
+  }
   .static-page-main-content{
     padding: 20px 5px;
   }
