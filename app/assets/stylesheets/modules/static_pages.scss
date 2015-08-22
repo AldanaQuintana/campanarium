@@ -1,0 +1,20 @@
+.row.static-page{
+  .static-page-main-content{
+    padding: 20px 5px;
+  }
+  &.contacto, &.sobre-el-proyecto{
+    color: $primary;
+  }
+  &.preguntas-frecuentes{
+    background-color: $dark-gray;
+    color: #FFF;
+  }
+}
+
+@media(max-width: $small-device){
+  .row.static-page{
+    .static-page-main-content{
+      padding: 20px 10px;
+    }
+  }
+}
