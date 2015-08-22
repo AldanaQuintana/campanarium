@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819004603) do
+ActiveRecord::Schema.define(version: 20150822144018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "media", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image"
+  end
+
+  add_index "media", ["notice_id"], name: "index_media_on_notice_id", using: :btree
 
   create_table "notices", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150819004603) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "writed_at"
   end
 
   create_table "static_pages", force: :cascade do |t|

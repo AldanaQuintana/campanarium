@@ -59,13 +59,12 @@ class TNFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = html.css('.main-content .heading .entry-title').first.text
-    body = format_body html.css('.main-content .entry-content > p')
+    title = format_title html.css('.main-content .heading .entry-title').first.text
+    body = format_body html.css('.main-content .hentry .entry-content > p')
     image = html.css('.main-content .hmedia img').first
     image = image && image.attr('src')
-    media_items = Array image
-    # Notice.create title: title, body: body, source: :infobae, url: url #, media_items: media_items
-    { title: title, body: body, source: :tn, source_url: url, media_items: media_items }
+    media_items = create_media_from image
+    Notice.create title: title, body: body, source: :tn, url: url, media: media_items
   end
 
 end

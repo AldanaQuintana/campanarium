@@ -37,12 +37,12 @@ class LaNacionFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = html.css('#encabezado h1').text
+    title = format_title html.css('#encabezado h1').text
     body = format_body html.css '#cuerpo > p'
     image = html.css('#cuerpo .archivos-relacionados .foto img').first
     image = image && image.attr('src')
-    media_items = Array image
-    { title: title, body: body, source: :la_nacion, source_url: url, media_items: media_items }
+    media_items = create_media_from image
+    Notice.create title: title, body: body, source: :la_nacion, url: url, media: media_items
   end
 
 end

@@ -18,7 +18,7 @@ class MinutoUnoFetcher < SourceFetcher
     noticias_urls.map do |url|
       next nil unless belongs_to_interval
       notice = fetch_notice url
-      updated_time = notice[:updated_time]
+      updated_time = notice.writed_at
       belongs_to_interval = updated_time && updated_time >= from && updated_time <= to
       # notice.save! if belongs_to_interval
       notice
@@ -35,16 +35,16 @@ class MinutoUnoFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = html.css('.article-detail-heading .title').text
-    body = format_body html.css '.article-content > div'
+    title = format_title html.css('.article-detail-heading .title').text
+    # body = format_body html.css '.article-content > div'
+    body = format_body html.css '.article-content'
     image = html.css('.gallery-area img').first
     image = image && image.attr('src')
-    media_items = Array image
     updated_time_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
-    # Notice.create title: title, body: body, source: :minuto_uno, url: url #, media_items: media_items
-    { title: title, body: body, source: :minuto_uno, source_url: url, media_items: media_items, updated_time: updated_time }
+    media_items = create_media_from image
+    Notice.create title: title, body: body, source: :minuto_uno, url: url, writed_at: updated_time, media: media_items
   end
 
 end
