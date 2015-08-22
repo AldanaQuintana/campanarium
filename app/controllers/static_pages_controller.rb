@@ -1,9 +1,13 @@
 class StaticPagesController < ApplicationController
-  before_filter :set_static_page
+  before_filter :set_static_page, except: [:index]
   before_filter :authenticate_admin_user!, only: [:update]
 
   def show
     redirect_to root_path unless @static_page
+  end
+
+  def index
+    @static_pages = StaticPage.ordered_by_name
   end
 
   def update

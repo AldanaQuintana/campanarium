@@ -28,5 +28,9 @@ class StaticPage < ActiveRecord::Base
     def contact
       StaticPage.find_or_create_by(title_identifier: "Contacto")
     end
+
+    def ordered_by_name
+      self.order(:title_identifier)
+    end
   end
 end

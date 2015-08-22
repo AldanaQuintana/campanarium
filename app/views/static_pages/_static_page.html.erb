@@ -1,0 +1,12 @@
+<div class="row static-page <%= static_page.title_identifier.parameterize %>">
+  <div class="col-md-2 hidden-xs hidden-sm"></div>
+  <div class="col-md-8 col-sm-12 col-xs-12">
+    <%- if current_admin_user? %>
+      <%= link_to "Editar", "/editor" + static_page_path(static_page), class: "btn btn-sm btn-primary pull-right edit-static-page" %>
+    <% end %>
+    <%= content_tag :h1, static_page.title.try(:html_safe), id: "page_title", contenteditable: editing?, :"data-mercury" => "full", class: "text-center"%>
+    <br/>
+    <%= content_tag :div, static_page.main_content.try(:html_safe), id: "page_main_content", contenteditable: editing?, :"data-mercury" => "full", class: "static-page-main-content"%>
+  </div>
+  <div class="col-md-2 hidden-xs hidden-sm"></div>
+</div>

@@ -15,7 +15,7 @@
       <%= link_to "CONTACTO", static_page_path(StaticPage.contact), class: current_page?(static_page_path(StaticPage.contact)) ? 'active' : ''  %>
     </li>
     <li class="main-menu-item visible-xs">
-      <%= link_to "INFO", "#", class: controller_name == 'static_pages' ? 'active' : '' %>
+      <%= link_to "INFO", static_pages_path, class: current_page?(static_pages_path) ? 'active' : '' %>
     </li>
     <%- if current_user.present? %>
       <li class="dropdown">
