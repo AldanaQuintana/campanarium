@@ -27,13 +27,20 @@
       li{
         height: 100%;
         float: left;
+        min-width: 72px;
         a{
           padding-top: 17px;
           height: 100%;
-          color: $light-gray;
+          background-color: inherit;
           &:hover{
             background-color: inherit;
           }
+        }
+      }
+      li.main-menu-item{
+        text-align: center;
+        a{
+          color: $light-gray;
           &.active{
             border: 1px solid $light-gray;
             border-bottom: 3px solid $secondary;
@@ -42,6 +49,37 @@
             -webkit-box-shadow: inset -0px -0px 21px 2px rgba(0,0,0,0.25);
             -moz-box-shadow: inset -0px -0px 21px 2px rgba(0,0,0,0.25);
             box-shadow: inset -0px -0px 21px 2px rgba(0,0,0,0.25);
+          }
+        }
+      }
+      li.dropdown{
+        a{
+          color: $secondary;
+        }
+        &.open{
+          a{
+            b.caret{
+              @include rotate(180);
+            }
+          }
+        }
+        ul.dropdown-menu{
+          margin: 0;
+          border-radius: 0;
+          background-color: $dark-gray;
+          li{
+            width: 100%;
+            a{
+              padding: 15px;
+              display: inline-block;
+            }
+            i{
+              font-size: 20px;
+              padding-right: 10px;
+              position: relative;
+              top: 2px;
+            }
+            &.with-spacer{ border-bottom: 1px solid $light-gray; }
           }
         }
       }
@@ -55,7 +93,11 @@
     border-bottom: 1px solid $dark-gray;
     .navbar-inner{
       .brand{ display: none; }
-      ul.nav{ margin-left: 0; }
+      ul.nav{
+        margin-left: 0;
+        width: 100%;
+
+      }
     }
   }
 }

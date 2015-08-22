@@ -1,0 +1,6 @@
+<% @static_pages.each_with_index do |page, index| %>
+  <%= render "static_page", static_page: page %>
+  <%- if index + 1 < @static_pages.length  %>
+    <div class="h-separator"></div>
+  <% end %>
+<% end %>

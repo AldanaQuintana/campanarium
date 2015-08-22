@@ -53,9 +53,9 @@ describe 'sign in' do
 
   def expect_to_be_on_landing
     expect(current_path).to eq("/")
-    expect(page).to have_link("Sobre el proyecto")
-    expect(page).to have_link("FAQs")
-    expect(page).to have_link("Contacto")
+    expect(page).to have_link("EL PROYECTO")
+    expect(page).to have_link("FAQS")
+    expect(page).to have_link("CONTACTO")
     expect(page).to have_link("Ingresa con Twitter")
     expect(page).to have_link("Ingresa con Facebook")
   end

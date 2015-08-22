@@ -2,11 +2,18 @@
   font-family: 'Roboto', sans-serif;
 }
 
+// Icons
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-
+// Variables
 @import "variables";
+
+//Mixins
+@import "mixins/transform";
+@import "mixins/rotate";
+
+// Other
 @import "modules/buttons";
 @import "landing";
 @import "modules/alerts";
@@ -20,6 +27,14 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.h-separator{
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid $light-gray;
+  height: 10px;
+  padding: 0;
 }
 
 @media(max-width: 768px){
