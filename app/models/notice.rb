@@ -6,4 +6,8 @@ class Notice < ActiveRecord::Base
   def images_urls
     media.map{|m| m.image_url}
   end
+
+  def has_images?
+    images_urls.reject(&:nil?).length > 0
+  end
 end

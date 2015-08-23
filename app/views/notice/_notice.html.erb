@@ -1,5 +1,5 @@
 <div class="notice-panel">
-  <% if show_media %>
+  <% if notice.has_images? %>
     <img src="<%= notice.images_urls[0]%>">
   <% end %>
   <h2><%= notice.title %></h2>
