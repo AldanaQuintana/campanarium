@@ -5,6 +5,6 @@
   <h2><%= notice.title %></h2>
   <div class="body">
     <%= notice.body.try(:truncate, 100) %>
-    <span class="source">Source: <%= notice.source %></span>
+    <%= source_logo(notice) %>
   </div>
 </div>
