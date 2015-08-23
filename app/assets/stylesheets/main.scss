@@ -12,6 +12,7 @@
 //Mixins
 @import "mixins/transform";
 @import "mixins/rotate";
+@import "mixins/box-shadow";
 
 // Other
 @import "modules/buttons";
@@ -20,15 +21,9 @@
 @import "modules/navbar";
 @import "modules/footer";
 @import "modules/static_pages";
+@import "modules/panels";
 
-.main-container{
-  margin-top: $nav-bar-height;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+@import "modules/pages";
 
 .h-separator{
   width: 100%;
@@ -38,9 +33,6 @@
   padding: 0;
 }
 
-@media(max-width: 768px){
-  // Small devices
-  .main-container.landing-container{
-    margin-top: 0;
-  }
+.clearfix{
+  clear: both;
 }

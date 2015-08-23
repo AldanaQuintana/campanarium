@@ -1,3 +1,10 @@
-Titulo: <%= notice.title %>
-Source: <%= notice.source %>
-<br>
+<div class="notice-panel <%= width_class %>">
+  <h2><%= notice.title %></h2>
+  <% if show_media %>
+    <img src="<%= notice.images_urls[0]%>">
+  <% end %>
+  <div class="body">
+    <%= notice.body.try(:truncate, 100) %>
+    <span class="source">Source: <%= notice.source %></span>
+  </div>
+</div>

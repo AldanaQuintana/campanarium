@@ -1,5 +1,6 @@
-Grupo de noticias
-<br>
-<% group.notices.each do |notice| %>
-  <%= render "notice", notice: notice %>
-<% end %>
+<div class="panel">
+  <% group.notices.each_with_index do |notice, index| %>
+    <%= render "notice", notice: notice, show_media: true, width_class: "width-#{(index % 2) + 1}" %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
