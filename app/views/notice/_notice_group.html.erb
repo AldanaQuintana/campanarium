@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="inner-border">
-    <% group.notices.each_with_index do |notice, index| %>
+    <% group.notices.each do |notice| %>
       <%= render "notice", notice: notice, show_media: true %>
     <% end %>
     <div class="clearfix"></div>
