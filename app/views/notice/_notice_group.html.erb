@@ -1,6 +1,8 @@
 <div class="panel">
-  <% group.notices.each_with_index do |notice, index| %>
-    <%= render "notice", notice: notice, show_media: true, width_class: "width-#{(index % 2) + 1}" %>
-  <% end %>
-  <div class="clearfix"></div>
+  <div class="inner-border">
+    <% group.notices.each_with_index do |notice, index| %>
+      <%= render "notice", notice: notice, show_media: true, width_class: "width-#{(index % 2) + 1}" %>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
 </div>

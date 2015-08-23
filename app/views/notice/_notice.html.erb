@@ -1,8 +1,8 @@
 <div class="notice-panel <%= width_class %>">
-  <h2><%= notice.title %></h2>
   <% if show_media %>
     <img src="<%= notice.images_urls[0]%>">
   <% end %>
+  <h2><%= notice.title %></h2>
   <div class="body">
     <%= notice.body.try(:truncate, 100) %>
     <span class="source">Source: <%= notice.source %></span>
