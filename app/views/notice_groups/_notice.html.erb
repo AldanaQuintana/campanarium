@@ -1,0 +1,12 @@
+<div class="notice-panel">
+  <a href="<%= notice.url %>" target="_blank">
+    <% if notice.has_images? %>
+      <img src="<%= notice.images_urls[0]%>">
+    <% end %>
+    <h2><%= notice.title %></h2>
+    <div class="body">
+      <%= notice.body.try(:truncate, 100) %>
+      <%= source_logo(notice) %>
+    </div>
+  </a>
+</div>

@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :noticias
+  resources :notice_groups, path: '/noticias', only: [:index]
   resources :static_pages, only: [:show, :update, :index]
 end

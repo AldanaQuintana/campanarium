@@ -67,3 +67,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
 end
+
+source 'https://rails-assets.org' do
+end

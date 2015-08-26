@@ -1,5 +1,5 @@
 class LandingController < ApplicationController
   def start
-    redirect_to noticias_path if current_user
+    redirect_to notice_groups_path if current_user
   end
 end

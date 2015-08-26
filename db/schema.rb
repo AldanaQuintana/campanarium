@@ -33,14 +33,20 @@ ActiveRecord::Schema.define(version: 20150824005718) do
 
   add_index "media", ["notice_id"], name: "index_media_on_notice_id", using: :btree
 
+  create_table "notice_groups", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notices", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.string   "source"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "writed_at"
+    t.integer  "notice_group_id"
   end
 
   create_table "static_pages", force: :cascade do |t|
