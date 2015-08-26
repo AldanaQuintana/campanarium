@@ -45,4 +45,7 @@ Rails.application.configure do
   ENV["FACEBOOK_SECRET"] = "eee61e7945740ffa3f4462cb8967880f"
   ENV["TWITTER_KEY"] = "I0a4KrxdxnhHSPie5ES9mGJpJ";
   ENV["TWITTER_SECRET"] = "0c230mg9agtOAiFw5HBGaB6S0FZj4OaH3t7u5jMlam3mviAmlD"
+  ENV["TWITTER_TOKEN"] = "974929477-fT7ZjR5Suih2ZV919dP2Zrbd26qDNlvyUwu1120r"
+  ENV["TWITTER_TOKEN_SECRET"] = "2wdjFbcDLTafG2moy3Fx5wmu4pofMw0rvafnCHUSsrGvX"
+
 end

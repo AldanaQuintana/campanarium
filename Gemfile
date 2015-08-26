@@ -45,8 +45,12 @@ gem 'font-awesome-sass'
 #permissions
 gem 'cancancan', '~> 1.10'
 
+# image upload & manipulation
 gem 'rmagick'
 gem 'carrierwave'
+
+# twitter integration
+gem 'twitter', '~> 5.14'
 
 group :development, :test do
   gem 'pry-rails'
