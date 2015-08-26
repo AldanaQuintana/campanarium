@@ -3,6 +3,7 @@
     <% group.notices.each do |notice| %>
       <%= render "notice", notice: notice, show_media: true %>
     <% end %>
+    <%= render "comments",  comments: group.comments if group.comments.length > 0 %>
     <div class="clearfix"></div>
   </div>
 </div>
