@@ -1,4 +1,4 @@
-class NoticeController < ApplicationController
+class NoticeGroupsController < ApplicationController
   def index
     authorize! :noticias, :index
     # Esto debería cambiar en un futuro, no hay que traer todos los grupos
