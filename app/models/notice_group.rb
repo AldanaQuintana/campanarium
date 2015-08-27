@@ -6,4 +6,9 @@ class NoticeGroup < ActiveRecord::Base
   def comments_statistic_image_url
     comments_statistic_image.try(:url)
   end
+
+  def comments_statistic_image
+    # TODO: Delete this, temporary implementation
+    return true
+  end
 end

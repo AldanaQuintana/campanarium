@@ -1,9 +1,15 @@
 <div class="panel">
   <div class="inner-border">
-    <% group.notices.each do |notice| %>
-      <%= render "notice", notice: notice, show_media: true %>
-    <% end %>
-    <%= render "comments",  comments: group.comments, statistic_image_url: group.comments_statistic_image_url if group.comments.length > 0 && group.comments_statistic_image.present? %>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-9">
+        <% group.notices.each do |notice| %>
+          <%= render "notice", notice: notice, show_media: true %>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= render "comments",  comments: group.comments, group: group, statistic_image_url: group.comments_statistic_image_url if group.comments.length > 0 && group.comments_statistic_image.present? %>
+        <div class="clearfix"></div>
+      </div>
+    </div>
   </div>
 </div>

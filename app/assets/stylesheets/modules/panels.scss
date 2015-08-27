@@ -35,6 +35,16 @@
     }
   }
   .comments-statistics-panel{
-    display: inline-block;
+    text-align: center;
+    h2{
+      text-align: center;
+      font-size: 17px;
+      font-weight: $bold;
+      color: #286090;
+      margin-top: 7px;
+    }
+  }
+  .row{
+    margin: 0;
   }
 }
