@@ -11,7 +11,7 @@ class CommentsFetcher < ResqueJob
 
   def search_and_persist str
     tweets = client.search(str).attrs[:statuses]
-    tweets.each do |tweet|
+    tweets.map do |tweet|
       message = tweet[:text]
       username = tweet[:user][:screen_name]
       uuid = tweet[:id_str]
