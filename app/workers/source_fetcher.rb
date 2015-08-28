@@ -1,3 +1,4 @@
+# encoding: utf-8
 class SourceFetcher < ResqueJob
 
   def format_body p_elements
