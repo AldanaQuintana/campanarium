@@ -13,6 +13,7 @@ class Ability
 
   def user_permissions(user)
     can :noticias, :index
+    can :noticias, :show
     can :edit, user 
   end
 

@@ -33,3 +33,14 @@ html, body{
 .spacer-top{
   margin-top: 20px;
 }
+
+.tweets-viewer {
+  text-align: center;
+}
+.tweet-container {
+  display: inline-block;
+}
+.twitter-tweet {
+  width: auto !important;
+  display: inline-block !important;
+}
