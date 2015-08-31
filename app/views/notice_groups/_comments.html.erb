@@ -1,0 +1,16 @@
+<div class="comments-statistics-panel">
+  <h2>Lo que piensa la gente</h2>
+  <div class="spacer-top"></div>
+  <div class="donnut-chart">
+    <div class="donnut">
+      <div class="donnut-positive"></div>
+      <div class="donnut-negative <%= group.id.odd? ? 'first' : 'second' %>"></div>
+      <div class="white-circle"></div>
+    </div>
+    <div class="marker-group">
+      <div class="marker positive-marker"></div><span class="marker-label">Positivo</span>
+      <div class="marker negative-marker"></div><span class="marker-label">Negativo</span>
+    </div>
+  </div>
+  <%= link_to 'Ver comentarios', notice_group_path(group), class: 'btn btn-primary' %>
+</div>

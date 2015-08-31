@@ -42,7 +42,7 @@ class DiarioVelozFetcher < SourceFetcher
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
     media_items = create_media_from image
-    Notice.create title: title, body: body, source: :minuto_uno, url: url, writed_at: updated_time, media: media_items
+    Notice.create title: title, body: body, source: :diario_veloz, url: url, writed_at: updated_time, media: media_items
   end
 
 end

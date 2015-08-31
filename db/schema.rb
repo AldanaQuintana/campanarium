@@ -11,27 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824005718) do
+ActiveRecord::Schema.define(version: 20150826231917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.string "source"
-    t.text   "message"
-    t.string "username"
-    t.string "uuid"
+    t.string  "source"
+    t.text    "message"
+    t.string  "username"
+    t.string  "uuid"
+    t.integer "notice_group_id"
   end
+
+  add_index "comments", ["notice_group_id"], name: "index_comments_on_notice_group_id", using: :btree
 
   create_table "media", force: :cascade do |t|
     t.string   "file"
-    t.integer  "notice_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "media_owner_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "image"
+    t.string   "media_owner_type"
   end
 
-  add_index "media", ["notice_id"], name: "index_media_on_notice_id", using: :btree
+  add_index "media", ["media_owner_id"], name: "index_media_on_media_owner_id", using: :btree
 
   create_table "notice_groups", force: :cascade do |t|
     t.datetime "created_at"

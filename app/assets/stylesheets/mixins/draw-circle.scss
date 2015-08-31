@@ -1,0 +1,8 @@
+@mixin draw-circle($top_left: false, $top_right: false, $bottom_right: false, $bottom_left: false) {
+  -moz-border-radius-topright: if($top_left, $top_left, 0px);
+  -moz-border-radius-topleft: if($top_right, $top_right, 0px);
+  -moz-border-radius-bottomright: if($bottom_right, $bottom_right, 0px);
+  -moz-border-radius-bottomleft: if($bottom_left, $bottom_left, 0px);
+  -webkit-border-radius: if($top_left, $top_left, 0px) if($top_right, $top_right, 0px) if($bottom_right, $bottom_right, 0px) if($bottom_left, $bottom_left, 0px);
+  border-radius: if($top_left, $top_left, 0px) if($top_right, $top_right, 0px) if($bottom_right, $bottom_right, 0px) if($bottom_left, $bottom_left, 0px);
+}

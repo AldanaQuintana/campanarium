@@ -8,6 +8,9 @@ module NoticeHelper
   def source_image(notice)
     case notice.source
     when "tn";  image_tag("logo-tn.png")
+    when "infobae";  image_tag("logo-infobae.png")
+    when "diario_veloz";  image_tag("logo-diario-veloz.jpg")
+    when "la_nacion";  image_tag("logo-la-nacion.png")
     end
   end
 end
