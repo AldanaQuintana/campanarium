@@ -1,40 +1,6 @@
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<div class="page l-gray-page">
-  <div class="panel">
-    <div class="inner-border">
-
-      <div class="row">
-
-        <div class="col-md-9">
-          <% @notice_group.notices.each do |notice| %>
-            <%= render "notice", notice: notice, show_media: true %>
-          <% end %>
-        </div>
-
-        <div class="col-md-3">
-          <div class="comments-statistics-panel">
-            <h2>Lo que piensa la gente</h2>
-            <div class="spacer-top"></div>
-            <div class="donnut-chart">
-              <div class="donnut">
-                <div class="donnut-positive"></div>
-                <div class="donnut-negative <%= @notice_group.id.odd? ? 'first' : 'second' %>"></div>
-                <div class="white-circle"></div>
-              </div>
-              <div class="marker-group">
-                <div class="marker positive-marker"></div><span class="marker-label">Positivo</span>
-                <div class="marker negative-marker"></div><span class="marker-label">Negativo</span>
-              </div>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
+  <%= render "notice_group", group: @notice_group %>
 
   <div class="panel">
     <div class="inner-border">
