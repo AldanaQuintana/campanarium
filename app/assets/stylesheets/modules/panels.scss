@@ -25,12 +25,11 @@
       font-size: 13px;
       color: $dark-gray;
       position: relative;
-      .source{
-        position: absolute;
-        right: 10px;
-        img{
-          width: 40px;
-        }
+    }
+    .source{
+      float: right;
+      img{
+        width: 40px;
       }
     }
   }
