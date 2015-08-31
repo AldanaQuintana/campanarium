@@ -1,20 +1,9 @@
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<%= render "notice_group", group: @notice_group %>
 
-  <%= render "notice_group", group: @notice_group %>
-
-  <div class="panel">
-    <div class="inner-border">
-
-      <div class="row">
-        <div class="col-md-12 tweets-viewer">
-          <% @notice_group.comments.each do |comment| %>
-            <div class="tweet-container">
-              <blockquote class="twitter-tweet" lang="es"><a href="<%= comment.url %>"></a></blockquote>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
+<div class="twits">
+  <% @notice_group.comments.each do |comment| %>
+    <div class="tweet-container">
+      <blockquote class="twitter-tweet" lang="es"><a href="<%= comment.url %>"></a></blockquote>
     </div>
-  </div>
+  <% end %>
 </div>
