@@ -16,7 +16,7 @@
       width: 20px;
       font-size: 19px;
     }
-    &.alert-notice{
+    &.alert-notice, &.alert-alert{
       background-color: $notice;
     }
     &.alert-success{
