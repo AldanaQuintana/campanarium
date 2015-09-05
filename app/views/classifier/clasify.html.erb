@@ -1,0 +1,15 @@
+<%= content_tag :div, "", :"data-ids" => @notices_ids.to_json, id: "notices_ids" %>
+<div class="classifier">
+  <div class="panel">
+    <div id="main-notice">
+
+    </div>
+  </div>
+  <div class="panel">
+    <div id="other-notice">
+
+    </div>
+    <div class="btn btn-info related_button" data-related="false">No relacionada</div>
+    <div class="btn btn-primary related_button" data-related="true">Relacionada</div>
+  </div>
+</div>

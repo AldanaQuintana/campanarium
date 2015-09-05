@@ -1,6 +1,7 @@
 class Notice < ActiveRecord::Base
   has_many :media, as: :media_owner, class_name: Media
   belongs_to :notice_group
+  serialize :related_notices, Array
 
   def images_urls
     media.map{|m| m.image_url}

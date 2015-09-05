@@ -18,3 +18,7 @@
 //= require masonry.pkgd.min
 //= require initializers/twitter_initializer
 //= require forms_handling
+
+//= require helpers/array_helpers
+//= require classifier/classifier
+//= require classifier/clasify

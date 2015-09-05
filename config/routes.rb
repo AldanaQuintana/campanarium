@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :users
   resources :notice_groups, path: '/noticias', only: [:index, :show]
   resources :static_pages, only: [:show, :update, :index]
+  resources :notices, only: [:show]
+  get "classifier", to: "classifier#clasify"
+  post "related", to: "classifier#related"
 end
