@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     delete 'unlink_provider' => "users/registrations#unlink_provider"
   end
 
-  resources :users
   resources :notice_groups, path: '/noticias', only: [:index, :show]
   resources :static_pages, only: [:show, :update, :index]
 end
