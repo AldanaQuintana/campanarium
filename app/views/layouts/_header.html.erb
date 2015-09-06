@@ -25,7 +25,7 @@
         </a>
       <ul class="dropdown-menu">
         <li class="with-spacer">
-          <%=  link_to  user_path(current_user), class: current_page?(user_path(current_user)) ? 'active' : '' do %>
+          <%=  link_to  edit_user_registration_path, class: current_page?(edit_user_registration_path) ? 'active' : '' do %>
             <i class="fa fa-icon fa-user"></i>
             PERFIL
           <% end %>

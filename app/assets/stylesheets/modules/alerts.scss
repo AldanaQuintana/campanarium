@@ -16,7 +16,7 @@
       width: 20px;
       font-size: 19px;
     }
-    &.alert-notice{
+    &.alert-notice, &.alert-alert{
       background-color: $notice;
     }
     &.alert-success{
@@ -25,5 +25,13 @@
     &.alert-danger{
       background-color: $error;
     }
+  }
+}
+
+form{
+  .alerts-container{
+    position: relative;
+    margin-bottom: 12px;
+    top: 0;
   }
 }

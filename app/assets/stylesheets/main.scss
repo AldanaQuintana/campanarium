@@ -29,6 +29,7 @@
 @import "modules/donnut-chart";
 
 @import "modules/pages";
+@import "modules/forms";
 
 .h-separator{
   width: 100%;
@@ -40,4 +41,20 @@
 
 .clearfix{
   clear: both;
+}
+
+.social-networks-clumps{
+  i{
+    position: relative;
+    &.fa-facebook{
+      font-size: 11px;
+      left: 1px;
+      top: -2px;
+    }
+    &.fa-twitter{
+      font-size: 11px;
+      top: 3px;
+      left: -4px;
+    }
+  }
 }

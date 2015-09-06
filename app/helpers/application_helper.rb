@@ -7,10 +7,6 @@ module ApplicationHelper
     request.path != "/users/sign_in"
   end
 
-  def signin_path(provider)
-    "users/auth/#{provider.to_s}"
-  end
-
   def error_class_for(resource, attribute)
     resource.present? && resource.errors[attribute].present? ? "has-error" : ""
   end
@@ -32,5 +28,9 @@ module ApplicationHelper
       when :alert; return 'fa-exclamation'
       when :danger; return 'fa-exclamation-triangle'
     end
+  end
+
+  def render_errors(resource)
+    render "share/alert_messages", errors: [["danger", resource.errors.full_messages.join(", ") ]]
   end
 end
