@@ -8,7 +8,9 @@
       <div class="col-md-1"></div>
       <div class="col-md-10">
         <%= form_for(resource, as: "user", url: registration_path("user"), html: {method: :put}) do |f| %>
-          <%=  devise_error_messages! %>
+          <% if @user.errors.present? %>
+            <%= render_errors(@user) %>
+          <% end %>
           <div class="form-group">
             <div class="row">
               <%= label_tag :name, "Nombre", class: "control-label col-md-2" %>
