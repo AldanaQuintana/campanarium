@@ -6,6 +6,9 @@
   &.btn-primary{
     background-color: $primary;
   }
+  &.danger{
+    background-color: $error;
+  }
   &.disabled{
     cursor: default;
   }
