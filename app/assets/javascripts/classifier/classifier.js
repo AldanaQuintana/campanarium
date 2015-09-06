@@ -17,14 +17,14 @@ Classifier.prototype.get_random_notice = function(){
   return this.get_notice(this.not_classified.sample());
 }
 
-Classifier.prototype.related = function(main_id, related_id){
+Classifier.prototype.related = function(main_id, related_ids){
   return new Promise(function(fulfill, reject){
     $.ajax({
       url: "related",
       method: "POST",
       data: {
         main: main_id,
-        related: related_id
+        related: related_ids
       }
     }).done(function(data){
       fulfill(data);

@@ -1,0 +1,10 @@
+.classifier{
+  #other-notices{
+    .notice-panel{
+      cursor: pointer;
+      &.selected{
+        border: 5px solid $secondary;
+      }
+    }
+  }
+}

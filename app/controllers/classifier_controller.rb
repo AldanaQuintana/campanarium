@@ -5,7 +5,8 @@ class ClassifierController < ApplicationController
 
   def related
     @notice = Notice.find(params[:main])
-    @notice.related_notices << params[:related] unless @notice.related_notices.include? params[:related]
+    @notice.related_notices.push(*params[:related])
+    @notice.related_notices.uniq!
     @notice.save
     respond_to do |format|
       format.json{ render json: {}, status: 200 }
