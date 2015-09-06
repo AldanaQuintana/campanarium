@@ -13,6 +13,8 @@ es:
               blank: "no puede estar vacía"
             password_confirmation:
               confirmation: "no coinciden"
+            current_password:
+              blank: "no puede estar en blanco"
     models:
       user:
         one: Usuario
@@ -22,3 +24,4 @@ es:
         email: "El email"
         password: "La contraseña"
         password_confirmation: "Las contraseñas "
+        current_password: "Contraseña actual"

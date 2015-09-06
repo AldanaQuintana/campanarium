@@ -33,4 +33,8 @@ module ApplicationHelper
       when :danger; return 'fa-exclamation-triangle'
     end
   end
+
+  def render_errors(resource)
+    render "share/alert_messages", errors: [["danger", resource.errors.full_messages.join(", ") ]]
+  end
 end
