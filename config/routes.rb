@@ -12,4 +12,9 @@ Rails.application.routes.draw do
 
   resources :notice_groups, path: '/noticias', only: [:index, :show]
   resources :static_pages, only: [:show, :update, :index]
+  resources :notices, only: [:destroy] do
+    member do
+      post "unlink"
+    end
+  end
 end

@@ -23,6 +23,7 @@
     display: inline-block;
     width: 200px;
     text-align: left;
+    position: relative;
     a{ text-decoration: none; }
     img{ width: 100%; height: auto; }
     h2{
@@ -39,6 +40,37 @@
       float: right;
       img{
         width: 40px;
+      }
+    }
+    .edit-notice{
+      position: absolute;
+      right: 0;
+      background-color: $dark-gray;
+      display: none;
+      width: 22px;
+      .button{
+        color: #FFF;
+        display: none;
+        padding: 2px 5px;
+        float: left;
+        &.destroy-button{
+          background-color: $error;
+        }
+        &.remove-from-group-button{
+          background-color: $notice;
+          padding: 2px 4px;
+        }
+      }
+      .displayable{
+        position: absolute;
+      }
+    }
+    &:hover{
+      .edit-notice{
+        display: inline-block;
+        .edit-button{
+          display: inline-block;
+        }
       }
     }
   }
