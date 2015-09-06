@@ -12,24 +12,24 @@
     })
   });
 
-  var callMethod = function($button, $notice_panel){
-    $.ajax({
-      url: $button.data("url"),
-      method: $button.data("url-method") || "POST"
-    }).then(function(){
-      $notice_panel.hide();
+  var linkToClick = function(selector){
+    $(selector).on("click", function(e){
+      var $button = $(e.target).closest(selector);
+      var $notice_panel = $button.closest(".notice-panel");
+      $.ajax({
+        url: $button.data("url"),
+        method: $button.data("url-method") || "POST"
+      }).then(function(){
+        var $notice_group = $notice_panel.closest(".notice-group");
+        if($notice_group.find(".notice-panel").not(".hidden").length == 1){
+          $notice_group.addClass("hidden");
+        }else{
+          $notice_panel.addClass("hidden");
+        }
+      })
     })
   }
 
-  $(".destroy-button").on("click", function(e){
-    var $button = $(e.target).closest(".destroy-button");
-    var $notice_panel = $button.closest(".notice-panel");
-    callMethod($button, $notice_panel);
-  });
-
-  $(".unlink-button").on("click", function(e){
-    var $button = $(e.target).closest(".unlink-button");
-    var $notice_panel = $button.closest(".notice-panel");
-    callMethod($button, $notice_panel);
-  })
+  linkToClick(".destroy-button");
+  linkToClick(".unlink-button");
 })();
