@@ -88,3 +88,12 @@
     margin: 0;
   }
 }
+
+#notice_show{
+  .edit-notice{
+    display: none!important;
+    .edit-button{
+      display: none!important;
+    }
+  }
+}
