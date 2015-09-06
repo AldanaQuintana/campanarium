@@ -27,22 +27,24 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="row">
-              <%= label_tag :password, "Contraseña", class: "control-label col-md-2" %>
-              <div class="col-md-10">
-                <%= f.text_field :password, class: "form-control", placeholder: "Dejala en blanco si no querés cambiarla", autocomplete: "off", type: "password" %>
+          <% if resource.has_password? %>
+            <div class="form-group">
+              <div class="row">
+                <%= label_tag :password, "Contraseña", class: "control-label col-md-2" %>
+                <div class="col-md-10">
+                  <%= f.text_field :password, class: "form-control", placeholder: "Dejala en blanco si no querés cambiarla", autocomplete: "off", type: "password" %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <%= label_tag :current_password, "Contraseña actual", class: "control-label col-md-2" %>
-              <div class="col-md-10">
-                <%= f.text_field :current_password, class: "form-control", placeholder: "La precisamos para verificar que seas vos quien hace los cambios", autocomplete: "off", type: "password" %>
+            <div class="form-group">
+              <div class="row">
+                <%= label_tag :current_password, "Contraseña actual", class: "control-label col-md-2" %>
+                <div class="col-md-10">
+                  <%= f.text_field :current_password, class: "form-control", placeholder: "La precisamos para verificar que seas vos quien hace los cambios", autocomplete: "off", type: "password" %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
           <%= f.submit "Guardar", class: "btn btn-primary button-block" %>
         <% end -%>
       </div>
@@ -63,10 +65,17 @@
         <% User.omniauth_providers.each do |provider| %>
           <% if resource.has_oauth? provider %>
             <% if resource.has_password? || resource.has_many_oauths? %>
-              <%= link_to "Desvincular #{provider.to_s.titleize}", unlink_provider_path(resource, provider: provider), method: :delete, class: "btn btn-#{provider.to_s == 'facebook' ? 'primary' : 'info'} button-block" %>
+              <%= link_to unlink_provider_path(resource, provider: provider), method: :delete, class: "btn btn-#{provider.to_s == 'facebook' ? 'primary' : 'info'} button-block" do %>
+                Vinculado a <%= provider.to_s.titleize %>
+                <i class="fa fa-<%= provider.to_s %> pull-left social-media-icon"></i>
+              <% end -%>
               <div class="spacer-top"></div>
             <% else %>
-              Vinculado a <%= provider.to_s.titleize %>
+              <div class="btn btn-<%=provider.to_s == 'facebook' ? 'primary' : 'info'%> button-block disabled">
+                Vinculado a <%= provider.to_s.titleize %>
+                <i class="fa fa-<%= provider.to_s %> pull-left social-media-icon"></i>
+              </div>
+              <div class="spacer-top"></div>
             <% end %>
           <% else %>
             <%= link_to user_omniauth_authorize_path(provider: provider), class: "btn btn-#{provider.to_s == 'facebook' ? 'primary' : 'info'} button-block" do %>

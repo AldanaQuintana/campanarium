@@ -6,6 +6,9 @@
   &.btn-primary{
     background-color: $primary;
   }
+  &.disabled{
+    cursor: default;
+  }
 }
 
 .navbar{
