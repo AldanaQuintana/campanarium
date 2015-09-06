@@ -10,12 +10,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
 
-  def extract_data provider, data  
+  def extract_data provider, data
     fake_email = Faker::Internet.email(Faker::Internet.user_name + DateTime.now.strftime("%Y%m%d%H%M%S"))
     fake_pwd = Devise.friendly_token[0,20]
     if provider == :facebook
       {name: data.info.name, email: data.info.email, password: fake_pwd, has_password: false}
-    else provider == :twitter 
+    else provider == :twitter
       {name: data.info.name, email: fake_email , password: fake_pwd, has_password: false, has_email: false}
     end
   end
@@ -28,15 +28,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.unlink_provider oauth_data["provider"]
       @user.link_oauth oauth_data
       redirect_to edit_user_registration_path
-    elsif @user && @user.persisted? #Login 
-      sign_in_and_redirect @user, :event => :authentication 
+    elsif @user && @user.persisted? #Login
+      sign_in_and_redirect @user, :event => :authentication
       set_flash_message(:notice, :success, :kind => provider) if is_navigational_format?
     else #Registration
       @user = User.new(extract_data(provider, oauth_data))
       @user.save!
       @user.link_oauth oauth_data
       sign_in @user
-      redirect_to user_path(@user)
+      redirect_to notice_groups_path
     end
   end
 
