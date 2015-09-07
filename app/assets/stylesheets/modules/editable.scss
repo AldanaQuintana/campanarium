@@ -1,0 +1,46 @@
+.editable{
+  .edit-notice, .edit-twitter{
+    position: absolute;
+    right: 0;
+    display: none;
+    width: 22px;
+    .button{
+      color: #FFF;
+      display: none;
+      padding: 2px 5px;
+      float: left;
+      background-color: $dark-gray;
+      width: 22px;
+      &.destroy-button{
+        background-color: $error;
+      }
+      &.remove-from-group-button{
+        background-color: $notice;
+        padding: 2px 4px;
+      }
+    }
+    .displayable{
+      position: absolute;
+    }
+  }
+
+  .edit-twitter{
+    top: 15px;
+    right: 5px;
+  }
+
+  &:hover{
+    .edit-notice{
+      display: inline-block;
+      .edit-button{
+        display: inline-block;
+      }
+    }
+    .edit-twitter{
+      display: inline-block;
+      .destroy-button{
+        display: inline-block;
+      }
+    }
+  }
+}

@@ -1,9 +1,20 @@
-<%= render "notice_group", group: @notice_group %>
+<div id="notice_show">
+  <%= render "notice_group", group: @notice_group %>
 
-<div class="twits">
-  <% @notice_group.comments.each do |comment| %>
-    <div class="tweet-container">
-      <blockquote class="twitter-tweet" lang="es"><a href="<%= comment.url %>"></a></blockquote>
-    </div>
-  <% end %>
+  <div class="twits">
+    <% @notice_group.comments.each do |comment| %>
+      <div class="tweet-container editable">
+        <% if current_admin_user? %>
+          <div class="edit-twitter edit-group">
+            <%= link_to "#", data: {url: comment_path(comment, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
+              <span class="fa fa-trash"></span>
+            <% end -%>
+          </div>
+        <% end %>
+        <blockquote class="twitter-tweet" lang="es">
+          <a href="<%= comment.url %>"></a>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
 </div>

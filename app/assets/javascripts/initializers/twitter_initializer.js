@@ -18,8 +18,11 @@ window.twttr = (function(d, s, id) {
 twttr.ready(function(twttr){
   twttr.events.bind('loaded', function(event){
     $(".twits").masonry({
-      itemSelector: ".twitter-tweet",
+      itemSelector: ".tweet-container",
       gutter: 5
+    })
+    $(".twits").on("msnry-element-removed", function(event, element){
+      $(".twits").masonry("remove", element).masonry("layout");
     })
   });
 });
