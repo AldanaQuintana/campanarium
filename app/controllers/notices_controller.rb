@@ -9,8 +9,7 @@ class NoticesController < ApplicationController
   end
 
   def unlink
-    @notice.notice_group_id = nil
-    @notice.save
+    @notice.unlink!
     respond_with(@notice)
   end
 
