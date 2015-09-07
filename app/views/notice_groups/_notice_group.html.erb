@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9">
         <% group.notices.each do |notice| %>
-          <%= render "notice", notice: notice, show_media: true %>
+          <%= render "notice", notice: notice, show_media: true, editable_notice: current_page?("/noticias") %>
         <% end %>
       </div>
       <div class="col-md-3">

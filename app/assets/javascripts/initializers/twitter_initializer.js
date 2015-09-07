@@ -18,7 +18,7 @@ window.twttr = (function(d, s, id) {
 twttr.ready(function(twttr){
   twttr.events.bind('loaded', function(event){
     $(".twits").masonry({
-      itemSelector: ".twitter-tweet",
+      itemSelector: ".tweet-container",
       gutter: 5
     })
   });

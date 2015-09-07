@@ -1,10 +1,10 @@
-<div class="notice-panel">
+<div class="notice-panel editable">
   <a href="<%= notice.url %>" target="_blank">
     <% if notice.has_images? %>
       <img src="<%= notice.images_urls[0]%>">
     <% end %>
     <h2>
-      <% if current_admin_user? %>
+      <% if current_admin_user? && editable_notice %>
         <div class="edit-notice">
           <%= link_to "#", class: "button edit-button" do %>
             <span class="fa fa-pencil"></span>
