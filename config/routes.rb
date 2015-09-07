@@ -17,4 +17,5 @@ Rails.application.routes.draw do
       post "unlink"
     end
   end
+  resources :comments, only: [:destroy]
 end

@@ -21,5 +21,8 @@ twttr.ready(function(twttr){
       itemSelector: ".tweet-container",
       gutter: 5
     })
+    $(".twits").on("msnry-element-removed", function(event, element){
+      $(".twits").masonry("remove", element).masonry("layout");
+    })
   });
 });

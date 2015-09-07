@@ -6,7 +6,7 @@
       <div class="tweet-container editable">
         <% if current_admin_user? %>
           <div class="edit-twitter edit-group">
-            <%= link_to "#", data: {url: "#", url_method: "DELETE"}, class: "button destroy-button" do %>
+            <%= link_to "#", data: {url: comment_path(comment, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
               <span class="fa fa-trash"></span>
             <% end -%>
           </div>

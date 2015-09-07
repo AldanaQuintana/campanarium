@@ -20,12 +20,14 @@
         url: $button.data("url"),
         method: $button.data("url-method") || "POST"
       }).then(function(){
-        $editable.addClass("hidden");
         if(!$("#notice_index").length == 0){
+          $editable.addClass("hidden");
           var $notice_group = $editable.closest(".notice-group");
           if($notice_group.find(".editable").not(".hidden").length == 0){
             $notice_group.addClass("hidden");
           }
+        }else{
+          $(".twits").trigger("msnry-element-removed", $editable);
         }
       })
     })
