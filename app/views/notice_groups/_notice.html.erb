@@ -5,7 +5,7 @@
     <% end %>
     <h2>
       <% if current_admin_user? && editable_notice %>
-        <div class="edit-notice">
+        <div class="edit-notice edit-group">
           <%= link_to "#", class: "button edit-button" do %>
             <span class="fa fa-pencil"></span>
           <% end -%>

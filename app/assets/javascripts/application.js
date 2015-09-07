@@ -18,4 +18,4 @@
 //= require masonry.pkgd.min
 //= require initializers/twitter_initializer
 //= require forms_handling
-//= require notice_groups/index
+//= require modules/editable

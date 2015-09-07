@@ -5,7 +5,7 @@
     <% @notice_group.comments.each do |comment| %>
       <div class="tweet-container editable">
         <% if current_admin_user? %>
-          <div class="edit-twitter">
+          <div class="edit-twitter edit-group">
             <%= link_to "#", data: {url: "#", url_method: "DELETE"}, class: "button destroy-button" do %>
               <span class="fa fa-trash"></span>
             <% end -%>
