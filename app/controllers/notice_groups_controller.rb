@@ -1,9 +1,11 @@
 class NoticeGroupsController < ApplicationController
 
+  respond_to :json, :html
+
   def index
     authorize! :noticias, :index
-    # Esto debería cambiar en un futuro, no hay que traer todos los grupos
-    @notice_groups = NoticeGroup.all
+    @notice_groups = NoticeGroup.page(params[:page] || 1).per(3)
+    respond_with(@notice_groups)
   end
 
   def show

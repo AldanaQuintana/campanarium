@@ -52,6 +52,9 @@ gem 'carrierwave'
 # twitter integration
 gem 'twitter', '~> 5.14'
 
+#Pagination
+gem 'kaminari'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'
@@ -69,4 +72,5 @@ group :test do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery.inview'
 end

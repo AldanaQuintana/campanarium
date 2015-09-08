@@ -19,3 +19,5 @@
 //= require initializers/twitter_initializer
 //= require forms_handling
 //= require modules/editable
+//= require jquery.inview
+//= require notice_groups/index
