@@ -4,7 +4,7 @@ class Notice < ActiveRecord::Base
   belongs_to :notice_group
 
   def images_urls
-    media.map{|m| m.image_url}
+    media.map &:image_url
   end
 
   def has_images?
@@ -18,6 +18,7 @@ class Notice < ActiveRecord::Base
   end
 
   def destroy_group_if_empty
+    return unless notice_group
     notice_group.destroy unless notice_group.notices.where("id != ?", self.id).count > 0
   end
 end

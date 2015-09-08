@@ -1,6 +1,16 @@
 # encoding: utf-8
 class SourceFetcher < ResqueJob
 
+  # abstract class
+  # child must implement 'notice_from(*args)'
+
+  def fetch_notice *args
+    notice = notice_from *args
+    notice.save! if notice
+  rescue Exception => e
+    puts "Error fetching notice: #{e.message} #{e.backtrace.join("\n")}"
+  end
+
   def format_body p_elements
     # formatea nodos html convirtiendolos a texto con newlines
     body = p_elements.map(&:text)*"\n"
