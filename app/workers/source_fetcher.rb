@@ -15,6 +15,9 @@ class SourceFetcher < ResqueJob
       .gsub(/\ +/, ' ')
       .gsub(/^\ *\n*/, '')
       .gsub(/\ *\n*$/, '')
+
+    fix_encoding body
+ 
   end
 
   def format_title title
@@ -24,6 +27,7 @@ class SourceFetcher < ResqueJob
       .gsub(/\ +/, ' ')
       .gsub(/^\ *\n*/, '')
       .gsub(/\ *\n*$/, '')
+    fix_encoding title
   end
 
   def create_media_from *images_src
@@ -41,4 +45,14 @@ class SourceFetcher < ResqueJob
     nil
   end
 
+
+  private
+
+  def fix_encoding text 
+    if text =~ /[ÂÃ]/ #se podria mejorar, pero creo que para lo que necesitamos funciona
+      text.encode("iso-8859-1").force_encoding("utf-8")
+    else 
+      text 
+    end
+  end
 end
