@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-migrate-min
 //= require bootstrap
+//= require underscore
 //= require static_pages/redirect_on_mercury_save
 //= require masonry.pkgd.min
 //= require initializers/twitter_initializer

@@ -191,6 +191,7 @@ GEM
       railties (= 4.2.2)
       sprockets-rails
     rails-assets-jquery.inview (1.0.0)
+    rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -313,6 +314,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.2)
   rails-assets-jquery.inview!
+  rails-assets-underscore!
   responders (~> 2.0)
   resque
   rmagick
