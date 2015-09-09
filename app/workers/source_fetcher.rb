@@ -39,7 +39,7 @@ class SourceFetcher < ResqueJob
 
   def format_keywords keywords
     Array(keywords).map do |keyword|
-      fix_encoding keyword.downcase
+      format_keyword keyword
     end
   end
 
@@ -56,6 +56,14 @@ class SourceFetcher < ResqueJob
   rescue Exception
     puts "Error creating media item from url #{image_src}"
     nil
+  end
+
+  def format_keyword keyword 
+    I18n.transliterate(keyword) #removes accents and weird symbols
+      .split(/\s*(\d+)\s*/,-1).join(" ") #adds whitespaces between numbers and letters
+      .split.join(" ") #gets rid of multiple whitespaces
+      .strip 
+      .downcase
   end
 
   private
