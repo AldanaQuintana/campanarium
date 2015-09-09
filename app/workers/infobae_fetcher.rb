@@ -36,7 +36,7 @@ class InfobaeFetcher < SourceFetcher
     title = format_title html.css('.entry-title').first.text
     body = format_body html.css('.entry-content .cuerposmart p')
     # body = format_body html.css '.wrapper article .entry-content p'
-    keywords = html.css('article [data-header-tag]').attr 'data-header-tag'
+    keywords = format_keywords html.css('article [data-header-tag]').attr 'data-header-tag'
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     writed_at = time_from url

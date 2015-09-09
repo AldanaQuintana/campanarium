@@ -10,21 +10,22 @@ class CronicaFetcher < SourceFetcher
   
   def fetch_noticias from, to
     noticias_urls = fetch_noticias_urls from, to
-    puts "#{noticias_urls.count} crónica urls found"
-    noticias = noticias_urls.map do |url_time|
-      begin
+    puts "#{noticias_urls.count} cronica urls found"
+    noticias = noticias_urls.each do |url_time|
+      # begin
         notice = fetch_notice url_time
 
-      rescue URI::InvalidURIError => error #Porque el sitemap tiene algunos links inaccesibles.
+      # rescue URI::InvalidURIError => error #Porque el sitemap tiene algunos links inaccesibles.
         
-      end
+      # end
       # notice.save!
-    end.reject { |x| x.nil?}
-    noticias
+    end
+    # end.reject { |x| x.nil?}
+    # noticias
   end
 
   def fetch_noticias_urls from, to
-    puts 'Fetching crónica sitemap ...'
+    puts 'Fetching cronica sitemap ...'
     sitemap_url = 'http://www.cronica.com.ar/sitemap.xml'
     sitemap = Nokogiri::HTML open sitemap_url
     urls_data = sitemap.css('url').map do |data|
@@ -36,22 +37,24 @@ class CronicaFetcher < SourceFetcher
     end
   end
 
-  def fetch_notice url_time
-    puts "Fetching notice in #{url_time[:url]} ..."
-    html = Nokogiri::HTML open(url_time[:url]),nil,'utf-8'
-
+  def notice_from data
+    url = data[:url]
+    puts "Fetching notice in #{url} ..."
+    html = Nokogiri::HTML open(url),nil,'utf-8'
     title = format_title html.css('.article-title').first.text
-    body = format_body html.css('.article-text p') #En algunos artículos meten iframes en los párrafos... 
+    body = format_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
+    keywords = format_keywords html.css('.article-tags a').map(&:text)
+    keywords = keywords*','
     image = html.css('.article-image img').first
     image = image && image.attr('src') #El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
-    writed_at = url_time[:time] 
+    writed_at = data[:time] 
     media_items = create_media_from image
-    Notice.create title: title, body: body, source: :cronica, url: url_time[:url], writed_at: writed_at, media: media_items
+    Notice.new title: title, body: body, keywords: keywords, source: :cronica, url: url, writed_at: writed_at, media: media_items
   end
 
   def time_from timestamp
-    Time.iso8601 timestamp    #Ej: 2015-09-06T15:07:00-03:00
-  rescue TypeError => e
+    Time.iso8601 timestamp #Ej: 2015-09-06T15:07:00-03:00
+  rescue TypeError
     nil
   end
 

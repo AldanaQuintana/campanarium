@@ -13,9 +13,8 @@ class LaNacionFetcher < SourceFetcher
   def fetch_noticias from, to
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} lanacion urls found"
-    noticias_urls.map do |url|
-      notice = fetch_notice url
-      # notice.save!
+    noticias_urls.each do |url|
+      fetch_notice url
     end
   end
 
@@ -34,7 +33,7 @@ class LaNacionFetcher < SourceFetcher
     end
   end
 
-  def fetch_notice url
+  def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('#encabezado h1').text
@@ -42,7 +41,7 @@ class LaNacionFetcher < SourceFetcher
     image = html.css('#cuerpo .archivos-relacionados .foto img').first
     image = image && image.attr('src')
     media_items = create_media_from image
-    Notice.create title: title, body: body, source: :la_nacion, url: url, media: media_items
+    Notice.new title: title, body: body, source: :la_nacion, url: url, media: media_items
   end
 
 end
