@@ -1,0 +1,7 @@
+<%= main_layout do %>
+  <h1>Usuarios de <span class="logo">Campanarium</span></h1>
+
+  <% @users.each do |user| %>
+    <%= render "user", user: user %>
+  <% end %>
+<% end -%>

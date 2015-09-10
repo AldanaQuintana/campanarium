@@ -33,4 +33,10 @@ module ApplicationHelper
   def render_errors(resource)
     render "share/alert_messages", errors: [["danger", resource.errors.full_messages.join(", ") ]]
   end
+
+  def main_layout(&block)
+    render layout: 'share/main_layout' do
+      yield
+    end
+  end
 end
