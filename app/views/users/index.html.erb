@@ -1,7 +1,7 @@
 <%= main_layout do %>
   <h1 class="text-center">Usuarios de <div class="logo"> - Campanarium - </div></h1>
 
-  <ul>
+  <ul class="unstyled-list">
     <% @users.each do |user| %>
       <%= render "user", user: user %>
     <% end %>
