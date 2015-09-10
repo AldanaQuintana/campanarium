@@ -14,14 +14,13 @@ class DiarioVelozFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls
     puts "#{noticias_urls.count} diario veloz urls found"
     belongs_to_interval = true
-    noticias_urls.map do |url|
+    noticias_urls.each do |url|
       next nil unless belongs_to_interval
       notice = fetch_notice url
+      next unless notice
       updated_time = notice.writed_at
       belongs_to_interval = updated_time && updated_time >= from && updated_time <= to
-      # notice.save! if belongs_to_interval
-      notice
-    end.compact
+    end
   end
 
   def fetch_noticias_urls
@@ -31,7 +30,7 @@ class DiarioVelozFetcher < SourceFetcher
     sitemap.css('url loc').map &:text
   end
 
-  def fetch_notice url
+  def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('.title-obj h1').text
