@@ -1,5 +1,6 @@
 <div class="comments-statistics-panel">
   <h2>Lo que piensa la gente</h2>
-  <%= pie_chart Comment.group(:positive).count %>
+  <%= pie_chart with_labels(Comment.group(:positive).count, {"true" => "Positivo", "false" => "Negativo"})
+ %>
   <%= link_to 'Ver comentarios', notice_group_path(group), class: 'btn btn-primary' %>
 </div>

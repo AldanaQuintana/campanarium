@@ -1,12 +1,12 @@
 <div class="panel notice-group <%= 'page-' + @page.to_s %>">
   <div class="inner-border">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-8">
         <% group.notices.each do |notice| %>
           <%= render "notice", notice: notice, show_media: true, editable_notice: current_page?("/noticias") %>
         <% end %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <%= render "comments",  comments: group.comments, group: group, statistic_image_url: group.comments_statistic_image_url if group.comments.length > 0 && group.comments_statistic_image.present? %>
         <div class="clearfix"></div>
       </div>
