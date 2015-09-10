@@ -2,8 +2,17 @@
   <h1 class="text-center">Usuarios de <div class="logo"> - Campanarium - </div></h1>
   <br>
   <br>
-
-  <ul class="unstyled-list">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <div class="input-with-icon form-group">
+        <%= content_tag :input, "", id: "search_users", class: "form-control"%>
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <ul class="unstyled-list" id="users">
     <% @users.each_with_index do |user, index| %>
       <%= render "user", user: user %>
       <%- unless index + 1 == @users.length %>
