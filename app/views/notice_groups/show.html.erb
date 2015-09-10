@@ -1,6 +1,6 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div id="notice_show">
-  <%= render "notice_group", group: @notice_group, hide_comments: true %>
+  <%= render "notice_group", group: @notice_group, hide_comments_link: true %>
 
   <div class="twits">
     <% @notice_group.comments.each do |comment| %>
