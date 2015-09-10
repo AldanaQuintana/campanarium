@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroyed_at = Time.zone.now
+    @user.reasons_of_destroying = params[:reasons]
     @user.save
 
     respond_with(@user)

@@ -12,6 +12,9 @@
   &.disabled{
     cursor: default;
   }
+  &.btn-secondary{
+    background-color: $secondary;
+  }
 }
 
 .navbar{

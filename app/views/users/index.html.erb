@@ -8,3 +8,23 @@
   </ul>
   <div class="text-center"><%= paginate @users %></div>
 <% end -%>
+
+<%- if current_admin_user? %>
+  <div class="modal fade" id="destroy_user_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Eliminar usuario</h4>
+        </div>
+        <div class="modal-body">
+          <textarea name="reasons" id="destroy_reasons" cols="55" rows="6" class="reasons" placeholder="Escriba las razones por las cuales se elimina a este usuario"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="destroy_action">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>
