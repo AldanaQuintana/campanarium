@@ -12,6 +12,7 @@
       var $users_container = $("#users");
       if(!(data.html_partial.length === 0)){
         $users_container[0].innerHTML = data.html_partial;
+        $users_container.trigger("editable-added");
       }else{
         $users_container[0].innerHTML = "";
         $("#no-more-results").show();
