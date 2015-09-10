@@ -12,6 +12,8 @@
     </div>
     <div class="col-lg-2"></div>
   </div>
+  <br>
+  <br>
   <ul class="unstyled-list" id="users">
     <% @users.each_with_index do |user, index| %>
       <%= render "user", user: user, index: index, users_length: @users.length %>
