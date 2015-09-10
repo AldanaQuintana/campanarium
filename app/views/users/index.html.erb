@@ -17,6 +17,7 @@
       <%= render "user", user: user, index: index, users_length: @users.length %>
     <% end %>
   </ul>
+  <div id="no-more-results">No hay resultados para su búsqueda</div>
   <div class="text-center"><%= paginate @users %></div>
 <% end -%>
 

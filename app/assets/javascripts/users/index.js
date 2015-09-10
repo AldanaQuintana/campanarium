@@ -1,5 +1,7 @@
 (function(){
+  $("#no-more-results").hide();
   $("#search_users").on("input", function(e){
+    $("#no-more-results").hide();
     $.ajax({
       url: "/users",
       method: "GET",
@@ -8,8 +10,12 @@
       }
     }).then(function(data){
       var $users_container = $("#users");
-      var content = data.html_partial.length === 0 ? "No hay resultados" : data.html_partial;
-      $users_container[0].innerHTML = content;
+      if(!(data.html_partial.length === 0)){
+        $users_container[0].innerHTML = data.html_partial;
+      }else{
+        $users_container[0].innerHTML = "";
+        $("#no-more-results").show();
+      }
     })
 
   })
