@@ -1,0 +1,8 @@
+<p>Tu cuenta ha sido suspendida</p>
+
+<%- if @user.reasons_of_destroying.present? %>
+  <p>El administrador dejó esta razón:</p>
+  <p>"<%= @user.reasons_of_destroying %>"</p>
+<% end -%>
+
+<p>Si pensás que es un error o ante cualquier consulta por favor comunicate con admin@campanarium.com</p>

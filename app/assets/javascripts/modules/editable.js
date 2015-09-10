@@ -1,6 +1,11 @@
 (function(){
   if(!$(".editable").length > 0){ return; }
 
+  var $modal = $("#destroy_user_modal").modal({show: false});
+  $modal.on("hide.bs.modal", function(){
+    $("#destroy_reasons").val("")
+  });
+
   var initializeEditables = function(container){
     var $container = container || $(document);
     var $editable_buttons_group = $container.find(".edit-group");
@@ -40,14 +45,12 @@
         var $button = $(e.target).closest(selector);
         var $editable = $button.closest(".editable");
         if($editable.hasClass("user")){
-          $("#destroy_user_modal").modal();
-          $("#destroy_user_modal").on("hide.bs.modal", function(){
-            $("#destroy_reasons").val("")
-          });
-          $("#destroy_action").on("click", function(){
+          $modal.modal("show");
+          $("#destroy_action").on("click", function(e){
             callMethod($button, $editable, {reasons: $("#destroy_reasons").val()});
-            $("#destroy_user_modal").modal("hide");
+            $modal.modal("hide");
             $editable.addClass("banned");
+            $(e.target).unbind("click");
           });
         }else{
           callMethod($button, $editable)

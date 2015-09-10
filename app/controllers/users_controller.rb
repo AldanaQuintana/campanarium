@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @user.reasons_of_destroying = params[:reasons]
     @user.save
 
+    UserMailer.user_banned_email(@user).deliver
+
     respond_with(@user)
   end
 end
