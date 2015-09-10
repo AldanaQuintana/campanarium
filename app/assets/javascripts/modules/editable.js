@@ -19,22 +19,22 @@
         var $button = $(e.target).closest(selector);
         var $editable = $button.closest(".editable");
         var url_method = $button.data("url-method") || "POST";
-        $.ajax({
-          url: $button.data("url"),
-          method: url_method
-        }).then(function(){
-          if(!$("#notice_index").length == 0){
-            if(url_method != "DELETE" || confirm("¿Está seguro de que quiere eliminar la noticia? Esto no puede deshacerse.")){
+        if($("#notice_index").length == 0 || (url_method === "DELETE" && confirm("¿Está seguro de que quiere eliminar la noticia? Esto no puede deshacerse."))){
+          $.ajax({
+            url: $button.data("url"),
+            method: url_method
+          }).then(function(){
+            if(!$("#notice_index").length == 0){
               $editable.addClass("hidden");
               var $notice_group = $editable.closest(".notice-group");
               if($notice_group.find(".editable").not(".hidden").length == 0){
                 $notice_group.addClass("hidden");
               }
+            }else{
+              $(".twits").trigger("msnry-element-removed", $editable);
             }
-          }else{
-            $(".twits").trigger("msnry-element-removed", $editable);
-          }
-        })
+          })
+        }
       })
     }
 
