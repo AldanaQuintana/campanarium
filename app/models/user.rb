@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :twitter]
-  has_many :user_oauths
+  has_many :user_oauths, dependent: :destroy
+  validates :name, presence: true, allow_blank: false
 
   def self.from_omniauth omniauth
     User.joins(:user_oauths).where(user_oauths: omniauth.slice(:provider, :uid)).readonly(false).first

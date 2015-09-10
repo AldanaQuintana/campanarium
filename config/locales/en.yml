@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+activerecord:
+  errors:
+    models:
+      user:
+        attributes:
+          name:
+            blank: No puede estar vacío
