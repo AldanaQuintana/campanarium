@@ -20,7 +20,7 @@
       if(html_partial.length == 0){
         $("#no-more-results").show();
       }else{
-        moreResults = true;
+        $("#no-more-results").hide();
         $("#notice_index").append(html_partial);
       }
     });
