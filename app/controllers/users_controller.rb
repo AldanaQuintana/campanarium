@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     else
       @users = User.name_like(params[:name_cont]).order(:name).where("destroyed_at is null").page(params[:page] || 1).per(10)
     end
-    respond_with(@users)
+    @html_partial = @users.map{|user| render_to_string partial: "users/user", layout: false, formats: [:html], locals: { user: user, index: @users.index(user), users_length: @users.length }}.join("")
+    respond_with(@users, @html_partial)
   end
 
   def destroy
