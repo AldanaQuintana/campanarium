@@ -1,6 +1,9 @@
 <li class="user editable <%= user.banned? ? 'banned' : '' %>">
   <div class="row">
     <div class="col-lg-1"></div>
+    <div class="col-lg-1">
+      <%= image_tag user.avatar.image.url(:avatar), height: "40px",class: "img-rounded" unless user.avatar.nil? %>
+    </div>
     <div class="col-lg-3">
       <div class="name"><%= user.name %></div>
       <div>Ingresó el <%= I18n.l user.created_at %></div>

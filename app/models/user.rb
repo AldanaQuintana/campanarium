@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook, :twitter]
   has_many :user_oauths, dependent: :destroy
   validates :name, presence: true, allow_blank: false
-
+  has_one :avatar, class_name: "Media", as: :media_owner, dependent: :destroy
+  accepts_nested_attributes_for :avatar
   def self.from_omniauth omniauth
     User.joins(:user_oauths).where(user_oauths: omniauth.slice(:provider, :uid)).readonly(false).first
   end

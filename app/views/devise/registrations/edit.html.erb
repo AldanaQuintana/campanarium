@@ -4,6 +4,7 @@
     Perfil de <%= @user.name %>
   </div>
   <div class="panel-body">
+
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
@@ -45,8 +46,23 @@
               </div>
             </div>
           <% end %>
+          <%= f.fields_for :avatar, Media.new do |h|%>
+            <div class="form-group">
+              <div class="row">
+              <%= label_tag :avatar, "Avatar", class: "control-label col-md-2" %>
+                <div class="col-md-10">
+                  <div class: "form-control">
+                    <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded" if f.object.avatar%>
+                    <%= h.file_field :image%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
           <%= f.submit "Guardar", class: "btn btn-primary button-block" %>
         <% end -%>
+
       </div>
       <div class="col-md-1"></div>
     </div>
