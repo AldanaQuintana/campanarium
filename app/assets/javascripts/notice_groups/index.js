@@ -17,7 +17,12 @@
         result += group.html_partial[0];
         return result;
       }, "");
-      $("#notice_index").append(html_partial);
+      if(html_partial.length == 0){
+        $("#no-more-results").show();
+      }else{
+        moreResults = true;
+        $("#notice_index").append(html_partial);
+      }
     });
   })
 })();
