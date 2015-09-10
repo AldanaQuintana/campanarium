@@ -4,6 +4,14 @@ class SourceFetcher < ResqueJob
   # abstract class
   # child must implement 'notice_from(*args)'
 
+  def initialize(options = nil)
+    @options = OpenStruct.new(options || {})
+  end
+
+  def options
+    @options
+  end
+
   def fetch_notice *args
     notice = notice_from *args
     notice.save! if notice
@@ -58,17 +66,17 @@ class SourceFetcher < ResqueJob
     nil
   end
 
-  def format_keyword keyword 
+  def format_keyword keyword
     I18n.transliterate(keyword) #removes accents and weird symbols
       .split(/\s*(\d+)\s*/,-1).join(" ") #adds whitespaces between numbers and letters
       .split.join(" ") #gets rid of multiple whitespaces
-      .strip 
+      .strip
       .downcase
   end
 
   private
 
-  def fix_encoding text 
+  def fix_encoding text
     return text unless text =~ /[ÂÃ]/ #se podria mejorar, pero creo que para lo que necesitamos funciona
     text.encode("iso-8859-1").force_encoding("utf-8")
   end
