@@ -14,7 +14,8 @@ class Ability
   def user_permissions(user)
     can :noticias, :index
     can :noticias, :show
-    can :edit, user 
+    can :edit, user
+    can :users, :index
   end
 
   def admin_permissions(user)

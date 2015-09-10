@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_admin_user!, only: [:destroy]
 
   def index
+    authorize! :users, :index
     if current_user.admin?
       @users = User.order(:name).page(params[:page] || 1).per(10)
     else
