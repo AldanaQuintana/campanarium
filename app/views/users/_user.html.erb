@@ -1,4 +1,20 @@
-<li class="user">
-  <div class="name"><%= user.name %></div>
-  <div>Ingresó el <%= I18n.l user.created_at %></div>
+<li class="user editable">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <div class="name"><%= user.name %></div>
+      <div>Ingresó el <%= I18n.l user.created_at %></div>
+    </div>
+    <div class="col-lg-1">
+      <% if current_admin_user? %>
+        <div class="edit-group edit-user">
+          <%= link_to "#", data: {url: user_path(user, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
+            <span class="fa fa-trash"></span>
+          <% end -%>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-7"></div>
+  </div>
+
 </li>

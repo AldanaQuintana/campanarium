@@ -4,6 +4,9 @@ h1{
   .logo{
     font-size: 30px;
     color: $primary;
+    &:hover{
+      color: $primary;
+    }
   }
 }
 
@@ -11,4 +14,7 @@ h1{
   font-family: $logo;
   color: #FFF;
   text-align: center;
+  &:hover{
+    color: #FFF;
+  }
 }
