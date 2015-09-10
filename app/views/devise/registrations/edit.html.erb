@@ -52,9 +52,7 @@
               <%= label_tag :avatar, "Avatar", class: "control-label col-md-2" %>
                 <div class="col-md-10">
                   <div class: "form-control">
-                    <% if f.object.avatar %>
-                      <%= image_tag f.object.avatar.image.url(:avatar) %>
-                    <%end %>
+                    <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded" if f.object.avatar%>
                     <%= h.file_field :image%>
                   </div>
                 </div>
