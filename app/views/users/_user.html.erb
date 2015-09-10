@@ -1,9 +1,12 @@
-<li class="user editable">
+<li class="user editable <%= user.banned? ? 'banned' : '' %>">
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-3">
       <div class="name"><%= user.name %></div>
       <div>Ingresó el <%= I18n.l user.created_at %></div>
+      <% if user.banned? %>
+        <div>Eliminado el <%= I18n.l user.destroyed_at %></div>
+      <% end %>
     </div>
     <div class="col-lg-1">
       <% if current_admin_user? %>

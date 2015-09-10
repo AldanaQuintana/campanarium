@@ -37,4 +37,8 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
+
+  def banned?
+    destroyed_at.present?
+  end
 end
