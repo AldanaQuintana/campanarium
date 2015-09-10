@@ -55,6 +55,9 @@ gem 'twitter', '~> 5.14'
 #Pagination
 gem 'kaminari'
 
+#Tracking / Statistics
+gem "chartkick"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'

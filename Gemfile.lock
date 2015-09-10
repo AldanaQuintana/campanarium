@@ -68,6 +68,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chartkick (1.4.1)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -292,6 +293,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capybara
   carrierwave
+  chartkick
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
