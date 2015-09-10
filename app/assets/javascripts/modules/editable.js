@@ -21,7 +21,7 @@
 
     var callMethod = function($button, $editable, extra_data){
       var url_method = $button.data("url-method") || "POST";
-      if($("#notice_index").length == 0 || (url_method === "DELETE" && confirm("¿Está seguro de que quiere eliminar la noticia? Esto no puede deshacerse."))){
+      if($("#notice_index").length == 0 || url_method != "DELETE" || (url_method === "DELETE" && confirm("¿Está seguro de que quiere eliminar la noticia? Esto no puede deshacerse."))){
         $.ajax({
           url: $button.data("url"),
           method: url_method,
