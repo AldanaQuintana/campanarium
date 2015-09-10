@@ -12,7 +12,7 @@ module ExceptionHandler
   end
 
   def cancan_error_handler(exception)
-    flash[:danger] = I18n.t(".error_not_authorized") + " Debe ingresar antes."
+    flash[:danger] = I18n.t(".error_not_authorized") + (current_user.present? ? "" : " Debe ingresar antes.")
     redirect_to root_path
   end
 
