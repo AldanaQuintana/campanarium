@@ -1,3 +1,4 @@
+<% hide_comments||=false %>
 <div class="panel notice-group <%= 'page-' + @page.to_s %>">
   <div class="inner-border">
     <div class="row">
@@ -6,7 +7,7 @@
           <%= render "notice", notice: notice, show_media: true, editable_notice: current_page?("/noticias") %>
         <% end %>
       </div>
-      <%- if group.comments.present? %>
+      <%- if group.comments.present? && !hide_comments %>
         <div class="col-md-4">
           <%= render "comments",  comments: group.comments, group: group, statistic_image_url: group.comments_statistic_image_url if group.comments.length > 0 && group.comments_statistic_image.present? %>
           <div class="clearfix"></div>
