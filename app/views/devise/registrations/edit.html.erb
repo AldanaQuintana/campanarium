@@ -24,7 +24,7 @@
             <div class="row">
               <%= label_tag :email, "Email", class: "control-label col-md-2" %>
               <div class="col-md-10">
-                <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+                <%= f.text_field :email, class: "form-control", placeholder: "Email", value: f.object.has_email? && f.object.email || "" %>
               </div>
             </div>
           </div>

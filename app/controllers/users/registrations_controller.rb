@@ -38,9 +38,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   #PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:email].blank?
+      params[:user].delete(:email)
+    else 
+      params[:user][:has_email] = true
+    end
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -66,7 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) { |u|
-      u.permit(:email, :password, :password_confirmation, :current_password, :name, :avatar_attributes => :image)
+      u.permit(:email, :password, :password_confirmation, :current_password, :name, :has_email, :avatar_attributes => :image)
     }
   end
 
