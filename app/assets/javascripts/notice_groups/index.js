@@ -24,6 +24,8 @@
       }else{
         $("#no-more-results").hide();
         $("#notice_index").append(html_partial);
+        var $elementsAdded = $(".page-" + data.page);
+        $elementsAdded.trigger("editable-added");
       }
     });
   })

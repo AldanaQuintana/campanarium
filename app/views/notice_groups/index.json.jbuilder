@@ -5,3 +5,4 @@ json.groups @notice_groups do |group|
   json.html_partial @html_partials
 end
 json.show_edit current_admin_user?
+json.page @page
