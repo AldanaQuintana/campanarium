@@ -3,8 +3,10 @@
   var page = 1;
 
   $("#end-of-notices").bind("inview", function(event, isInView, visiblePartX, visiblePartY){
-    $(".fa.fa-spinner").removeClass("hidden");
-    page += 1;
+    if($("#no-more-results").is(":hidden")){
+      $(".fa.fa-spinner").removeClass("hidden");
+      page += 1;
+    }
     $.ajax({
       url: "/noticias",
       method: "GET",
