@@ -40,8 +40,9 @@
       }
     }
 
-    var linkToClick = function(selector){
-      $(selector).on("click", function(e){
+    var linkToClick = function(selector, clickable){
+      var $clickable = clickable || $(selector);
+      $clickable.on("click", function(e){
         var $button = $(e.target).closest(selector);
         var $editable = $button.closest(".editable");
         if($editable.hasClass("user")){
@@ -58,8 +59,8 @@
       })
     }
 
-    linkToClick(".destroy-button");
-    linkToClick(".unlink-button");
+    linkToClick(".destroy-button", $container.find(".destroy-button"));
+    linkToClick(".unlink-button", $container.find(".unlink-button"));
   }
 
   initializeEditables();
