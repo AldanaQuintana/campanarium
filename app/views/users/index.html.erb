@@ -1,0 +1,44 @@
+<%= main_layout do %>
+  <h1 class="text-center">Usuarios de <div class="logo"> - Campanarium - </div></h1>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <div class="input-with-icon form-group">
+        <%= content_tag :input, "", id: "search_users", class: "form-control", placeholder: "Buscar usuarios por nombre y/o apellido" %>
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <br>
+  <br>
+  <ul class="unstyled-list" id="users">
+    <% @users.each_with_index do |user, index| %>
+      <%= render "user", user: user, index: index, users_length: @users.length %>
+    <% end %>
+  </ul>
+  <div id="no-more-results">No hay resultados para su búsqueda</div>
+  <div class="text-center"><%= paginate @users %></div>
+<% end -%>
+
+<%- if current_admin_user? %>
+  <div class="modal fade" id="destroy_user_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Eliminar usuario</h4>
+        </div>
+        <div class="modal-body">
+          <textarea name="reasons" id="destroy_reasons" cols="55" rows="6" class="reasons" placeholder="Escriba las razones por las cuales se elimina a este usuario"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="destroy_action">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

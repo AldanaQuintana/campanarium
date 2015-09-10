@@ -1,11 +1,13 @@
 <div class="alerts-container">
   <% errors = errors || flash %>
   <% errors.each do |name, msg| %>
-    <div class="alert <%= bootstrap_alert_class(name) %> alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <i class="fa fa-icon <%= alert_icon_class(name) %>"></i>
-      <%= msg %>
-    </div>
+    <%- if msg.is_a?(String) %>
+      <div class="alert <%= bootstrap_alert_class(name) %> alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-icon <%= alert_icon_class(name) %>"></i>
+        <%= msg %>
+      </div>
+    <% end -%>
   <% end %>
 </div>
 

@@ -1,0 +1,16 @@
+.pagination{
+  color: $primary;
+  span{
+    margin-right: 2px;
+  }
+  .page.current{
+    color: $secondary;
+    font-weight: $bold;
+    &::before, &::after{
+      font-size: 10px;
+      position: relative;
+      bottom: 2px;
+      content: "●";
+    }
+  }
+}

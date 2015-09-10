@@ -1,0 +1,20 @@
+h1{
+  font-size: 25px;
+  color: $primary;
+  .logo{
+    font-size: 30px;
+    color: $primary;
+    &:hover{
+      color: $primary;
+    }
+  }
+}
+
+.logo{
+  font-family: $logo;
+  color: #FFF;
+  text-align: center;
+  &:hover{
+    color: #FFF;
+  }
+}

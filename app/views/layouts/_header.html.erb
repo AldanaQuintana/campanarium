@@ -1,6 +1,6 @@
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
-    <%=  link_to 'Campanarium', root_path, class: "brand" %>
+    <%=  link_to 'Campanarium', root_path, class: "brand logo" %>
     <ul class="nav">
     <li class="main-menu-item">
       <%= link_to current_user.present? ? "NOTICIAS" : "INICIO", root_path, class: current_page?('/noticias') || current_page?('/') ? 'active' : '' %>
@@ -29,6 +29,12 @@
             <i class="fa fa-icon fa-user"></i>
             PERFIL
           <% end %>
+        </li>
+        <li class="with-spacer">
+          <%= link_to users_path do %>
+            <i class="fa fa-users"></i>
+            USUARIOS
+          <% end -%>
         </li>
         <li>
           <%=  link_to destroy_user_session_path, :method => :delete  do %>

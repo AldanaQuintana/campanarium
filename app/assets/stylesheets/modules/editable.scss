@@ -1,5 +1,5 @@
 .editable{
-  .edit-notice, .edit-twitter{
+  .edit-notice, .edit-twitter, .edit-user{
     position: absolute;
     right: 0;
     display: none;
@@ -41,6 +41,13 @@
       .destroy-button{
         display: inline-block;
       }
+    }
+  }
+
+  .edit-user{
+    display: inline-block;
+    .destroy-button{
+      display: inline-block;
     }
   }
 }

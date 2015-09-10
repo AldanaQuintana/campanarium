@@ -1,0 +1,11 @@
+es:
+  time:
+    formats:
+      default: "%d/%m/%Y"
+  views:
+    pagination:
+      first: "&laquo; Primero"
+      last: "Último &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Próximo &rsaquo;"
+      truncate: "&hellip;"

@@ -1,0 +1,26 @@
+<li class="user editable <%= user.banned? ? 'banned' : '' %>">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <div class="name"><%= user.name %></div>
+      <div>Ingresó el <%= I18n.l user.created_at %></div>
+      <% if user.banned? %>
+        <div>Eliminado el <%= I18n.l user.destroyed_at %></div>
+      <% end %>
+    </div>
+    <div class="col-lg-7">
+      <% if current_admin_user? %>
+        <div class="edit-group edit-user">
+          <%= link_to "#", data: {url: user_path(user, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
+            <span class="fa fa-trash"></span>
+          <% end -%>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+</li>
+<div class="spacer-top"></div>
+<%- unless index + 1 == users_length %>
+  <div class="h-separator"></div>
+<% end -%>

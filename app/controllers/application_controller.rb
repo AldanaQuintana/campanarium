@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :editing?
 
+  before_filter :log_out_if_banned
+
+  def log_out_if_banned
+    if current_user.present? && current_user.banned?
+      sign_out current_user
+      flash[:alert] = "Tu cuenta ha sido suspendida. Si pensás que es un error por favor comunicate con admin@campanarium.com"
+      redirect_to root_path
+    end
+  end
+
   def authenticate_admin_user!
     current_user.present? &&
     current_user.admin? or raise BusinessRuleError.new :error_not_authorized
