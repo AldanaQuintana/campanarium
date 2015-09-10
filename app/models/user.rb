@@ -41,4 +41,10 @@ class User < ActiveRecord::Base
   def banned?
     destroyed_at.present?
   end
+
+  class << self
+    def name_like(name)
+      name.present? ? self.where("name ~* ?", name) : self.all
+    end
+  end
 end

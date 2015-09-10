@@ -6,10 +6,11 @@ class UsersController < ApplicationController
   def index
     authorize! :users, :index
     if current_user.admin?
-      @users = User.order(:name).page(params[:page] || 1).per(10)
+      @users = User.name_like(params[:name_cont]).order(:name).page(params[:page] || 1).per(10)
     else
-      @users = User.order(:name).where("destroyed_at is null").page(params[:page] || 1).per(10)
+      @users = User.name_like(params[:name_cont]).order(:name).where("destroyed_at is null").page(params[:page] || 1).per(10)
     end
+    respond_with(@users)
   end
 
   def destroy
