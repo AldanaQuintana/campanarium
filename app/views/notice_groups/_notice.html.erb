@@ -4,21 +4,6 @@
       <img src="<%= notice.images_urls[0]%>">
     <% end %>
     <h2>
-      <% if current_admin_user? && editable_notice %>
-        <div class="edit-notice edit-group">
-          <%= link_to "#", class: "button edit-button" do %>
-            <span class="fa fa-pencil"></span>
-          <% end -%>
-          <div class="displayable">
-            <%= link_to "#", data: {url: notice_path(notice, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
-              <span class="fa fa-trash"></span>
-            <% end -%>
-            <%= link_to "#", data: {url: unlink_notice_path(notice, "json")}, class: "button remove-from-group-button unlink-button" do %>
-              <span class="fa fa-chain-broken"></span>
-            <% end -%>
-          </div>
-        </div>
-      <% end %>
       <%= notice.title %>
     </h2>
     <div class="body">
@@ -26,4 +11,19 @@
     </div>
     <%= source_logo(notice) %>
   </a>
+  <% if current_admin_user? && editable_notice %>
+    <div class="edit-notice edit-group">
+      <%= link_to "#", class: "button edit-button" do %>
+        <span class="fa fa-pencil"></span>
+      <% end -%>
+      <div class="displayable">
+        <%= link_to "#", data: {url: notice_path(notice, "json"), url_method: "DELETE"}, class: "button destroy-button" do %>
+          <span class="fa fa-trash"></span>
+        <% end -%>
+        <%= link_to "#", data: {url: unlink_notice_path(notice, "json")}, class: "button remove-from-group-button unlink-button" do %>
+          <span class="fa fa-chain-broken"></span>
+        <% end -%>
+      </div>
+    </div>
+  <% end %>
 </div>
