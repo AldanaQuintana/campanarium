@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if current_user.admin?
       @users = User.order(:name).page(params[:page] || 1).per(10)
     else
-      @users = User.order(:name).where("destroyed_at is not null").page(params[:page] || 1).per(10)
+      @users = User.order(:name).where("destroyed_at is null").page(params[:page] || 1).per(10)
     end
   end
 
