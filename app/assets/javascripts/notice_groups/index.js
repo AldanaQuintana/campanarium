@@ -15,10 +15,7 @@
       }
     }).then(function(data){
       $(".fa.fa-spinner").addClass("hidden");
-      var html_partial = _.reduce(data.groups, function(result, group){
-        result += group.html_partial[0];
-        return result;
-      }, "");
+      var html_partial = data.html_partial;
       if(html_partial.length == 0){
         $("#no-more-results").show();
       }else{
