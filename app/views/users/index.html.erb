@@ -4,8 +4,11 @@
   <br>
 
   <ul class="unstyled-list">
-    <% @users.each do |user| %>
+    <% @users.each_with_index do |user, index| %>
       <%= render "user", user: user %>
+      <%- unless index + 1 == @users.length %>
+        <div class="h-separator"></div>
+      <% end -%>
     <% end %>
   </ul>
   <div class="text-center"><%= paginate @users %></div>
