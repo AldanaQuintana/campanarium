@@ -1,6 +1,9 @@
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
-    <%=  link_to 'Campanarium', root_path, class: "brand logo" %>
+    <%=  link_to root_path, class: "brand logo" do %>
+      <span><%= image_tag "logo-flat.png" %></span>
+      <span class="logo">Campanarium</span>
+    <% end -%>
     <ul class="nav">
     <li class="main-menu-item">
       <%= link_to current_user.present? ? "NOTICIAS" : "INICIO", root_path, class: current_page?('/noticias') || current_page?('/') ? 'active' : '' %>
