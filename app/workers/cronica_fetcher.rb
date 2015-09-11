@@ -12,16 +12,8 @@ class CronicaFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} cronica urls found"
     noticias = noticias_urls.each do |url_time|
-      # begin
-        notice = fetch_notice url_time
-
-      # rescue URI::InvalidURIError => error #Porque el sitemap tiene algunos links inaccesibles.
-        
-      # end
-      # notice.save!
+      notice = fetch_notice url_time
     end
-    # end.reject { |x| x.nil?}
-    # noticias
   end
 
   def fetch_noticias_urls from, to

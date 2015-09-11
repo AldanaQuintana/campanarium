@@ -13,7 +13,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [120, 120]
   end
 
-  def extension_white_list
-    %w(jpg jpeg gif png JPG JPEG GIF PNG bmp BMP)
-  end
+  # Nota: crónica tiene urls raras para las imagenes que no pasan esta validacion. Ver qué hay que poner... 
+  # def extension_white_list
+  #   %w(jpg jpeg gif png JPG JPEG GIF PNG bmp BMP)
+  # end
 end

@@ -56,13 +56,15 @@ class SourceFetcher < ResqueJob
       create_media_from_url image_src
     end.compact
   end
-
+  
   def create_media_from_url image_src
     media = Media.new
     media.remote_image_url = image_src
+    media.validate!
     media
-  rescue Exception
+  rescue=>e
     puts "Error creating media item from url #{image_src}"
+    #puts "#{e.message} #{e.backtrace.join("\n")}"
     nil
   end
 
