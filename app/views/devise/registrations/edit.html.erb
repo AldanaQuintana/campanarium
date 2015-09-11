@@ -12,7 +12,11 @@
           <br>
           <div class="file-input-group">
             <div class="file-input">
-              <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded", id: "avatar_preview" if f.object.avatar%>
+              <% if f.object.avatar.present? %>
+                <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded", id: "avatar_preview"%>
+              <% else %>
+                <%= image_tag "user-placeholder.png", class: "img-rounded", id: "avatar_preview" %>
+              <% end %>
               <span class="btn btn-primary btn-file">
                 <i class="fa fa-pencil"></i>
                 <%= h.file_field :image, id: "avatar_input" %>
