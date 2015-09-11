@@ -41,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params[:user][:email].blank?
       params[:user].delete(:email)
-    else 
+    else
       params[:user][:has_email] = true
     end
     super
@@ -99,6 +99,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_url(*args)
+    root_path
+  end
+
+  def admin_url(*args)
     root_path
   end
 
