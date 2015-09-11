@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="edit_user">
   <div class="panel-heading">
     <i class="fa fa-user"></i>
     Perfil de <%= @user.name %>
@@ -6,9 +6,26 @@
   <div class="panel-body">
 
     <div class="row">
-      <div class="col-md-1"></div>
+    <%= form_for(resource, as: "user", url: registration_path("user"), html: {method: :put}) do |f| %>
+      <div class="col-md-2">
+        <%= f.fields_for :avatar, Media.new do |h|%>
+          <br>
+          <div class="file-input-group">
+            <div class="file-input">
+              <% if f.object.avatar.present? %>
+                <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded", id: "avatar_preview"%>
+              <% else %>
+                <%= image_tag "user-placeholder.png", class: "img-rounded", id: "avatar_preview" %>
+              <% end %>
+              <span class="btn btn-primary btn-file">
+                <i class="fa fa-pencil"></i>
+                <%= h.file_field :image, id: "avatar_input" %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
       <div class="col-md-10">
-        <%= form_for(resource, as: "user", url: registration_path("user"), html: {method: :put}) do |f| %>
           <% if @user.errors.present? %>
             <%= render_errors(@user) %>
           <% end %>
@@ -46,25 +63,10 @@
               </div>
             </div>
           <% end %>
-          <%= f.fields_for :avatar, Media.new do |h|%>
-            <div class="form-group">
-              <div class="row">
-              <%= label_tag :avatar, "Avatar", class: "control-label col-md-2" %>
-                <div class="col-md-10">
-                  <div class: "form-control">
-                    <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded" if f.object.avatar%>
-                    <%= h.file_field :image%>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-
-          <%= f.submit "Guardar", class: "btn btn-primary button-block" %>
-        <% end -%>
-
       </div>
-      <div class="col-md-1"></div>
+
+        <%= f.submit "Guardar", class: "btn btn-primary button-block" %>
+      <% end -%>
     </div>
   </div>
 </div>

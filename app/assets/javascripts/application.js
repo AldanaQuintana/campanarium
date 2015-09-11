@@ -23,3 +23,4 @@
 //= require jquery.inview
 //= require notice_groups/index
 //= require users/index
+//= require users/edit
