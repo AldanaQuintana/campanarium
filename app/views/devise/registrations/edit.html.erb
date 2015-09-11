@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="edit_user">
   <div class="panel-heading">
     <i class="fa fa-user"></i>
     Perfil de <%= @user.name %>
@@ -9,16 +9,14 @@
     <%= form_for(resource, as: "user", url: registration_path("user"), html: {method: :put}) do |f| %>
       <div class="col-md-2">
         <%= f.fields_for :avatar, Media.new do |h|%>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-10">
-                <br>
-                <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded" if f.object.avatar%>
-                <span class="btn btn-primary btn-file">
-                  <%= h.file_field :image%>
-                  <i class="fa fa-pencil"></i>
-                </span>
-              </div>
+          <br>
+          <div class="file-input-group">
+            <div class="file-input">
+              <%= image_tag f.object.avatar.image.url(:avatar), class: "img-rounded", id: "avatar_preview" if f.object.avatar%>
+              <span class="btn btn-primary btn-file">
+                <i class="fa fa-pencil"></i>
+                <%= h.file_field :image, id: "avatar_input" %>
+              </span>
             </div>
           </div>
         <% end %>
