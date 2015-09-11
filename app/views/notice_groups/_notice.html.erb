@@ -2,6 +2,8 @@
   <a href="<%= notice.url %>" target="_blank">
     <% if notice.has_images? %>
       <img src="<%= notice.images_urls[0]%>">
+    <% else %>
+      <%= image_tag "image-placeholder.jpg" %>
     <% end %>
     <h2>
       <%= notice.title %>
