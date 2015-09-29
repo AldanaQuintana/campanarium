@@ -35,13 +35,15 @@ class DiarioVelozFetcher < SourceFetcher
     html = Nokogiri::HTML open url
     title = format_title html.css('.title-obj h1').text
     body = format_plain_body html.css('.detail-obj .cuerpo-nota').text
+    keywords = format_keywords html.css('.title-obj .agrupadores .item').map &:text
     image = html.css('.detail-obj .slide img').first
     image = image && image.attr('src')
     updated_time_str = html.css('.title-obj .time').text.gsub 'de', '' # Formato: '10/08/2015 21:21hs'
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
     media_items = create_media_from image
-    Notice.create title: title, body: body, source: :diario_veloz, url: url, writed_at: updated_time, media: media_items
+    Notice.create title: title, body: body, keywords: keywords,
+      source: :diario_veloz, url: url, writed_at: updated_time, media: media_items
   end
 
 end

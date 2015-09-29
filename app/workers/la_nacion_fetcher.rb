@@ -55,11 +55,13 @@ class LaNacionFetcher < SourceFetcher
     html = Nokogiri::HTML open url
     title = format_title html.css('#encabezado h1').text
     body = format_body html.css '#cuerpo > p'
-    keywords = format_keywords channel_name
+    categories = format_keywords channel_name
+    keywords = format_keywords html.css('section.en-esta-nota .tag-relacionado').map &:text
     image = html.css('#cuerpo .archivos-relacionados .foto img').first
     image = image && image.attr('src')
     media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, source: :la_nacion, url: url, media: media_items
+    Notice.new title: title, body: body, keywords: keywords, categories: categories,
+      source: :la_nacion, url: url, media: media_items
   end
 
 end

@@ -37,14 +37,16 @@ class MinutoUnoFetcher < SourceFetcher
     title = format_title html.css('.article-detail-heading .title').text
     # body = format_body html.css '.article-content > div'
     body = format_body html.css '.article-content'
-    keywords = format_keywords html.css('section.article-detail-heading .one-line').text
+    categories = format_keywords html.css('section.article-detail-heading .tag.one-line').text
+    keywords = format_keywords html.css('section.extra-tag-list .tag-list .link').map &:text
     image = html.css('.gallery-area img').first
     image = image && image.attr('src')
     updated_time_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
     media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, source: :minuto_uno, url: url, writed_at: updated_time, media: media_items
+    Notice.new title: title, body: body, keywords: keywords, categories: categories,
+      source: :minuto_uno, url: url, writed_at: updated_time, media: media_items
   end
 
 end

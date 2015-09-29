@@ -35,13 +35,14 @@ class CronicaFetcher < SourceFetcher
     html = Nokogiri::HTML open(url),nil,'utf-8'
     title = format_title html.css('.article-title').first.text
     body = format_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
-    keywords = format_keywords html.css('.article-tags a').map(&:text)
-    keywords = keywords*','
+    keywords = format_keywords html.css('.article-tags a').map &:text
+    categories = format_keywords html.css('.article-section').text
     image = html.css('.article-image img').first
     image = image && image.attr('src') #El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
     writed_at = data[:time] 
     media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, source: :cronica, url: url, writed_at: writed_at, media: media_items
+    Notice.new title: title, body: body, keywords: keywords, categories: categories,
+      source: :cronica, url: url, writed_at: writed_at, media: media_items
   end
 
   def time_from timestamp

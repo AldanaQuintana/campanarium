@@ -36,13 +36,15 @@ class InfobaeFetcher < SourceFetcher
     title = format_title html.css('.entry-title').first.text
     body = format_body html.css('.entry-content .cuerposmart p')
     # body = format_body html.css '.wrapper article .entry-content p'
-    keywords = format_keywords html.css('article [data-header-tag]').attr 'data-header-tag'
+    keywords = format_keywords html.css('.entry-content .tags [rel=tag]').map &:text
+    categories = format_keywords html.css('article [data-header-tag]').attr 'data-header-tag'
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     writed_at = time_from url
     media_items = create_media_from image
     raise "La noticia no posee un body valido" if !body || body.empty? || body.downcase == "infobae"
-    Notice.new title: title, body: body, keywords: keywords, source: :infobae, url: url, writed_at: writed_at, media: media_items
+    Notice.new title: title, body: body, keywords: keywords, categories: categories,
+      source: :infobae, url: url, writed_at: writed_at, media: media_items
   end
 
   def time_from url

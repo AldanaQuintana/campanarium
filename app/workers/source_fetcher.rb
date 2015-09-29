@@ -17,7 +17,7 @@ class SourceFetcher < ResqueJob
     notice.save! if notice
     notice
   rescue Exception => e
-    puts "Error fetching notice: #{e.message} #{e.backtrace.join("\n")}"
+    puts "Error fetching notice: #{e.message} #{e.backtrace.first(5).join("\n")}"
   end
 
   def format_body p_elements
@@ -48,7 +48,7 @@ class SourceFetcher < ResqueJob
   def format_keywords keywords
     Array(keywords).map do |keyword|
       format_keyword keyword
-    end
+    end.uniq
   end
 
   def create_media_from *images_src

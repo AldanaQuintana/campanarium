@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910145735) do
+ActiveRecord::Schema.define(version: 20150929010706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150910145735) do
     t.datetime "writed_at"
     t.integer  "notice_group_id"
     t.string   "keywords"
+    t.string   "categories"
   end
 
   create_table "static_pages", force: :cascade do |t|

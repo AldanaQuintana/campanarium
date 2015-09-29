@@ -61,10 +61,13 @@ class TNFetcher < SourceFetcher
     html = Nokogiri::HTML open url
     title = format_title html.css('.main-content .heading .entry-title').first.text
     body = format_body html.css('.main-content .hentry .entry-content > p')
+    keywords = format_keywords html.css('.tag-list [rel=tag]').map &:text
+    categories = format_keywords html.css('.main-content .breadcrum .breadcrum-list-item .breadcrum-link').last.text
     image = html.css('.main-content .hmedia img').first
     image = image && image.attr('src')
     media_items = create_media_from image
-    Notice.create title: title, body: body, source: :tn, url: url, media: media_items
+    Notice.create title: title, body: body, keywords: keywords, categories: categories,
+      source: :tn, url: url, media: media_items
   end
 
 end
