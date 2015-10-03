@@ -58,6 +58,8 @@ gem 'kaminari'
 #Tracking / Statistics
 gem "chartkick"
 
+gem "requests"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'spring'
