@@ -20,11 +20,11 @@ class SemanticAnalyzerConnector
       code, response = ExternalServiceCall.new().post(url("/analyzer"), body)
       duration = Time.now - from
       puts("Duración: #{duration}")
-      if(code == 200){
+      if(code == 200)
         response["result_set"]["result"].each do |result|
           NoticeGroup.create(notices: Notice.find(result["grouped_documents"].map{|document| document["user_info"]}))
         end
-      }
+      end
     end
 
     def url(route)
