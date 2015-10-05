@@ -6,7 +6,7 @@ class SemanticAnalyzerConnector
         metadata: {},
         url: AppConfiguration.semantic_analyzer_response_url
       }
-      notices = Notice.where(notice_group_id: nil).limit(50)
+      notices = Notice.where(notice_group_id: nil).limit(2)
       notices.each do |notice|
         if(notice.body.present?)
           body[:corpus].push({
@@ -20,8 +20,8 @@ class SemanticAnalyzerConnector
 
       if(body[:corpus].length == 0)then puts("No notices to group"); return; end
 
-      body[:metadata][:nmb_of_centroids] = [(notices.length / notices.pluck(:source).uniq.count).to_i, 5].min
-      code, response = ExternalServiceCall.new().post(url("/analyzer"), body)
+      body[:metadata][:nmb_of_centroids] = [(notices.length / notices.pluck(:source).uniq.count).to_i, 10].min
+      code, response = ExternalServiceCall.new().post(url("analyzer"), body)
       if(code == 200)
         puts("Request success")
       else
