@@ -6,7 +6,7 @@ class SemanticAnalyzerConnector
         metadata: {},
         url: AppConfiguration.semantic_analyzer_response_url
       }
-      notices = Notice.where(notice_group_id: nil).limit(2)
+      notices = Notice.where(notice_group_id: nil).limit(10)
       notices.each do |notice|
         if(notice.body.present?)
           body[:corpus].push({
