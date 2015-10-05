@@ -6,7 +6,7 @@ class SemanticAnalyzerConnector
         metadata: {},
         url: AppConfiguration.semantic_analyzer_response_url
       }
-      notices = Notice.where(notice_group_id: nil).limit(10)
+      notices = Notice.where(notice_group_id: nil).limit(20)
       notices.each do |notice|
         if(notice.body.present?)
           body[:corpus].push({
@@ -25,7 +25,7 @@ class SemanticAnalyzerConnector
       if(code == 200)
         puts("Request success")
       else
-        puts("Request failed: #{response['error']}" )
+        puts("Request failed: #{response['error']}" ) if response
       end
     end
 

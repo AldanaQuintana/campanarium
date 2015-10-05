@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   resources :comments, only: [:destroy]
   resources :users, only: [:index, :destroy]
 
-  post "response_from_analyzer", to: "semantic_analyzer#response"
+  post "response_from_analyzer", to: "semantic_analyzer#response_from_analyzer"
 end
