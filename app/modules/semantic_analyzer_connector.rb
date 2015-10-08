@@ -10,7 +10,7 @@ class SemanticAnalyzerConnector
       notices.each do |notice|
         if(notice.body.present?)
           body[:corpus].push({
-            document: notice.body,
+            document: notice.body.truncate(600, separator: " ").gsub(/(\n|\"|\.\.\.)/, ""),
             category: notice.categories[0],
             keywords: notice.keywords,
             user_info: notice.id
