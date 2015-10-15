@@ -17,17 +17,17 @@ class SourceFetcher < ResqueJob
     notice.save! if notice
     notice
   rescue Exception => e
-    puts "Error fetching notice: #{e.message} #{e.backtrace.first(5).join("\n")}"
+    puts "Error fetching notice:\n#{e.message}\n#{e.backtrace.first(5).join("\n")}"
   end
 
-  def format_body p_elements
-    # formatea nodos html convirtiendolos a texto con newlines
+  # formatea nodos html convirtiendolos a texto con newlines
+  def format_p_body p_elements
     body = p_elements.map(&:text)*"\n"
     format_plain_body body
   end
 
   def format_plain_body body
-    fix_encoding body
+    StringUtils.fix_encoding body
       .gsub(/\r|\t/, '')
       .gsub(/\ *\n\ */, "\n")
       .gsub(/\n+/, "\n")
@@ -37,7 +37,7 @@ class SourceFetcher < ResqueJob
   end
 
   def format_title title
-    fix_encoding title
+    StringUtils.fix_encoding title
       .gsub(/\r|\t/, '')
       .gsub("\n", ' ')
       .gsub(/\ +/, ' ')
@@ -47,7 +47,7 @@ class SourceFetcher < ResqueJob
 
   def format_keywords keywords
     Array(keywords).map do |keyword|
-      format_keyword keyword
+      StringUtils.format_keyword keyword
     end.uniq
   end
 
@@ -62,25 +62,10 @@ class SourceFetcher < ResqueJob
     media.remote_image_url = image_src
     media.validate!
     media
-  rescue=>e
+  rescue => e
     puts "Error creating media item from url #{image_src}"
-    #puts "#{e.message} #{e.backtrace.join("\n")}"
+    # puts "#{e.message} #{e.backtrace.join("\n")}"
     nil
-  end
-
-  def format_keyword keyword
-    I18n.transliterate(keyword) #removes accents and weird symbols
-      .split(/\s*(\d+)\s*/,-1).join(" ") #adds whitespaces between numbers and letters
-      .split.join(" ") #gets rid of multiple whitespaces
-      .strip
-      .downcase
-  end
-
-  private
-
-  def fix_encoding text
-    return text unless text =~ /[ÂÃ]/ #se podria mejorar, pero creo que para lo que necesitamos funciona
-    text.encode("iso-8859-1").force_encoding("utf-8")
   end
 
 end

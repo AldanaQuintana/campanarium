@@ -60,7 +60,7 @@ class TNFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('.main-content .heading .entry-title').first.text
-    body = format_body html.css('.main-content .hentry .entry-content > p')
+    body = format_p_body html.css('.main-content .hentry .entry-content > p')
     keywords = format_keywords html.css('.tag-list [rel=tag]').map &:text
     categories = format_keywords html.css('.main-content .breadcrum .breadcrum-list-item .breadcrum-link').last.text
     image = html.css('.main-content .hmedia img').first

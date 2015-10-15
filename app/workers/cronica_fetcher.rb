@@ -34,7 +34,7 @@ class CronicaFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open(url),nil,'utf-8'
     title = format_title html.css('.article-title').first.text
-    body = format_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
+    body = format_p_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
     keywords = format_keywords html.css('.article-tags a').map &:text
     categories = format_keywords html.css('.article-section').text
     image = html.css('.article-image img').first

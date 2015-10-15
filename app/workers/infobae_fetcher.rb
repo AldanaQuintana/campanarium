@@ -34,8 +34,8 @@ class InfobaeFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('.entry-title').first.text
-    body = format_body html.css('.entry-content .cuerposmart p')
-    # body = format_body html.css '.wrapper article .entry-content p'
+    body = format_p_body html.css('.entry-content .cuerposmart p')
+    # body = format_p_body html.css '.wrapper article .entry-content p'
     keywords = format_keywords html.css('.entry-content .tags [rel=tag]').map &:text
     categories = format_keywords html.css('article [data-header-tag]').attr 'data-header-tag'
     image = html.css('.hmedia img').first

@@ -54,7 +54,7 @@ class LaNacionFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('#encabezado h1').text
-    body = format_body html.css '#cuerpo > p'
+    body = format_p_body html.css '#cuerpo > p'
     categories = format_keywords channel_name
     keywords = format_keywords html.css('section.en-esta-nota .tag-relacionado').map &:text
     image = html.css('#cuerpo .archivos-relacionados .foto img').first

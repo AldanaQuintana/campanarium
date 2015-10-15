@@ -35,8 +35,8 @@ class MinutoUnoFetcher < SourceFetcher
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = format_title html.css('.article-detail-heading .title').text
-    # body = format_body html.css '.article-content > div'
-    body = format_body html.css '.article-content'
+    # body = format_p_body html.css '.article-content > div'
+    body = format_p_body html.css '.article-content'
     categories = format_keywords html.css('section.article-detail-heading .tag.one-line').text
     keywords = format_keywords html.css('section.extra-tag-list .tag-list .link').map &:text
     image = html.css('.gallery-area img').first
