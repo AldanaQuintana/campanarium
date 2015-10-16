@@ -31,7 +31,7 @@ class SourceFetcher < ResqueJob
     writed_at   = attrs[:writed_at]
     media       = create_media_from attrs[:media]
     source      = source_name_from_class_name
-    Notice.create title: title, body: body, keywords: keywords,
+    Notice.create title: title, body: body, categories: categories, keywords: keywords,
       source: source, url: url, writed_at: writed_at, media: media
   end
 
@@ -75,10 +75,15 @@ class SourceFetcher < ResqueJob
   end
 
   def format_categories categories
-    format_keywords categories
-    # format_keywords(categories).map do |category|
-    #   CATEGORY_MAPPING[category]
-    # end.compact
+    format_keywords(categories).map do |category|
+      puts "Buscando categoria: #{category}"
+      category_name = CATEGORY_MAPPING[category]
+      if !category_name
+        puts "Categoria no encontrada: #{category}"
+        next nil
+      end
+      NoticeCategory.send category_name
+    end.compact
   end
 
   def create_media_from *images_src

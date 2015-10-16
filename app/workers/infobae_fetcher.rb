@@ -50,4 +50,17 @@ class InfobaeFetcher < SourceFetcher
     nil
   end
 
+  CATEGORY_MAPPING = {
+    'politica' =>             :politics,
+    'finanzas & negocios' =>  :economics,
+    'economia' =>             :economics,
+    'sociedad' =>             :society,
+    'playfutbol' =>           :sports,
+    'primera' =>              :football_leage_one,
+    'b nacional' =>           :football_leage_two,
+    'tecno' =>                :tecnology,
+    'infoshow' =>             :show,
+    'tendencias' =>           :tendency
+  }
+
 end

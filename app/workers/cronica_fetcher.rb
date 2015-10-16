@@ -52,4 +52,17 @@ class CronicaFetcher < SourceFetcher
     nil
   end
 
+  CATEGORY_MAPPING = {
+    'policiales' =>           :police,
+    'politica' =>             :politics,
+    'economia' =>             :economics, # TODO
+    'sociedad' =>             :society,
+    'playfutbol' =>           :sports,
+    'primera' =>              :football_leage_one,
+    'b nacional' =>           :football_leage_two,
+    'tecno' =>                :tecnology,
+    'infoshow' =>             :show,
+    'tendencias' =>           :tendency
+  }
+
 end
