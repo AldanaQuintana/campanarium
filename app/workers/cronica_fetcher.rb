@@ -12,7 +12,7 @@ class CronicaFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} cronica urls found"
     noticias = noticias_urls.each do |url_time|
-      notice = fetch_notice url_time
+      fetch_notice url_time
     end
   end
 
@@ -33,16 +33,17 @@ class CronicaFetcher < SourceFetcher
     url = data[:url]
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open(url),nil,'utf-8'
-    title = format_title html.css('.article-title').first.text
-    body = format_p_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
-    keywords = format_keywords html.css('.article-tags a').map &:text
-    categories = format_keywords html.css('.article-section').text
+    title = html.css('.article-title').first.text
+    # En algunos artículos meten iframes en los parrafos...
+    body = p_body_from html.css '.article-text p'
+    keywords = html.css('.article-tags a').map &:text
+    categories = html.css('.article-section').text
     image = html.css('.article-image img').first
-    image = image && image.attr('src') #El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
-    writed_at = data[:time] 
-    media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, categories: categories,
-      source: :cronica, url: url, writed_at: writed_at, media: media_items
+    # El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
+    image = image && image.attr('src')
+    writed_at = data[:time]
+    create_notice title: title, categories: categories, keywords: keywords,
+      url: url, body: body, writed_at: writed_at, media: image
   end
 
   def time_from timestamp

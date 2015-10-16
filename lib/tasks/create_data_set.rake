@@ -5,7 +5,7 @@ namespace :data_set do
   task :create => :environment do
     to = Time.zone.now
     from = to - 2.hours
-    fetchers = [TNFetcher, LaNacionFetcher, MinutoUnoFetcher,
+    fetchers = [TnFetcher, LaNacionFetcher, MinutoUnoFetcher,
       InfobaeFetcher, DiarioVelozFetcher, CronicaFetcher]
     fetchers.each do |fetcher|
       begin

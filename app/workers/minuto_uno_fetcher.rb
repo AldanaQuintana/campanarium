@@ -34,19 +34,17 @@ class MinutoUnoFetcher < SourceFetcher
   def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = format_title html.css('.article-detail-heading .title').text
-    # body = format_p_body html.css '.article-content > div'
-    body = format_p_body html.css '.article-content'
-    categories = format_keywords html.css('section.article-detail-heading .tag.one-line').text
-    keywords = format_keywords html.css('section.extra-tag-list .tag-list .link').map &:text
+    title = html.css('.article-detail-heading .title').text
+    body = p_body_from html.css '.article-content'
+    categories = html.css('section.article-detail-heading .tag.one-line').text
+    keywords = html.css('section.extra-tag-list .tag-list .link').map &:text
     image = html.css('.gallery-area img').first
     image = image && image.attr('src')
-    updated_time_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
-    updated_time = updated_time_str && Time.parse(updated_time_str)
-    puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
-    media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, categories: categories,
-      source: :minuto_uno, url: url, writed_at: updated_time, media: media_items
+    writed_at_str = html.css('.article-detail-heading .date').text.gsub 'de', '' # Formato: '31 de julio 2015 - 18:29'
+    writed_at = writed_at_str && Time.parse(writed_at_str)
+    puts "Updated time text: '#{writed_at_str}' Updated time parsed: #{writed_at}"
+    create_notice title: title, categories: categories, keywords: keywords,
+      url: url, writed_at: writed_at, body: body, media: image
   end
 
 end
