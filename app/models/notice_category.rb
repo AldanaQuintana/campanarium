@@ -1,26 +1,42 @@
 class NoticeCategory
 
+  class << self
+    def define_category name, *args
+      category = new name, *args
+      define_singleton_method name do
+        category
+      end
+    end
+    def load value
+      category_names = JSON.load value
+      return Array.new unless category_names
+      category_names.map{ |category_name| send category_name }
+    end
+    def dump categories
+      category_names = categories.map &:name
+      JSON.dump category_names
+    end
+  end
+
   attr_accessor :name, :keywords
 
   def initialize name, *keywords
     self.name = name
-    self.keywords = name, *keywords
+    self.keywords = keywords
   end
 
-  class << self
-    def police;               new 'policiales' end
-    def politics;             new 'politica' end
-    def economics;            new 'economia' end
-    def society;              new 'sociedad' end
-    def sports;               new 'deportes' end
-    def football;             new 'futbol' end
-    def football_leage_one;   new 'primera_division', 'futbol', 'primera_division' end
-    def football_leage_two;   new 'segunda_division', 'futbol', 'segunda_division' end
-    def tecnology;            new 'tecnologia' end
-    def show;                 new 'espectaculos' end
-    def celebrities;          new 'celebridades' end
-    def tendency;             new 'tendencia' end
-    def health;               new 'salud' end
-  end
+  define_category :police,               'policiales'
+  define_category :politics,             'politica'
+  define_category :economics,            'economia'
+  define_category :society,              'sociedad'
+  define_category :sports,               'deportes'
+  define_category :football,             'futbol'
+  define_category :football_leage_one,   'primera_division', 'futbol', 'primera_division'
+  define_category :football_leage_two,   'segunda_division', 'futbol', 'segunda_division'
+  define_category :tecnology,            'tecnologia'
+  define_category :show,                 'espectaculos'
+  define_category :celebrities,          'celebridades'
+  define_category :tendency,             'tendencia'
+  define_category :health,               'salud'
 
 end

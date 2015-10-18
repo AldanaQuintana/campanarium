@@ -3,7 +3,7 @@ class Notice < ActiveRecord::Base
   before_destroy :destroy_group_if_empty
   belongs_to :notice_group
   serialize :keywords, Array
-  serialize :categories, Array
+  serialize :categories, NoticeCategory
 
   validates :body, uniqueness: true
 
