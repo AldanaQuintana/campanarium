@@ -63,7 +63,7 @@ class InfobaeFetcher < SourceFetcher
       'finanzas & negocios' =>    :economics,
       'economia' =>               :economics,
       'sociedad' =>               :society,
-      'playfutbol' =>             :sports,
+      'playfutbol' =>             :football,
       'deportes' =>               :sports,
       'playfutbol/primera' =>     :football_leage_one,
       'torneo-largo-2015' =>      :football_leage_one,

@@ -22,7 +22,7 @@ class CronicaFetcher < SourceFetcher
     sitemap = Nokogiri::HTML open sitemap_url
     urls_data = sitemap.css('url').map do |data|
       time = time_from data.css("news publication_date").text 
-      {url: data.css('loc').text, time: time}
+      { url: data.css('loc').text, time: time }
     end
     urls_data.select do |data|
       data[:time] && data[:time] >= from && data[:time] <= to
@@ -32,12 +32,14 @@ class CronicaFetcher < SourceFetcher
   def notice_from data
     url = data[:url]
     puts "Fetching notice in #{url} ..."
-    html = Nokogiri::HTML open(url),nil,'utf-8'
+    html = Nokogiri::HTML open(url), nil, 'utf-8'
     title = html.css('.article-title').first.text
     # En algunos artículos meten iframes en los parrafos...
     body = p_body_from html.css '.article-text p'
     keywords = html.css('.article-tags a').map &:text
-    categories = html.css('.article-section').text
+    categories = html.css '.article-section a'
+    categories = categories && categories.attr('href')
+    categories = categories && categories.text.gsub(/^.*\//, '')
     image = html.css('.article-image img').first
     # El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
     image = image && image.attr('src')
@@ -52,17 +54,32 @@ class CronicaFetcher < SourceFetcher
     nil
   end
 
-  CATEGORY_MAPPING = {
-    'policiales' =>           :police,
-    'politica' =>             :politics,
-    'economia' =>             :economics, # TODO
-    'sociedad' =>             :society,
-    'playfutbol' =>           :sports,
-    'primera' =>              :football_leage_one,
-    'b nacional' =>           :football_leage_two,
-    'tecno' =>                :tecnology,
-    'infoshow' =>             :show,
-    'tendencias' =>           :tendency
-  }
+  def category_mapping
+    # las categorias corresponden a la ultima parte del link en cronica
+    # por ejemplo http://www.cronica.com.ar/article/index/94/futbol-nacional corresponde a futbol-nacional
+    # se ignora: info-general, reportajes
+    {
+      'politica' => :politics,
+      'policiales' => :police,
+      'tecnologia' => :tecnology,
+      'musica' => :music,
+
+      'futbol-nacional' => :football,
+      'futbol-internacional' => :football,
+      'basquet' => :basquet,
+      'rugby' => :rugby,
+
+      'farandula' => :celebrities,
+      'la-pavada' => :celebrities,
+      'por-la-red' => :celebrities,
+
+      'espectaculos' => :show,
+      'teatro' => :show,
+      'television' => :show,
+      'cine' => :show,
+      'series' => :show,
+      'show-internacional' => :show
+    }
+  end
 
 end
