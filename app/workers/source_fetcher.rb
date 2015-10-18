@@ -3,7 +3,7 @@ class SourceFetcher < ResqueJob
 
   # abstract class
   # child must implement 'notice_from(*args)'
-  # child must define 'CATEGORY_MAPPING'
+  # child must implement 'category_mapping()'
 
   def initialize(options = nil)
     @options = OpenStruct.new(options || {})
@@ -75,13 +75,15 @@ class SourceFetcher < ResqueJob
   end
 
   def format_categories categories
-    format_keywords(categories).map do |category|
+    Array(categories).map do |category_str|
+      category = StringUtils.format_category category_str
       puts "Buscando categoria: #{category}"
-      category_name = CATEGORY_MAPPING[category]
+      category_name = category_mapping[category]
       if !category_name
         puts "Categoria no encontrada: #{category}"
         next nil
       end
+      puts "Categoria encontrada: #{category}"
       NoticeCategory.send category_name
     end.compact
   end

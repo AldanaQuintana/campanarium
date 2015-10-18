@@ -4,7 +4,7 @@ class NoticeCategory
 
   def initialize name, *keywords
     self.name = name
-    self.keywords = keywords.empty? ? [name] : keywords
+    self.keywords = name, *keywords
   end
 
   class << self
@@ -20,6 +20,7 @@ class NoticeCategory
     def show;                 new 'espectaculos' end
     def celebrities;          new 'celebridades' end
     def tendency;             new 'tendencia' end
+    def health;               new 'salud' end
   end
 
 end

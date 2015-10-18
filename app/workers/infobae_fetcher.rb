@@ -33,10 +33,14 @@ class InfobaeFetcher < SourceFetcher
   def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
+    # title = html.css('meta[itemprop=name]').attr('content').text
     title = html.css('.entry-title').first.text
     body = p_body_from html.css '.entry-content .cuerposmart p'
     keywords = html.css('.entry-content .tags [rel=tag]').map &:text
-    categories = html.css('article [data-header-tag]').attr 'data-header-tag'
+    categories = html.css('article a[data-header-tag]')
+    categories = categories && categories.attr('href')
+    categories = categories && categories.text.gsub(/^.*infobae\.com\//, '')
+    binding.pry if !categories
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     writed_at = time_from url
@@ -50,17 +54,25 @@ class InfobaeFetcher < SourceFetcher
     nil
   end
 
-  CATEGORY_MAPPING = {
-    'politica' =>             :politics,
-    'finanzas & negocios' =>  :economics,
-    'economia' =>             :economics,
-    'sociedad' =>             :society,
-    'playfutbol' =>           :sports,
-    'primera' =>              :football_leage_one,
-    'b nacional' =>           :football_leage_two,
-    'tecno' =>                :tecnology,
-    'infoshow' =>             :show,
-    'tendencias' =>           :tendency
-  }
+  def category_mapping
+    # las categorias corresponden a la ultima parte del link en infobae
+    # por ejemplo, "tecno" en realidad es "tecnologia", ya que sale de "www.infobae.com/tecnologia"
+    {
+      'politica' =>               :politics,
+      'policiales' =>             :police,
+      'finanzas & negocios' =>    :economics,
+      'economia' =>               :economics,
+      'sociedad' =>               :society,
+      'playfutbol' =>             :sports,
+      'deportes' =>               :sports,
+      'playfutbol/primera' =>     :football_leage_one,
+      'torneo-largo-2015' =>      :football_leage_one,
+      'playfutbol/b-nacional' =>  :football_leage_two,
+      'tecnologia' =>             :tecnology,
+      'infoshow' =>               :show,
+      'nutriglam' =>              :health,
+      'tendencias' =>             :tendency
+    }
+  end
 
 end

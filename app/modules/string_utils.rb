@@ -10,8 +10,16 @@ module StringUtils
     # formatea palabras, eliminado simbolos raros y agregando espacios
     def format_keyword keyword
       I18n.transliterate(keyword)           # removes accents and weird symbols
-        .split(/\s*(\d+)\s*/, -1).join ' '  # adds whitespaces between numbers and letters
-        .split.join ' '                     # gets rid of multiple whitespaces
+        .split(/\s*(\d+)\s*/, -1).join(' ') # adds whitespaces between numbers and letters
+        .split.join(' ')                    # gets rid of multiple whitespaces
+        .strip.downcase
+    end
+
+    # formatea especificamente categorias
+    def format_category category
+      I18n.transliterate(category)          # removes accents and weird symbols
+        .split(/\s*(\d+)\s*/, -1).join(' ') # adds whitespaces between numbers and letters
+        .split.join(' ')                    # gets rid of multiple whitespaces
         .strip.downcase
     end
 
