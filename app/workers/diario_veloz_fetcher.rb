@@ -42,7 +42,7 @@ class DiarioVelozFetcher < SourceFetcher
     updated_time = updated_time_str && Time.parse(updated_time_str)
     puts "Updated time text: '#{updated_time_str}' Updated time parsed: #{updated_time}"
     create_notice title: title, keywords: keywords,
-      url: url, writed_at: writed_at, body: body, media: image
+      url: url, writed_at: updated_time, body: body, media: image
   end
 
 end
