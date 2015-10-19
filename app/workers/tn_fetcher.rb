@@ -60,11 +60,31 @@ class TnFetcher < SourceFetcher
     title = html.css('.main-content .heading .entry-title').first.text
     body = p_body_from html.css('.main-content .hentry .entry-content > p')
     keywords = html.css('.tag-list [rel=tag]').map &:text
-    categories = html.css('.main-content .breadcrum .breadcrum-list-item .breadcrum-link').last.text
+    categories = html.css '.main-content .breadcrum .breadcrum-list-item .breadcrum-link'
+    categories = categories && categories[1] rescue nil
+    categories = categories && categories.attr('href')
+    categories = categories && categories.gsub(/.*\//, '')
     image = html.css('.main-content .hmedia img').first
     image = image && image.attr('src')
     create_notice title: title, categories: categories, keywords: keywords,
       url: url, body: body, media: image
+  end
+
+  def category_mapping
+    {
+      'musica' => :music,
+      'famosos' => :celebrities,
+      'show' => :show,
+      'espectaculos' => :show,
+      'tecno' => :tecnology,
+      'tecnologia' => :tecnology,
+      'politica' => :politics,
+      'policiales' => :police,
+      'deportes' => :sports,
+      'sociedad' => :society,
+      'salud' => :health,
+      'autos' => :cars
+    }
   end
 
 end
