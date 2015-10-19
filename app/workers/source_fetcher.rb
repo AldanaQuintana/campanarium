@@ -75,16 +75,17 @@ class SourceFetcher < ResqueJob
   end
 
   def format_categories categories
-    Array(categories).map do |category_str|
-      category = StringUtils.format_category category_str
-      puts "Buscando categoria: #{category}"
-      category_name = category_mapping[category]
+    Array(categories).map do |channel|
+      next channel if channel.is_a? NoticeCategory
+      channel_name = StringUtils.format_category channel
+      puts "Buscando categoria: #{channel_name}"
+      category_name = category_mapping[channel_name]
       if !category_name
-        puts "Categoria no encontrada: #{category}"
+        puts "Categoria no encontrada: #{channel_name}"
         next nil
       end
-      puts "Categoria encontrada: #{category}"
-      NoticeCategory.send category_name
+      puts "Categoria encontrada: #{channel_name}"
+      NoticeCategory.by_name category_name
     end.compact
   end
 

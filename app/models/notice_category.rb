@@ -7,6 +7,9 @@ class NoticeCategory
         category
       end
     end
+    def by_name name
+      send name
+    end
     def load value
       category_names = JSON.load value
       return Array.new unless category_names
@@ -41,6 +44,8 @@ class NoticeCategory
   define_category :celebrities,          'celebridades'
   define_category :music,                'musica'
   define_category :tendency,             'tendencia'
+  define_category :travel,               'turismo'
   define_category :health,               'salud'
+  define_category :cars,                 'autos'
 
 end
