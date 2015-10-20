@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  JSON_MIME_TYPE = "application/json"
+
   mount Resque::Server, at: '/resque'
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
