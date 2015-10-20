@@ -70,8 +70,12 @@ class SourceFetcher < ResqueJob
 
   def format_keywords keywords
     Array(keywords).map do |keyword|
-      StringUtils.format_keyword keyword
+      format_keyword keyword
     end.uniq
+  end
+
+  def format_keyword keyword
+    StringUtils.format_keyword keyword
   end
 
   def format_categories categories
