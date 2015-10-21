@@ -5,16 +5,16 @@
 class LaNacionFetcher < SourceFetcher
 
   CHANNELS = [
-    { name: 'politica', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=30' },
-    { name: 'economia', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=272' },
-    { name: 'deportes', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=131' },
-    { name: 'sociedad', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=7773' },
-    { name: 'seguridad', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=7775' },
-    { name: 'espectaculos', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=120' },
-    { name: 'turismo', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=504' },
-    { name: 'moda', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=1312' },
-    { name: 'autos', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=371' },
-    { name: 'tecnologia', url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=432' }
+    { category: :politics,    url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=30'   },
+    { category: :economics,   url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=272'  },
+    { category: :sports,      url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=131'  },
+    { category: :society,     url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=7773' },
+    { category: :police,      url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=7775' },
+    { category: :show,        url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=120'  },
+    { category: :travel,      url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=504'  },
+    { category: :tendency,    url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=1312' },
+    { category: :cars,        url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=371'  },
+    { category: :tecnology,   url: 'http://contenidos.lanacion.com.ar/herramientas/rss/categoria_id=432'  }
   ]
 
   def perform
@@ -25,19 +25,19 @@ class LaNacionFetcher < SourceFetcher
 
   def fetch_noticias from, to
     CHANNELS.each do |channel|
-      channel_name = channel[:name]
+      category_name = channel[:category]
+      category = NoticeCategory.by_name category_name
       channel_url = channel[:url]
       noticias_urls = fetch_noticias_urls channel_url, from, to
-      puts "#{noticias_urls.count} lanacion '#{channel_name}' urls found"
+      puts "#{noticias_urls.count} lanacion '#{category_name}' urls found"
       noticias_urls.each do |url|
-        fetch_notice channel_name, url
+        fetch_notice category, url
       end
     end
   end
 
   def fetch_noticias_urls rss_url, from, to
     puts 'Fetching lanacion rss xml ...'
-    # rss_url = 'http://contenidos.lanacion.com.ar/herramientas/rss/origen=2'
     rss = Nokogiri::HTML open rss_url
     noticias_data = rss.css('feed entry').to_a
     noticias_data.select! do |data|
@@ -50,18 +50,16 @@ class LaNacionFetcher < SourceFetcher
     end
   end
 
-  def notice_from channel_name, url
+  def notice_from category, url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = format_title html.css('#encabezado h1').text
-    body = format_body html.css '#cuerpo > p'
-    categories = format_keywords channel_name
-    keywords = format_keywords html.css('section.en-esta-nota .tag-relacionado').map &:text
+    title = html.css('#encabezado h1').text
+    body = p_body_from html.css '#cuerpo > p'
+    keywords = html.css('section.en-esta-nota .tag-relacionado').map &:text
     image = html.css('#cuerpo .archivos-relacionados .foto img').first
     image = image && image.attr('src')
-    media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, categories: categories,
-      source: :la_nacion, url: url, media: media_items
+    create_notice title: title, categories: category, keywords: keywords,
+      url: url, body: body, media: image
   end
 
 end

@@ -15,7 +15,7 @@ class InfobaeFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} infobae urls found"
     noticias_urls.each do |url|
-      notice = fetch_notice url
+      fetch_notice url
     end
   end
 
@@ -33,24 +33,46 @@ class InfobaeFetcher < SourceFetcher
   def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = format_title html.css('.entry-title').first.text
-    body = format_body html.css('.entry-content .cuerposmart p')
-    # body = format_body html.css '.wrapper article .entry-content p'
-    keywords = format_keywords html.css('.entry-content .tags [rel=tag]').map &:text
-    categories = format_keywords html.css('article [data-header-tag]').attr 'data-header-tag'
+    # title = html.css('meta[itemprop=name]').attr('content').text
+    title = html.css('.entry-title').first.text
+    body = p_body_from html.css '.entry-content .cuerposmart p'
+    keywords = html.css('.entry-content .tags [rel=tag]').map &:text
+    categories = html.css('article a[data-header-tag]')
+    categories = categories && categories.attr('href')
+    categories = categories && categories.text.gsub(/^.*infobae\.com\//, '')
+    binding.pry if !categories
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     writed_at = time_from url
-    media_items = create_media_from image
-    raise "La noticia no posee un body valido" if !body || body.empty? || body.downcase == "infobae"
-    Notice.new title: title, body: body, keywords: keywords, categories: categories,
-      source: :infobae, url: url, writed_at: writed_at, media: media_items
+    create_notice title: title, categories: categories, keywords: keywords,
+      url: url, writed_at: writed_at, body: body, media: image
   end
 
   def time_from url
     Time.parse url[/\d{4}\/\d{2}\/\d{2}/]
   rescue TypeError => e
     nil
+  end
+
+  def category_mapping
+    # las categorias corresponden a la ultima parte del link en infobae
+    # por ejemplo, "tecno" en realidad es "tecnologia", ya que sale de "www.infobae.com/tecnologia"
+    {
+      'politica' =>               :politics,
+      'policiales' =>             :police,
+      'finanzas & negocios' =>    :economics,
+      'economia' =>               :economics,
+      'sociedad' =>               :society,
+      'playfutbol' =>             :football,
+      'deportes' =>               :sports,
+      'playfutbol/primera' =>     :football_leage_one,
+      'torneo-largo-2015' =>      :football_leage_one,
+      'playfutbol/b-nacional' =>  :football_leage_two,
+      'tecnologia' =>             :tecnology,
+      'infoshow' =>               :show,
+      'nutriglam' =>              :health,
+      'tendencias' =>             :tendency
+    }
   end
 
 end

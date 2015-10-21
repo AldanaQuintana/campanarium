@@ -7,7 +7,7 @@ class NoticeGroupsDataSet
       noticias: [
         {
           url: "http://tn.com.ar/politica/manzur-mis-dirigentes-quemaron-urnas-y-me-averguenza_614361",
-          fetcher: TNFetcher
+          fetcher: TnFetcher
         },
         {
           url: "http://www.diarioveloz.com/notas/148862-tras-el-escandalo-tucuman-denuncian-al-matrimonio-alperovich-y-la-mediatica-marianela-mirra",
@@ -33,7 +33,7 @@ class NoticeGroupsDataSet
         },
         {
           url: "http://tn.com.ar/politica/la-ex-de-nisman-quiere-informe-de-embajada-de-cuba-y-que-declaren-medicos-enfermeras-y-periodista_614525",
-          fetcher: TNFetcher
+          fetcher: TnFetcher
         },
         {
           url: "http://www.infobae.com/2015/08/27/1751270-caso-nisman-la-querella-apunta-un-custodio-que-se-desempeno-la-embajada-cuba",
@@ -59,7 +59,7 @@ class NoticeGroupsDataSet
         },
         {
           url: "http://tn.com.ar/internacional/el-salon-del-automovil-de-detroit-se-pone-verde_439555",
-          fetcher: TNFetcher
+          fetcher: TnFetcher
         }
       ],
       comments_search_query: 'salon automovil detroit'

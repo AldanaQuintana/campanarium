@@ -1,6 +1,6 @@
 # tn noticias fetcher
 
-class TNFetcher < SourceFetcher
+class TnFetcher < SourceFetcher
 
   def perform
     from = Time.parse options.from
@@ -12,9 +12,7 @@ class TNFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} tn urls found"
     noticias_urls.map do |url|
-      notice = fetch_notice url
-      # notice.save!
-      notice
+      fetch_notice url
     end
   end
 
@@ -59,15 +57,34 @@ class TNFetcher < SourceFetcher
   def fetch_notice url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
-    title = format_title html.css('.main-content .heading .entry-title').first.text
-    body = format_body html.css('.main-content .hentry .entry-content > p')
-    keywords = format_keywords html.css('.tag-list [rel=tag]').map &:text
-    categories = format_keywords html.css('.main-content .breadcrum .breadcrum-list-item .breadcrum-link').last.text
+    title = html.css('.main-content .heading .entry-title').first.text
+    body = p_body_from html.css('.main-content .hentry .entry-content > p')
+    keywords = html.css('.tag-list [rel=tag]').map &:text
+    categories = html.css '.main-content .breadcrum .breadcrum-list-item .breadcrum-link'
+    categories = categories && categories[1] rescue nil
+    categories = categories && categories.attr('href')
+    categories = categories && categories.gsub(/.*\//, '')
     image = html.css('.main-content .hmedia img').first
     image = image && image.attr('src')
-    media_items = create_media_from image
-    Notice.create title: title, body: body, keywords: keywords, categories: categories,
-      source: :tn, url: url, media: media_items
+    create_notice title: title, categories: categories, keywords: keywords,
+      url: url, body: body, media: image
+  end
+
+  def category_mapping
+    {
+      'musica' => :music,
+      'famosos' => :celebrities,
+      'show' => :show,
+      'espectaculos' => :show,
+      'tecno' => :tecnology,
+      'tecnologia' => :tecnology,
+      'politica' => :politics,
+      'policiales' => :police,
+      'deportes' => :sports,
+      'sociedad' => :society,
+      'salud' => :health,
+      'autos' => :cars
+    }
   end
 
 end

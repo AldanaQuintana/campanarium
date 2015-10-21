@@ -12,7 +12,7 @@ class CronicaFetcher < SourceFetcher
     noticias_urls = fetch_noticias_urls from, to
     puts "#{noticias_urls.count} cronica urls found"
     noticias = noticias_urls.each do |url_time|
-      notice = fetch_notice url_time
+      fetch_notice url_time
     end
   end
 
@@ -22,7 +22,7 @@ class CronicaFetcher < SourceFetcher
     sitemap = Nokogiri::HTML open sitemap_url
     urls_data = sitemap.css('url').map do |data|
       time = time_from data.css("news publication_date").text 
-      {url: data.css('loc').text, time: time}
+      { url: data.css('loc').text, time: time }
     end
     urls_data.select do |data|
       data[:time] && data[:time] >= from && data[:time] <= to
@@ -32,23 +32,54 @@ class CronicaFetcher < SourceFetcher
   def notice_from data
     url = data[:url]
     puts "Fetching notice in #{url} ..."
-    html = Nokogiri::HTML open(url),nil,'utf-8'
-    title = format_title html.css('.article-title').first.text
-    body = format_body html.css('.article-text p') #En algunos artículos meten iframes en los parrafos...
-    keywords = format_keywords html.css('.article-tags a').map &:text
-    categories = format_keywords html.css('.article-section').text
+    html = Nokogiri::HTML open(url), nil, 'utf-8'
+    title = html.css('.article-title').first.text
+    # En algunos artículos meten iframes en los parrafos...
+    body = p_body_from html.css '.article-text p'
+    keywords = html.css('.article-tags a').map &:text
+    categories = html.css '.article-section a'
+    categories = categories && categories.attr('href')
+    categories = categories && categories.text.gsub(/^.*\//, '')
     image = html.css('.article-image img').first
-    image = image && image.attr('src') #El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
-    writed_at = data[:time] 
-    media_items = create_media_from image
-    Notice.new title: title, body: body, keywords: keywords, categories: categories,
-      source: :cronica, url: url, writed_at: writed_at, media: media_items
+    # El link de las imagenes es http://static.cronica.com.ar/FileAccessHandler.ashx?code=codigo, funca igual?
+    image = image && image.attr('src')
+    writed_at = data[:time]
+    create_notice title: title, categories: categories, keywords: keywords,
+      url: url, body: body, writed_at: writed_at, media: image
   end
 
   def time_from timestamp
     Time.iso8601 timestamp #Ej: 2015-09-06T15:07:00-03:00
   rescue TypeError
     nil
+  end
+
+  def category_mapping
+    # las categorias corresponden a la ultima parte del link en cronica
+    # por ejemplo http://www.cronica.com.ar/article/index/94/futbol-nacional corresponde a futbol-nacional
+    # se ignora: info-general, reportajes
+    {
+      'politica' => :politics,
+      'policiales' => :police,
+      'tecnologia' => :tecnology,
+      'musica' => :music,
+
+      'futbol-nacional' => :football,
+      'futbol-internacional' => :football,
+      'basquet' => :basquet,
+      'rugby' => :rugby,
+
+      'farandula' => :celebrities,
+      'la-pavada' => :celebrities,
+      'por-la-red' => :celebrities,
+
+      'espectaculos' => :show,
+      'teatro' => :show,
+      'television' => :show,
+      'cine' => :show,
+      'series' => :show,
+      'show-internacional' => :show
+    }
   end
 
 end
