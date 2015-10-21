@@ -6,6 +6,9 @@ class Comment < ActiveRecord::Base
   end
 
   def set_polarity(polarity)
-    update_attribute(:positive, polarity > 0)
+    update_attributes(
+      :polarity => polarity,
+      :positivity => polarity == 0 ? 'neutral' : polarity < 0 ? 'negative' : 'positive'
+    )
   end
 end

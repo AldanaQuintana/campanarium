@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929010706) do
+ActiveRecord::Schema.define(version: 20151021223855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20150929010706) do
     t.string  "username"
     t.string  "uuid"
     t.integer "notice_group_id"
-    t.boolean "positive"
+    t.integer "polarity"
+    t.string  "positivity"
   end
 
   add_index "comments", ["notice_group_id"], name: "index_comments_on_notice_group_id", using: :btree

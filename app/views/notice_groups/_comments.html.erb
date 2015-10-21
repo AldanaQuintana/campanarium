@@ -1,7 +1,7 @@
 <% hide_comments_link||=false %>
 <div class="comments-statistics-panel">
   <h2>Lo que piensa la gente</h2>
-  <%= pie_chart with_labels(group.comments.group(:positive).count, {"true" => "Positivo", "false" => "Negativo"}), id: "pie-chart-#{group.id}"
+  <%= pie_chart with_labels(group.comments.where("positivity is not null").all.group(:positivity).count, {"positive" => "Positivo", "negative" => "Negativo", "neutral" => "Neutral" }), id: "pie-chart-#{group.id}"
  %>
   <%= link_to 'Ver comentarios', notice_group_path(group), class: 'btn btn-primary' unless hide_comments_link%>
 </div>

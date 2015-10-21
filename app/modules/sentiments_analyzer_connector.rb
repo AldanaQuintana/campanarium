@@ -7,7 +7,7 @@ class SentimentsAnalyzerConnector
         classifier: "mongo"
       }
 
-      comments = Comment.where(positive: nil).limit(100)
+      comments = Comment.where(polarity: nil).limit(100)
       comments.each do |comment|
         opts[:sentences].push({
           text: comment.message,
