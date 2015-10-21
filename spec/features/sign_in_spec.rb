@@ -18,7 +18,7 @@ describe 'sign in' do
       end
 
       it do
-        # expect_to_be_on_landing
+        expect_to_be_on_landing
       end
     end
   end
