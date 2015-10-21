@@ -11,4 +11,10 @@ class NoticeGroup < ActiveRecord::Base
     # TODO: Delete this, temporary implementation
     return true
   end
+
+  class << self
+    def without_comments
+      self.joins("left join comments on notice_groups.id = comments.notice_group_id").group("notice_groups.id").having("count(notice_group_id) = 0")
+    end
+  end
 end
