@@ -12,6 +12,11 @@ class NoticeGroup < ActiveRecord::Base
     return true
   end
 
+  def best_keyword
+    words = notices.pluck(:keywords).reject(&:empty?).flatten
+    words.max{|w| words.count(w)} || words.first
+  end
+
   class << self
     def without_comments
       self.joins("left join comments on notice_groups.id = comments.notice_group_id").group("notice_groups.id").having("count(notice_group_id) = 0")
