@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :destroy]
 
   post "response_from_analyzer", to: "semantic_analyzer#response_from_analyzer"
+  post "response_from_sentiments_analyzer", to: "sentiments_analyzer#response_from_analyzer"
 end

@@ -10,5 +10,9 @@ class AppConfiguration
     def semantic_analyzer_response_url
       "http://#{self.configuration[:host]}:#{self.configuration[:port]}/response_from_analyzer"
     end
+
+    def sentiments_analyzer_response_url
+      "http://#{self.configuration[:host]}:#{self.configuration[:port]}/response_from_sentiments_analyzer"
+    end
   end
 end

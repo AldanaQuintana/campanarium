@@ -2,8 +2,8 @@ require "requests/sugar"
 
 class ExternalServiceCall
   class ExternalServiceCallError < StandardError; end
-  def post(url, data={})
-    response = Requests.post(url, data: data.to_json, headers: {"Content-type" => "application/json"})
+  def post(url, data={}, headers={"Content-type" => "application/json"})
+    response = Requests.post(url, data: data.to_json, headers: headers)
 
     [response.status, JSON.parse(response.body)]
 
