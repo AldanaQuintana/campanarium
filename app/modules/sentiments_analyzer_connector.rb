@@ -23,8 +23,13 @@ class SentimentsAnalyzerConnector
       end
     end
 
-    def manage_response(response, status = nil)
-      puts response
+    def manage_response(results, status = nil)
+      results.each do |result|
+        comment = Comment.find_by_id result["user_info"]
+        if comment.present?
+          comment.set_polarity(result["result"])
+        end
+      end
     end
 
     def url(route)

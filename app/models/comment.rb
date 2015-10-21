@@ -5,4 +5,7 @@ class Comment < ActiveRecord::Base
     "https://twitter.com/#{username}/status/#{uuid}" if source == 'twitter'
   end
 
+  def set_polarity(polarity)
+    update_attribute(:positive, polarity > 0)
+  end
 end
