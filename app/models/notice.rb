@@ -1,5 +1,5 @@
 class Notice < ActiveRecord::Base
-  has_many :media, as: :media_owner, class_name: Media
+  has_many :media, as: :media_owner, class_name: Media, dependent: :destroy
   before_destroy :destroy_group_if_empty
   belongs_to :notice_group
   serialize :keywords, Array
