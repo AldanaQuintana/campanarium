@@ -14,7 +14,7 @@ class NoticeGroup < ActiveRecord::Base
 
   def best_keyword
     words = notices.pluck(:keywords).reject(&:empty?).flatten
-    words.max{|w| words.count(w)} || words.first
+    words.reduce{|memo, word| words.count(memo) > words.count(word) ? memo : word }
   end
 
   class << self
