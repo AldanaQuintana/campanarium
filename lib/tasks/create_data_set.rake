@@ -3,6 +3,11 @@ require 'support/notice_groups_data_set'
 namespace :data_set do
   desc "Create data set"
   task :create => :environment do
+    Admin.create(name: "Admin", email: "admin@campanarium.com",
+      password: "password", password_confirmation: "password")
+  end
+
+  task :create_dummy_data => :environment do
     to = Time.zone.now
     from = to - 2.hours
     fetchers = [TnFetcher, LaNacionFetcher, MinutoUnoFetcher,
@@ -29,7 +34,5 @@ namespace :data_set do
       password: "password",
       password_confirmation: "password"
     )}
-    Admin.create(name: "Admin", email: "admin@campanarium.com",
-      password: "password", password_confirmation: "password")
   end
 end
