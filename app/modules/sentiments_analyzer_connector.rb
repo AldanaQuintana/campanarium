@@ -4,7 +4,7 @@ class SentimentsAnalyzerConnector
       opts = {
         sentences: [],
         respond_to: AppConfiguration.sentiments_analyzer_response_url,
-        classifier: "mongo"
+        classifier: "redis"
       }
 
       comments = Comment.where(polarity: nil).limit(100)
