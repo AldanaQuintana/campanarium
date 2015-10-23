@@ -54,7 +54,7 @@ class TnFetcher < SourceFetcher
     noticias_urls
   end
 
-  def fetch_notice url
+  def notice_from url
     puts "Fetching notice in #{url} ..."
     html = Nokogiri::HTML open url
     title = html.css('.main-content .heading .entry-title').first.text
