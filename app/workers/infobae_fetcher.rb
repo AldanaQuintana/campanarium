@@ -40,7 +40,6 @@ class InfobaeFetcher < SourceFetcher
     categories = html.css('article a[data-header-tag]')
     categories = categories && categories.attr('href')
     categories = categories && categories.text.gsub(/^.*infobae\.com\//, '')
-    binding.pry if !categories
     image = html.css('.hmedia img').first
     image = image && image.attr('src')
     writed_at = time_from url
@@ -71,6 +70,7 @@ class InfobaeFetcher < SourceFetcher
       'tecnologia' =>             :tecnology,
       'infoshow' =>               :show,
       'nutriglam' =>              :health,
+      'salud-y-vida-sana' =>      :health,
       'tendencias' =>             :tendency
     }
   end

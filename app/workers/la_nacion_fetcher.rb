@@ -56,7 +56,7 @@ class LaNacionFetcher < SourceFetcher
     title = html.css('#encabezado h1').text
     body = p_body_from html.css '#cuerpo > p'
     keywords = html.css('section.en-esta-nota .tag-relacionado').map &:text
-    image = html.css('#cuerpo .archivos-relacionados .foto img').first
+    image = html.css('#cuerpo img[alt]').first
     image = image && image.attr('src')
     create_notice title: title, categories: category, keywords: keywords,
       url: url, body: body, media: image

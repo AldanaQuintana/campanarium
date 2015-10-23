@@ -22,7 +22,8 @@ class CronicaFetcher < SourceFetcher
     sitemap = Nokogiri::HTML open sitemap_url
     urls_data = sitemap.css('url').map do |data|
       time = time_from data.css("news publication_date").text 
-      { url: data.css('loc').text, time: time }
+      url = data.css('loc').text
+      { url: url, time: time }
     end
     urls_data.select do |data|
       data[:time] && data[:time] >= from && data[:time] <= to
