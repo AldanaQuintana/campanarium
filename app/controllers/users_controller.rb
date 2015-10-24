@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  respond_to :json, :html
+  respond_to :js, :json, :html
 
   before_filter :authenticate_admin_user!, only: [:destroy]
 

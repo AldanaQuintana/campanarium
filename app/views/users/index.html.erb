@@ -15,12 +15,8 @@
   <br>
   <br>
   <ul class="unstyled-list" id="users">
-    <% @users.each_with_index do |user, index| %>
-      <%= render "user", user: user, index: index, users_length: @users.length %>
-    <% end %>
+    <%= render "users", users: @users %>
   </ul>
-  <div id="no-more-results">No hay resultados para su búsqueda</div>
-  <div class="text-center"><%= paginate @users %></div>
 <% end -%>
 
 <%- if current_admin_user? %>
