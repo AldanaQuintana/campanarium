@@ -6,7 +6,7 @@ class SemanticAnalyzerConnector
         metadata: {},
         url: AppConfiguration.semantic_analyzer_response_url
       }
-      notices = Notice.where("length(categories) > 0").where(notice_group_id: nil).limit(20)
+      notices = Notice.where("length(categories) > 0").where(notice_group_id: nil).order("random()").limit(20)
 
       notices.each do |notice|
         if(notice.body.present?)
