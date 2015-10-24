@@ -10,7 +10,7 @@ class CommentsFetcher < ResqueJob
   end
 
   def search_and_persist str, notice_group_id = nil
-    tweets = client.search(str).attrs[:statuses]
+    tweets = client.search(str, lang: "es").attrs[:statuses]
     tweets.map do |tweet|
       message = tweet[:text]
       username = tweet[:user][:screen_name]
