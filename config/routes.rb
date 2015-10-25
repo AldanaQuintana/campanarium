@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 
   post "response_from_analyzer", to: "semantic_analyzer#response_from_analyzer"
   post "response_from_sentiments_analyzer", to: "sentiments_analyzer#response_from_analyzer"
+
+  get "admin_board", to: "admin#board"
 end
