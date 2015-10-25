@@ -21,6 +21,7 @@ class SentimentsAnalyzerConnector
       else
         puts("Request failed: #{response['error']}" ) if response
       end
+      return [code, response]
     end
 
     def manage_response(results, status = nil)

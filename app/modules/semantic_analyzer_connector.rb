@@ -28,6 +28,7 @@ class SemanticAnalyzerConnector
       else
         puts("Request failed: #{response['error']}" ) if response
       end
+      return [code, response]
     end
 
     def manage_response(response, status)
