@@ -23,5 +23,8 @@
   <% if current_admin_user? %>
     <%= javascript_include_tag "async_response" %>
   <% end %>
+  <%= javascript_tag do %>
+    window.wait_flash_response = '<%= session[:semantic_task_id] != nil || session[:sentiments_task_id] != nil %>' == "true"
+  <% end %>
 </body>
 </html>
