@@ -9,4 +9,9 @@ class AdminController < ApplicationController
     sentiments = session[:sentiments_task_id]
     render json: { status: 200, semantic_status: semantic_task.try(:status), sentiments_status: sentiments}
   end
+
+  def load_comments
+    count = NoticeGroupCommentsLoader.perform
+    render json: { status: 200, task_status: count > 0 ? "ok" : "stopped"}
+  end
 end
