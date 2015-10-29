@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get "admin_board", to: "admin#board"
   post "sentiments_analyzer", to: "sentiments_analyzer#call_analyzer"
   post "semantic_analyzer", to: "semantic_analyzer#call_analyzer"
+  get "async_response", to: "admin#async_response"
 end

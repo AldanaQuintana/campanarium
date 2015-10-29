@@ -20,5 +20,8 @@
     <% end %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <% if current_admin_user? %>
+    <%= javascript_include_tag "async_response" %>
+  <% end %>
 </body>
 </html>

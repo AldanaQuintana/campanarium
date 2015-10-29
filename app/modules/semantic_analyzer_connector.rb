@@ -1,10 +1,10 @@
 class SemanticAnalyzerConnector
   class << self
-    def group_notices
+    def group_notices(task_id)
       body = {
         corpus: [],
         metadata: {},
-        url: AppConfiguration.semantic_analyzer_response_url
+        url: "#{AppConfiguration.semantic_analyzer_response_url}?task_id=#{task_id}"
       }
       notices = Notice.where("length(categories) > 0").where(notice_group_id: nil).order("random()").limit(20)
 
@@ -18,9 +18,10 @@ class SemanticAnalyzerConnector
           })
         end
       end
+
       if(body[:corpus].length == 0)then puts("No notices to group"); return; end
 
-      body[:metadata][:nmb_of_centroids] = [(notices.length / notices.pluck(:source).uniq.count).to_i, 10].min
+      body[:metadata][:nmb_of_centroids] = [(notices.length / [notices.pluck(:source).uniq.count, 2].max).to_i, 10].min
 
       code, response = ExternalServiceCall.new().post(url("analyzer"), body)
       if(code == 200)

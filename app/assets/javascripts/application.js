@@ -15,6 +15,7 @@
 //= require jquery-migrate-min
 //= require bootstrap
 //= require underscore
+//= require notify.min
 //= require static_pages/redirect_on_mercury_save
 //= require masonry.pkgd.min
 //= require initializers/twitter_initializer
@@ -24,3 +25,4 @@
 //= require notice_groups/index
 //= require users/index
 //= require users/edit
+//= require admin/board
