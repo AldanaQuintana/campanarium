@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   post "sentiments_analyzer", to: "sentiments_analyzer#call_analyzer"
   post "semantic_analyzer", to: "semantic_analyzer#call_analyzer"
   post "load_comments", to: "admin#load_comments"
+  post "load_notices", to: "admin#load_notices"
   get "async_response", to: "admin#async_response"
 end

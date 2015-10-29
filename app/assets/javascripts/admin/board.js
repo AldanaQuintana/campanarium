@@ -5,12 +5,13 @@ $(".board-button").on("click", function(e){
     url: url
   }).then(function(data, status, message){
     console.log(arguments);
+    var message = data.message || "";
     if(data.analyzer_status == "running" && data.task_status == null){
       window.wait_flash_response = true;
-      $.notify("La tarea se está ejecutando, será notificado cuando termine", status);
+      $.notify("La tarea se está ejecutando, será notificado cuando termine. " + message, status);
     }else{
       if(data.task_status == "ok"){
-        $.notify("La tarea se ejecutó correctamente", status);
+        $.notify("La tarea se ejecutó correctamente. " + message, status);
       }else{
         $.notify("No se pudo ejecutar la tarea. No hay datos suficientes.", status);
       }

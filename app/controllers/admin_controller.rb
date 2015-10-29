@@ -14,4 +14,13 @@ class AdminController < ApplicationController
     count = NoticeGroupCommentsLoader.perform
     render json: { status: 200, task_status: count > 0 ? "ok" : "stopped"}
   end
+
+  def load_notices
+    to = Time.zone.now
+    from = to - 1.hour
+    notices_q = Notice.count
+    NoticesLoader.perform(from, to)
+    notices_q = Notice.count - notices_q
+    render json: {status: 200, task_status: "ok", message: "#{notices_q} noticias nuevas."}
+  end
 end
