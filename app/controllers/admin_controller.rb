@@ -18,7 +18,7 @@ class AdminController < ApplicationController
 
   def load_notices
     to = Time.zone.now
-    from = to - 1.hour
+    from = to - params["hours"].to_i.hour
     notices_q = Notice.count
     NoticesLoader.perform(from, to)
     notices_q = Notice.count - notices_q

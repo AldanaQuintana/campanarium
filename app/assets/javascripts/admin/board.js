@@ -1,11 +1,16 @@
 $(".board-button").on("click", function(e){
+  var data = {}
   var $board_button = $(e.target).closest(".board-button")
   var url =  $board_button.data("url");
+  if(url == "/load_notices"){
+    data["hours"] = parseInt($board_button.closest(".panel").find("#hours").val() || 1)
+  }
   $board_button.find(".fa-plus-circle").addClass("hidden");
   $board_button.find(".fa-spinner").removeClass("hidden");
   $.ajax({
     method: "POST",
-    url: url
+    url: url,
+    data: data
   }).then(function(data, status, message){
     console.log(arguments);
     var message = data.message || "";
