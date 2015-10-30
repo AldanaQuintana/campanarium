@@ -81,14 +81,16 @@
   .contact-boxes{
     display: inline-block;
     position: absolute;
-    left: 102px;
+    left: 85px;
     top: 81px;
 
     .contact-box{
-      margin-right: 15px;
+      margin-right: 17px;
       background-color: $primary;
       color: white;
       padding: 3px 5px;
+      width: 30px;
+      display: inline-block;
     }
   }
 }
