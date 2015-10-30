@@ -17,11 +17,16 @@ class AdminController < ApplicationController
   end
 
   def load_notices
-    to = Time.zone.now
-    from = to - params["hours"].to_i.hour
-    notices_q = Notice.count
-    NoticesLoader.perform(from, to)
-    notices_q = Notice.count - notices_q
-    render json: {status: 200, task_status: "ok", message: "#{notices_q} noticias nuevas."}
+    begin
+      to = Time.zone.now
+      from = to - params["hours"].to_i.hours
+      notices_q = Notice.count
+      NoticesLoader.perform(from, to)
+      notices_q = Notice.count - notices_q
+      render json: {status: 200, task_status: "ok", message: "#{notices_q} noticias nuevas."}
+    rescue => e
+      render json: {status: 500, task_status: "failure", message: "Hubo un error cargando las noticias."}
+      throw e
+    end
   end
 end

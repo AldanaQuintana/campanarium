@@ -6,7 +6,10 @@ class NoticesLoader
     end
     fetchers = [CronicaFetcher, InfobaeFetcher, LaNacionFetcher, TnFetcher]
     fetchers.each do |fetcher|
-      fetcher.new({from: from.to_s, to: to.to_s}).perform
+      begin
+        fetcher.new({from: from.to_s, to: to.to_s}).perform
+      rescue => e
+      end
     end
   end
 end
