@@ -1,6 +1,6 @@
 class SemanticAnalyzerConnector
   class << self
-    def group_notices(task_id)
+    def group_notices(task_id = '')
       body = {
         corpus: [],
         metadata: {},

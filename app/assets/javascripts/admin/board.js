@@ -1,5 +1,8 @@
 $(".board-button").on("click", function(e){
-  var url =  $(e.target).closest(".board-button").data("url")
+  var $board_button = $(e.target).closest(".board-button")
+  var url =  $board_button.data("url");
+  $board_button.find(".fa-plus-circle").addClass("hidden");
+  $board_button.find(".fa-spinner").removeClass("hidden");
   $.ajax({
     method: "POST",
     url: url
@@ -19,5 +22,8 @@ $(".board-button").on("click", function(e){
   }).fail(function(data, status, message){
     console.log(arguments);
     $.notify("Hubo un problema ejecutando la tarea: " + message + ".\n Para más información vea el log del sistema.");
+  }).always(function(){
+    $board_button.find(".fa-plus-circle").removeClass("hidden");
+    $board_button.find(".fa-spinner").addClass("hidden");
   });
 })

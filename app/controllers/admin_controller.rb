@@ -6,8 +6,9 @@ class AdminController < ApplicationController
   def async_response
     semantic_task = AsyncTask.find_by_id(session[:semantic_task_id])
     session.delete(:semantic_task_id) if semantic_task.nil? || semantic_task.stopped?
-    sentiments = session[:sentiments_task_id]
-    render json: { status: 200, semantic_status: semantic_task.try(:status), sentiments_status: sentiments}
+    sentiments_task = AsyncTask.find_by_id(session[:sentiments_task_id])
+    session.delete(:sentiments_task_id) if sentiments_task.nil? || sentiments_task.stopped?
+    render json: { status: 200, semantic_status: semantic_task.try(:status), sentiments_status: sentiments_task.try(:status)}
   end
 
   def load_comments

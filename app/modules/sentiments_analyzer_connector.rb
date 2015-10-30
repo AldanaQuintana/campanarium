@@ -1,9 +1,9 @@
 class SentimentsAnalyzerConnector
   class << self
-    def analyze_comments
+    def analyze_comments(task_id = '')
       opts = {
         sentences: [],
-        respond_to: AppConfiguration.sentiments_analyzer_response_url,
+        respond_to: "#{AppConfiguration.sentiments_analyzer_response_url}?task_id=#{task_id}",
         classifier: "redis"
       }
 
