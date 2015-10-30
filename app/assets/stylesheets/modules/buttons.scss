@@ -15,6 +15,12 @@
   &.btn-secondary{
     background-color: $secondary;
   }
+  &.btn-round{
+    @include circle(100px, $primary);
+    i{
+      font-size: 87px;
+    }
+  }
 }
 
 .navbar{

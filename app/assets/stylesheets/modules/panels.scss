@@ -66,6 +66,16 @@
   }
 }
 
+.board-panel{
+  height: 300px;
+  .panel-header{
+    height: 57px;
+  }
+  .panel-body{
+    margin-top: 34px;
+  }
+}
+
 // #notice_show{
 //   .edit-notice{
 //     display: none!important;

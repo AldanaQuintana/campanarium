@@ -39,6 +39,14 @@
             USUARIOS
           <% end -%>
         </li>
+        <% if current_user.admin? %>
+          <li class="with-spacer">
+            <%= link_to admin_board_path, class: current_page?(edit_user_registration_path) ? 'active' : '' do %>
+            <fa class="fa fa-icon fa-cogs"></fa>
+            ADMIN BOARD
+          <% end %>
+          </li>
+        <% end %>
         <li>
           <%=  link_to destroy_user_session_path, :method => :delete  do %>
             <i class="fa fa-icon fa-sign-out"></i>
