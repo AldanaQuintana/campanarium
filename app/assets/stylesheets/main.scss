@@ -74,3 +74,37 @@
   margin: 5px 0 15px 0;
   color: $light-gray;
 }
+
+
+.contact-image{
+  position: relative;
+  .contact-boxes{
+    display: inline-block;
+    position: absolute;
+    left: 102px;
+    top: 81px;
+
+    .contact-box{
+      margin-right: 15px;
+      background-color: $primary;
+      color: white;
+      padding: 3px 5px;
+    }
+  }
+}
+.darken-hover{
+  background-color: black;
+  padding: 0;
+  display: inline-block;
+  margin-left: 20px;
+  img{
+    -webkit-transition: all 0.5s linear;
+       -moz-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+         -o-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+    &:hover{
+      opacity: 0.6;
+    }
+  }
+}
