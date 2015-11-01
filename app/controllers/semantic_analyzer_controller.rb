@@ -22,7 +22,13 @@ class SemanticAnalyzerController < ApplicationController
     task = AsyncTask.find_by_id(params["task_id"])
     begin
       SemanticAnalyzerConnector.manage_response(params, params["error"].present? ? 500 : 200)
-      task.update_attributes(status: "finished") if task.present?
+      if task.present?
+        if params["error"].present?
+          task.update_attributes(status: "failure")
+        else
+          task.update_attributes(status: "finished")
+        end
+      end
       render json: { status: 200, data: "OK"}
     rescue => e
       task.update_attributes(status: "failure") if task.present?
