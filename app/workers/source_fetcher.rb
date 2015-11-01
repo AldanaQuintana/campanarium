@@ -55,6 +55,7 @@ class SourceFetcher < ResqueJob
       .gsub(/\ *\n\ */, "\n")
       .gsub(/\n+/, "\n")
       .gsub(/\ +/, ' ')
+      .gsub(/\n+\ *\n*/, "\n")
       .gsub(/^\ *\n*/, '')
       .gsub(/\ *\n*$/, '')
   end
