@@ -3,7 +3,7 @@
   <%= render "notice_group", group: @notice_group, hide_comments_link: true %>
 
   <div class="twits">
-    <% @notice_group.comments.each do |comment| %>
+    <% @notice_group.comments.unique_contents.each do |comment| %>
       <div class="tweet-container editable">
         <% if current_admin_user? %>
           <div class="edit-twitter edit-group">

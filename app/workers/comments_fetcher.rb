@@ -10,13 +10,15 @@ class CommentsFetcher < ResqueJob
   end
 
   def search_and_persist str, notice_group_id = nil
-    tweets = client.search(str, lang: "es").attrs[:statuses]
+    tweets = client.search(str, lang: 'es').attrs[:statuses]
     tweets.map do |tweet|
       message = tweet[:text]
       username = tweet[:user][:screen_name]
       uuid = tweet[:id_str]
+      parent_uuid = tweet[:retweeted_status] && tweet[:retweeted_status][:id]
       puts "Twitter comment found (#{uuid}): #{username} says '#{message}'"
-      Comment.create uuid: uuid, message: message, username: username, source: :twitter, notice_group_id: notice_group_id
+      Comment.create uuid: uuid, message: message, username: username,
+        parent_uuid: parent_uuid, source: :twitter, notice_group_id: notice_group_id
     end
   end
 

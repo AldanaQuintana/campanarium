@@ -5,7 +5,7 @@ class Notice < ActiveRecord::Base
   serialize :keywords, Array
   serialize :categories, NoticeCategory
 
-  validates :body, uniqueness: true
+  validates :url, uniqueness: true
 
   def images_urls
     media.map &:image_url
