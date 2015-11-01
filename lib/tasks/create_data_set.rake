@@ -12,7 +12,8 @@ namespace :data_set do
     from = to - 2.hours
     fetchers = [TnFetcher, LaNacionFetcher,
       InfobaeFetcher, CronicaFetcher,
-      PaginaDoceFetcher, InfoNewsFetcher]
+      PaginaDoceFetcher, InfoNewsFetcher,
+      AmbitoFetcher, PerfilFetcher]
     fetchers.each do |fetcher|
       begin
         fetcher.new({from: from.to_s, to: to.to_s}).perform

@@ -15,6 +15,8 @@ module NoticeHelper
     when "minuto_uno"; image_tag("logo-minuto-uno.jpg")
     when "pagina_doce"; image_tag("logo-pagina-doce.png")
     when "info_news"; image_tag("logo-info-news.png")
+    when "ambito"; image_tag("logo-ambito.jpg")
+    when "perfil"; image_tag("logo-perfil.png")
     end
   end
 end

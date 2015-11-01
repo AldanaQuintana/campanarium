@@ -15,8 +15,8 @@ class SourceFetcher < ResqueJob
 
   def fetch_notice *args
     notice = notice_from *args
-    return unless is_valid? notice
-    notice.save! if notice
+    return unless notice && is_valid?(notice)
+    notice.save!
     notice
   rescue Exception => e
     puts "Error fetching notice:\n#{e.message}\n#{e.backtrace.first(5).join("\n")}"
