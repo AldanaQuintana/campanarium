@@ -2,7 +2,7 @@ class RssSourceFetcher < SourceFetcher
 
   # abstract class
   # child must implement 'category_urls()'
-  # child can implement 'select_rss_entries_from(rss_html)'
+  # child can implement 'rss_entries_from(rss_html)'
   # child can implement 'updated_time_from(rss_entry)'
   # child must implement 'notice_from(category, rss_entry)'
 
@@ -18,7 +18,7 @@ class RssSourceFetcher < SourceFetcher
   def fetch_noticias(from, to)
     category_urls.each do |category_name, category_url|
       category = NoticeCategory.by_name category_name
-      rss_entries = fetch_rss_entries_from category_url, from, to
+      rss_entries = fetch_rss_entries_from category_url
       rss_entries.select! do |rss_entry|
         updated_time = updated_time_from rss_entry
         updated_time && updated_time >= from && updated_time <= to
@@ -30,13 +30,13 @@ class RssSourceFetcher < SourceFetcher
     end
   end
 
-  def fetch_rss_entries_from(rss_url, from, to)
+  def fetch_rss_entries_from(rss_url)
     puts "Fetching #{rss_url} ..."
     rss_html = Nokogiri::HTML open rss_url
-    select_rss_entries_from(rss_html).to_a
+    rss_entries_from(rss_html).to_a
   end
 
-  def select_rss_entries_from(rss_html)
+  def rss_entries_from(rss_html)
     rss_html.css 'item'
   end
 
