@@ -35,6 +35,12 @@ class LaNacionFetcher < RssSourceFetcher
     keywords = html.css('section.en-esta-nota .tag-relacionado').map &:text
     image = html.at_css '#cuerpo img[alt]'
     image = image && image.attr('src')
+    if !image
+      # si no hay imagen o foto real relacionada a la nota,
+      # la nacion suele poner una generica al costado
+      image = html.at_css '.encolumnada.relacionada img[itemprop=image]'
+      image = image && image.attr('src')
+    end
     create_notice title: title, categories: category, keywords: keywords,
       url: url, body: body, media: image
   end
