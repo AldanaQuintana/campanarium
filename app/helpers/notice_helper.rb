@@ -13,6 +13,8 @@ module NoticeHelper
     when "la_nacion";  image_tag("logo-la-nacion.png")
     when "cronica"; image_tag("logo-cronica.gif")
     when "minuto_uno"; image_tag("logo-minuto-uno.jpg")
+    when "pagina_doce"; image_tag("logo-pagina-doce.png")
+    when "info_news"; image_tag("logo-info-news.png")
     end
   end
 end
