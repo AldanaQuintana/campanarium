@@ -75,30 +75,41 @@
   color: $light-gray;
 }
 
-
-.contact-image{
-  position: relative;
+.contact{
+  width: 230px;
+  margin-right: 20px;
+  text-align: center;
+  background-color: $dark-gray;
+  color: $gray;
+  padding: 20px 10px;
+  img{ @include circle(160px, $dark-gray); }
+  .name{
+    margin-top: 20px;
+    font-weight: $bold;
+  }
+  .contact-image{
+    height: 160px;
+  }
   .contact-boxes{
-    display: inline-block;
-    position: absolute;
-    left: 85px;
-    top: 81px;
-
+    margin: 10px 0;
+    padding-left: 10px;
     .contact-box{
+      @include circle(30px, $gray);
       margin-right: 17px;
-      background-color: $primary;
-      color: white;
-      padding: 3px 5px;
-      width: 30px;
+      padding-top: 6px;
       display: inline-block;
+      i.fa.fa-icon{
+        color: $dark-gray;
+      }
     }
   }
 }
+
+
 .darken-hover{
-  background-color: black;
+  background-color: $dark-gray;
   padding: 0;
   display: inline-block;
-  margin-left: 20px;
   img{
     -webkit-transition: all 0.5s linear;
        -moz-transition: all 0.5s linear;
