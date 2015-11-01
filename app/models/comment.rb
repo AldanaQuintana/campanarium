@@ -11,4 +11,15 @@ class Comment < ActiveRecord::Base
       :positivity => polarity == 0 ? 'neutral' : polarity < 0 ? 'negative' : 'positive'
     )
   end
+
+  def self.unique_contents
+    # esto se podria mejorar?
+    # la idea es agarrar tweets con contenido unico ("simplificar" retweets)
+    uuids = select(:parent_uuid).group(:parent_uuid).pluck :parent_uuid
+    uuids.map do |uuid|
+      comments = where parent_uuid: uuid
+      uuid ? comments.first : comments
+    end.flatten
+  end
+
 end
