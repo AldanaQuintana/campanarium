@@ -10,8 +10,9 @@ namespace :data_set do
   task :create_dummy_data => :environment do
     to = Time.zone.now
     from = to - 2.hours
-    fetchers = [TnFetcher, LaNacionFetcher, MinutoUnoFetcher,
-      InfobaeFetcher, DiarioVelozFetcher, CronicaFetcher]
+    fetchers = [TnFetcher, LaNacionFetcher,
+      InfobaeFetcher, CronicaFetcher,
+      PaginaDoceFetcher, InfoNewsFetcher]
     fetchers.each do |fetcher|
       begin
         fetcher.new({from: from.to_s, to: to.to_s}).perform
