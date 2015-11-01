@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :notice do
     title "MyString"
-    sequence :body do |n|
-      "#{n} Faker::Lorem.paragraph"
-    end
+    body "Faker::Lorem.paragraph"
     source "MyString"
-    url "MyString"
+    sequence :url do |n|
+      "#{n}-url"
+    end
   end
 
 end
