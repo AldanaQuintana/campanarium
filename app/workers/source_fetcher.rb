@@ -1,5 +1,7 @@
 # encoding: utf-8
 class SourceFetcher < ResqueJob
+  include Resque::Plugins::Status
+  set_queue 'notice_fetchers_queue'
 
   # abstract class
   # child must implement 'notice_from(*args)'

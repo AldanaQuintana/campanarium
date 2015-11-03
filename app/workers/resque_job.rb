@@ -4,7 +4,7 @@ class ResqueJob
     new *args
   end
 
-  def self.queue queue_name
+  def self.set_queue queue_name
     @queue = queue_name
   end
 

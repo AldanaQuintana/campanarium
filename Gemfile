@@ -34,6 +34,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'resque', require: 'resque/server'
+gem 'resque-status'
 gem 'foreman'
 #WYSIWYG editor
 gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'

@@ -30,5 +30,6 @@ Rails.application.routes.draw do
   post "semantic_analyzer", to: "semantic_analyzer#call_analyzer"
   post "load_comments", to: "admin#load_comments"
   post "load_notices", to: "admin#load_notices"
+  get "job_status", to: "admin#job_status"
   get "async_response", to: "admin#async_response"
 end

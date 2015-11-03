@@ -19,14 +19,22 @@ class AdminController < ApplicationController
   def load_notices
     begin
       to = Time.zone.now
-      from = to - params["hours"].to_i.hours
-      notices_q = Notice.count
-      NoticesLoader.perform(from, to)
-      notices_q = Notice.count - notices_q
-      render json: {status: 200, task_status: "ok", message: "#{notices_q} noticias nuevas."}
+      window = params[:hours] || 1
+      from = to - window.to_i.hours
+      # job_id = Resque.enqueue NoticesLoader, from, to
+      # job_id = NoticesLoader.create from: from, to: to
+      job_id = JobWrapper.create class: 'NoticesLoader', from: from, to: to
+      render json: { status: 200, task_status: "ok", job_id: job_id }
     rescue => e
-      render json: {status: 500, task_status: "failure", message: "Hubo un error cargando las noticias."}
+      render json: { status: 500, task_status: "failure", message: "Hubo un error cargando las noticias." }
       throw e
     end
   end
+
+  def job_status
+    job_id = params[:job_id]
+    status = Resque::Plugins::Status::Hash.get job_id
+    render json: { working: status.working? }
+  end
+
 end
