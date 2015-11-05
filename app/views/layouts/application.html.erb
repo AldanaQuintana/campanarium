@@ -11,8 +11,8 @@
 </head>
 <body>
   <div id="wrapper">
-    <%=render "layouts/header"%>
     <div class="main-container <%= (current_user.present? || (!current_user.present? && controller_name == 'static_pages')) ? '' : 'landing-container' %>">
+      <%=render "layouts/header"%>
       <%= yield %>
     </div>
     <%- if render_alert_messages? %>
