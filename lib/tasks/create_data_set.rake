@@ -8,7 +8,7 @@ namespace :data_set do
   task :create_dummy_data => :environment do
     to = Time.zone.now
     from = to - 2.hours
-    fetchers = [TnFetcher, LaNacionFetcher,
+    fetchers = [LaNacionFetcher,
       InfobaeFetcher, CronicaFetcher,
       PaginaDoceFetcher, InfoNewsFetcher,
       AmbitoFetcher, PerfilFetcher]

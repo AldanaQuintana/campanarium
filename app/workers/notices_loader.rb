@@ -4,7 +4,7 @@ class NoticesLoader
       to = Time.zone.now.at_beginning_of_day
       from = to - 1.day
     end
-    fetchers = [CronicaFetcher, InfobaeFetcher, LaNacionFetcher, TnFetcher, PaginaDoceFetcher, InfoNewsFetcher, AmbitoFetcher, PerfilFetcher]
+    fetchers = [CronicaFetcher, InfobaeFetcher, LaNacionFetcher, PaginaDoceFetcher, InfoNewsFetcher, AmbitoFetcher, PerfilFetcher]
     fetchers.each do |fetcher|
       begin
         fetcher.new({from: from.to_s, to: to.to_s}).perform
