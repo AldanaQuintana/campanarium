@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-
+  authorize_resource
+  
   def board
   end
 
