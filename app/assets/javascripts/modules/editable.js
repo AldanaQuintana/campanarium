@@ -17,6 +17,7 @@
       $editable.mouseleave(function(){
         $buttons.hide();
       })
+      e.preventDefault();
     });
 
     var callMethod = function($button, $editable, extra_data){
@@ -56,6 +57,7 @@
         }else{
           callMethod($button, $editable)
         }
+        e.preventDefault();
       })
     }
 

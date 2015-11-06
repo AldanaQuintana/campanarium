@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-color: #000;
-  height:100%;
+  min-height: 700px;
   display:table;
   width: 100%;
 
@@ -98,7 +98,7 @@ i.social-media-icon{
     padding: 0;
     .panel{
       width: 100%;
-      height: 100%;
+      min-height: 700px;
       background-color: $dark-gray-2;
       margin: 0;
       margin-top: $nav-bar-height;
